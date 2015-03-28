@@ -32,6 +32,7 @@
     }
   },
   "dependencies": {
-    "cratedigger.js": "master"
+    "cratedigger.js": "master",
+    "jquery": "~2.1.3"
   }
 }

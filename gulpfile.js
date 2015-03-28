@@ -6,6 +6,7 @@ var gulp    = require('gulp'),
 var files = {
     js: {
         libs: [
+            'public/src/js/libs/jquery/jquery.js',
             'public/src/js/libs/classie/classie.js',
             'public/src/js/libs/three.js/three.min.js',
             'public/src/js/libs/tween.js/Tween.js',
