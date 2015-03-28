@@ -13,7 +13,6 @@ var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
-var exphbs  	 = require('express-handlebars');
 
 var config = require('./config/config.json');
 
@@ -36,8 +35,22 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+// app.use(multer({ dest: './uploads/',
+// 	rename: function (fieldname, filename) {
+// 		return filename+Date.now();
+// 	},
+// 	onFileUploadStart: function (file) {
+// 		console.log(file.originalname + ' is starting ...');
+// 	},
+// 	onFileUploadComplete: function (file) {
+// 		console.log(file.fieldname + ' uploaded to  ' + file.path);
+// 	}
+// }));
+
 // app.use('/public', express.static(__dirname + '/public/dist'));
 app.use(express.static(__dirname + '/public/dist'));
+
+app.use('/uploads', express.static(__dirname + '/public/uploads'));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

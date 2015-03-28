@@ -1,5 +1,7 @@
 var path = require('path');
 var digs = require('./controllers/digs');
+var multer = require('multer');
+
 
 module.exports = function(app, passport) {
 
@@ -77,18 +79,20 @@ module.exports = function(app, passport) {
 // =============================================================================
 // DIGS ========================================================================
 // =============================================================================
- 
-	app.post('/digs', isLoggedIn, function(req, res) {
-		if (req.body.title && 
+ 	
+	app.post('/digs', isLoggedIn, [ multer({ dest: './public/uploads/'}), function(req, res){
+	    if (req.body.title && 
 			req.body.artists && 
 			req.body.year && 
-			req.body.youtube) {
+			req.body.youtube &&
+			req.files.cover) {
 
 			digs.createDig({
 				title: 		req.body.title,
 				artists: 	req.body.artists,
 				year: 		req.body.year,
-				youtube: 	req.body.youtube
+				youtube: 	req.body.youtube,
+				cover: 		req.files.cover.name
 			}, req.user._id, function(err) {
 	            if (err)
 		            res.send(err);
@@ -101,7 +105,7 @@ module.exports = function(app, passport) {
 			req.flash('digMessage', 'Missing field(s).');
 			res.redirect('/admin/home');
 		}
-	});
+	}]);
 
 	app.get('/digs/:dig_id/delete', isLoggedIn, function(req, res) {
 		digs.getDigById(req.params.dig_id, function(err, dig) {	

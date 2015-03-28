@@ -21,6 +21,7 @@ module.exports = {
 		dig.artists       = data.artists;
 		dig.year          = data.year;
 		dig.links.youtube = data.youtube;
+		dig.cover 		  = data.cover;
 		dig.creator       = creator;
 
 		dig.save(done); 

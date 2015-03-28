@@ -15,4 +15,5 @@ npm-debug.log
 node_modules
 bower_components
 
+/public/uploads
 config/config.json

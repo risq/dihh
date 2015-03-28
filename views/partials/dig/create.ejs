@@ -1,21 +1,25 @@
-<form action="/digs" method="post">
+<form action="/digs" method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
-			<label>Title</label>
-			<input type="text" class="form-control" name="title">
-		</div>
+		<label>Title</label>
+		<input type="text" class="form-control" name="title">
+	</div>
 	<div class="form-group">
-			<label>Artists</label>
-			<input type="text" class="form-control" name="artists">
-		</div>
+		<label>Artists</label>
+		<input type="text" class="form-control" name="artists">
+	</div>
 	<div class="form-group">
-			<label>Year</label>
-			<input type="text" class="form-control" name="year">
-		</div>
+		<label>Year</label>
+		<input type="text" class="form-control" name="year">
+	</div>
 	<div class="form-group">
-			<label>Youtube</label>
-			<input type="text" class="form-control" name="youtube">
-		</div>
+		<label>Youtube</label>
+		<input type="text" class="form-control" name="youtube">
+	</div>
+	<div class="form-group">
+		<label>Cover</label>
+		<input type="file" class="form-control" name="cover">
+	</div>
 
 	<button type="submit" class="btn btn-warning btn-lg">Create</button>
 </form>
