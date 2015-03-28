@@ -35,17 +35,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// app.use(multer({ dest: './uploads/',
-// 	rename: function (fieldname, filename) {
-// 		return filename+Date.now();
-// 	},
-// 	onFileUploadStart: function (file) {
-// 		console.log(file.originalname + ' is starting ...');
-// 	},
-// 	onFileUploadComplete: function (file) {
-// 		console.log(file.fieldname + ' uploaded to  ' + file.path);
-// 	}
-// }));
 
 // app.use('/public', express.static(__dirname + '/public/dist'));
 app.use(express.static(__dirname + '/public/dist'));

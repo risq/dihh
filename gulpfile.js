@@ -18,9 +18,7 @@ var files = {
         headLibs: [
             'public/src/js/libs/modernizr/modernizr.js'
         ],
-        app: [
-            'public/src/js/app/app.js'
-        ]
+        app: 'public/src/js/app/**/*.js'
     },
     less: {
         entry: 'public/src/less/style.less',

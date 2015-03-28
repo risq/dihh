@@ -79,6 +79,15 @@ module.exports = function(app, passport) {
 // =============================================================================
 // DIGS ========================================================================
 // =============================================================================
+// 
+	app.get('/digs', function(req, res) {
+		digs.getDigs(function(err, digs) {
+            if (err)
+                res.send(err);
+
+            res.json(digs);
+        });
+	});
  	
 	app.post('/digs', isLoggedIn, [ multer({ dest: './public/uploads/'}), function(req, res){
 	    if (req.body.title && 
