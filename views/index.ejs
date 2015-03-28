@@ -4,12 +4,11 @@
 	<title>Node Authentication</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
+	<link rel="stylesheet" href="style.css">
+	<script src="/head.libs.js"></script>
 </head>
 <body>
-<div class="container">
+<!--<div class="container">
 
 	<div class="jumbotron">
 		<h1>Hello</h1>
@@ -31,5 +30,42 @@
 	</div>
 
 </div>
+
+--!>
+
+<div id="cratedigger">
+    <div id="cratedigger-canvas"></div>
+    <div id="cratedigger-loading">
+        <div class="info-container">
+            <div class="vertical-center">
+                <span class="loading-label">Loading records...</span>
+            </div>
+        </div>
+    </div>
+    <div id="cratedigger-info">
+        <div class="info-container">
+            <div class="vertical-center">
+                <div id="cratedigger-record-artist"></div>
+                <div id="cratedigger-record-title"></div>
+                <div id="cratedigger-record-cover"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="bottom-bar" class="noselect">
+    <div id="button-prev" class="bottom-bar-item">
+        PREVIOUS
+    </div>
+    <div id="button-show" class="bottom-bar-item">
+        SHOW
+    </div>
+    <div id="button-next" class="bottom-bar-item">
+        NEXT
+    </div>
+</div>
+
+<script src="/libs.min.js"></script>
+<script src="/app.min.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,37 @@
+{
+  "name": "dihh",
+  "version": "0.0.0",
+  "homepage": "https://github.com/risq/dihh",
+  "authors": [
+    "risq <valentin.ledrapier@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "install": {
+    "path": {
+      "less": "public/src/less/libs",
+      "css": "public/src/less/libs",
+      "js": "public/src/js/libs"
+    },
+    "sources": {
+      "modernizr": [
+        "bower_components/modernizr/modernizr.js"
+      ],
+      "cratedigger.js": [
+        "bower_components/cratedigger.js/dist/scripts/cratedigger.min.js",
+        "bower_components/cratedigger.js/dist/scripts/threejs_modules.min.js",
+        "bower_components/cratedigger.js/dist/styles/cratedigger.min.css"
+      ]
+    }
+  },
+  "dependencies": {
+    "cratedigger.js": "master"
+  }
+}
