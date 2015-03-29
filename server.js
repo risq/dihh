@@ -41,6 +41,9 @@ app.use(express.static(__dirname + '/public/dist'));
 
 app.use('/uploads', express.static(__dirname + '/public/uploads'));
 
+// DEBUG ONLY
+app.use('/public/src', express.static(__dirname + '/public/src'));
+
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 

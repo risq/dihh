@@ -9,14 +9,9 @@ module.exports = function(app, passport) {
 
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
-		digs.getDigs(function(err, digs) {
-            if (err)
-                res.send(err);
-
-            res.render('index.ejs', {
-				digs: digs
-			});
-        });
+        res.render('index.ejs', {
+			digs: digs
+		});
 	});
 
 	// ADMIN =========================
@@ -81,7 +76,7 @@ module.exports = function(app, passport) {
 // =============================================================================
 // 
 	app.get('/digs', function(req, res) {
-		digs.getDigs(function(err, digs) {
+		digs.getDigs(0, 48, function(err, digs) {
             if (err)
                 res.send(err);
 
@@ -135,6 +130,23 @@ module.exports = function(app, passport) {
 				res.redirect('/admin/home');
 			}
 		});
+    });
+
+    app.get('/digs/generate', isLoggedIn, function(req, res) {
+
+    	var faker = require('faker');
+
+    	for(var i = 0; i < 100; i++) {
+    		digs.createDig({
+				title: 		i + ' - ' + faker.lorem.sentence(),
+				artists: 	faker.name.firstName(),
+				year: 		faker.finance.mask(),
+				youtube: 	faker.internet.password(),
+				cover: 		faker.image.abstract()
+			}, req.user._id);
+    	}
+
+
     });
 }
 

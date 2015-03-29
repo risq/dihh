@@ -49,7 +49,12 @@ gulp.task('build-app', function() {
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.uglifyjs('app.min.js', {
-    }))
+        outSourceMap: true,
+        sourceRoot: './',
+        output : {
+          ascii_only : true
+        }
+      }))
     .pipe(gulp.dest('public/dist'));
 });
 
