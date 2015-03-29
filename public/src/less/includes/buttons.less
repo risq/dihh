@@ -1,0 +1,168 @@
+.button-label {
+    text-transform: uppercase;
+    color: @white;
+    white-space: nowrap;
+    font-size: 20px;
+    line-height: 44px;
+    margin: 0 0 6px 6px;
+
+    &.button-label-small {
+        line-height: 32px;
+        font-size: 16px;
+    }
+}
+
+.button {
+    display: inline-block;
+    padding: 0 8px;
+    text-decoration: none;
+    color: @white;
+    line-height: 44px; // ( = height - padding)
+    background-color: @gray;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 22px;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+    box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.4);
+
+    &:hover {
+        color: @gray;
+        background-color: @white;
+    }
+
+    &.button-fullwidth {
+        width: 100%;
+    }
+
+    &.button-small {
+        padding: 0 6px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 16px;
+    }
+
+    &.button-big {
+        padding: 0 16px;
+        height: 64px;
+        line-height: 64px;
+        font-size: 32px;
+    }
+}
+
+.round-button {
+    width:50px;
+    height:50px;
+    line-height:50px;
+    border-radius: 50%;
+    color: @white;
+    text-align:center;
+    text-decoration:none;
+    background: @gray;
+    box-shadow: 0 0 3px @gray;
+    font-size:20px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    user-select: none;
+
+    &:hover {
+        color: @gray;
+        background-color: @white;
+    }
+
+    &.round-button-big {
+        width: 92px;
+        height: 92px;
+        line-height: 92px;
+        font-size: 48px;
+    }
+
+    &.button-green {
+        background-color: fade(@green, 20%);
+        box-shadow: 0 0 3px fade(@green, 20%);
+
+        &:hover, &.active {
+            color: @white;
+            background-color: @green;
+        }
+
+        &:active {
+            color: @green;
+            background-color: @white;
+        }
+    }
+
+    &.button-red {
+        background-color: fade(@red, 20%);
+        box-shadow: 0 0 3px fade(@red, 20%);
+
+        &:hover, &.active {
+            color: @white;
+            background-color: @red;
+        }
+
+        &:active {
+            color: @red;
+            background-color: @white;
+        }
+    }
+}
+
+.button-black {
+    font-weight: 700;
+    color: @white;
+    background-color: @black;
+
+    &:hover {
+        color: @black;
+        background-color: @white;
+    }
+}
+
+.button-main {
+    font-weight: 700;
+    color: @white;
+    background-color: @main;
+
+    &:hover {
+        color: @black;
+        background-color: @white;
+    }
+}
+
+.button-inversed {
+    font-weight: 700;
+    color: @black;
+    background-color: @white;
+
+    &:hover {
+        color: @white;
+        background-color: @main;
+    }
+}
+
+.button-green {
+    font-weight: 700;
+    color: @white;
+    background-color: @green;
+    box-shadow: 0 0 3px @green;
+
+    &:hover {
+        color: @green;
+        background-color: @white;
+    }
+}
+
+.button-red {
+    font-weight: 700;
+    color: @white;
+    background-color: @red;
+    box-shadow: 0 0 3px @red;
+
+    &:hover {
+        color: @red;
+        background-color: @white;
+    }
+}

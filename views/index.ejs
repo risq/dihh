@@ -9,34 +9,90 @@
 </head>
 <body>
 
-<div id="cratedigger">
-    <div id="cratedigger-canvas"></div>
-    <div id="cratedigger-loading">
-        <div class="info-container">
-            <div class="vertical-center">
-                <span class="loading-label">Loading records...</span>
+<div class="main">
+    <div class="main-inner">
+        <div id="cratedigger">
+            <div id="cratedigger-canvas"></div>
+            <div id="cratedigger-loading">
+                <div class="info-container">
+                    <div class="vertical-center">
+                        <span class="loading-label">Loading records...</span>
+                    </div>
+                </div>
+            </div>
+            <div id="cratedigger-info">
+                <div class="info-container">
+                    <div class="vertical-center">
+                        <div id="cratedigger-record-artist" class="cratedigger-label"></div>
+                        <div id="cratedigger-record-title" class="cratedigger-label"></div>
+                        <div id="cratedigger-record-cover" class="cratedigger-label"></div>
+                        <div class="cratedigger-label">
+                            <a id="cratedigger-record-listen" href="#">Listen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-bar">
+            <div class="bottom-bar-item bottom-bar-prev-button">
+                PREVIOUS
+            </div>
+            <div class="bottom-bar-item full-centered bottom-bar-mid-button">
+                SHOW
+            </div>
+            <div class="bottom-bar-item full-centered bottom-bar-next-button">
+                NEXT
             </div>
         </div>
     </div>
-    <div id="cratedigger-info">
-        <div class="info-container">
-            <div class="vertical-center">
-                <div id="cratedigger-record-artist"></div>
-                <div id="cratedigger-record-title"></div>
-                <div id="cratedigger-record-cover"></div>
+    <div class="right-column">
+        <div class="track">
+            <div class="track-header">
+                <div class="column-container">
+                    <div class="track-artist"></div>
+                    <div class="track-title"></div>
+                </div>
             </div>
+            <div class="track-cover">
+                <div class="label-loading track-cover-loading">
+                    <div class="track-cover-loading-icon">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <div class="track-cover-loading-label">Loading...</div>
+                </div>
+            </div>
+            <div class="track-controls">
+                <div class="track-bar-container">
+                    <div class="bar buffer-bar"></div>
+                    <div class="bar track-bar"></div>
+                </div>
+                <ul class="track-controls-buttons">
+                    <li class="track-control-button button-fullwidth button-prev">
+                        Prev
+                    </li>
+                    <li class="track-control-button button-fullwidth button-playpause">
+                        Play
+                    </li>
+                    <li class="track-control-button button-fullwidth button-next">
+                        Next
+                    </li>
+                </ul>
+            </div>
+            <div class="track-buttons">
+                <div class="column-container">
+                    <a href="#" id="dig-artist-button" class="button button-fullwidth button-main">Dig this artist</a>
+                </div>
+                <div class="column-container">
+                    <div class="column">
+                        <a href="#" class="button button-fullwidth button-black">Discogs</a>
+                    </div>
+                    <div class="column">
+                        <a href="#" class="button button-fullwidth button-black">Deezer</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"></div>
         </div>
-    </div>
-</div>
-<div id="bottom-bar" class="noselect">
-    <div id="button-prev" class="bottom-bar-item">
-        PREVIOUS
-    </div>
-    <div id="button-show" class="bottom-bar-item">
-        SHOW
-    </div>
-    <div id="button-next" class="bottom-bar-item">
-        NEXT
     </div>
 </div>
 

@@ -1,9 +1,20 @@
 @import (less) 'libs/cratedigger.js/cratedigger.min.css';
+@import (less) 'libs/nprogress/nprogress.css';
 
-// Base Stylses
-@import 'slices/base.less';
+@import 'includes/variables.less';
+@import 'includes/buttons.less';
+@import 'includes/base.less';
+@import 'includes/track.less';
 
 
-a {
-    color: red;
+//OVERRIDES
+#nprogress .bar {
+	background: @red;
+}
+#nprogress .peg {
+	box-shadow: 0 0 10px @red, 0 0 5px @red;
+}
+#nprogress .spinner-icon {
+	border-top-color: @red;
+	border-left-color: @red;
 }

@@ -1,0 +1,193 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: @white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    color: @white;
+}
+
+.fat-label {
+    text-transform: uppercase;
+    color: @white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 28px;
+    margin: 0 0 6px;
+
+    &.small {
+        font-size: 22px;
+    }
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    .main-inner {
+        margin-right: @rightColumnWidth;
+        height: 100%;
+        position: relative;
+    }
+}
+
+.right-column {
+    position: fixed;
+    height: 100%;
+    width: @rightColumnWidth;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: -5px 0px 51px 2px rgba(0,0,0,0.8);
+}
+
+#cratedigger {
+    background-color: @black;
+}
+
+#top-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 96px;
+    width: 100%;
+    padding: 24px;
+    z-index: 30;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+#bottom-bar {
+    position: absolute;
+    z-index: 8;
+    background-color: rgba(17, 17, 17, 0.5);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: @bottomBarHeight;
+    width: 100%;
+    display: table;
+    color: @white;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    table-layout: fixed;
+
+    &.hidden {
+        bottom: -@bottomBarHeight;
+    }
+
+    .bottom-bar-item {
+        display: table-cell;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: @bottomBarHeight;
+        font-size: 30px;
+        transition: all 0.15s ease-in-out;
+        overflow: hidden;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @white;
+            color: @black;
+        }
+    }
+}
+
+.cratedigger-label,
+.cratedigger-label a {
+    color: @white;
+    text-transform: uppercase;
+    font: 'Montserrat', sans-serif;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: @bottomBarHeight;
+    background-color: @black;
+    z-index: 12;
+}
+
+.column-container {
+    padding: 0 30px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+
+    .column {
+        width: 50%;
+        box-sizing: border-box;
+        float: left;
+
+        &:first-child {
+            padding-right: 3px;
+        }
+
+        &:last-child {
+            padding-left: 3px;
+        }
+    }
+
+    &:after {
+        content: " ";
+        clear: both;
+        display: block;
+    }
+}
+
+.label-loading {
+    display: none;
+}
+
+.loading {
+
+    .label-default {
+        display: none;
+    }
+
+    .label-loading {
+        display: block;
+    }
+}
+
+.two-columns-container {
+
+    width: 100%;
+    position: relative;
+
+    .col {
+        box-sizing: border-box;
+        width: 50%;
+        float: left;
+
+        &:first-child {
+            padding-right: 24px;
+        }
+
+        &:last-child {
+            padding-left: 24px;
+        }
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.center {
+    text-align: center;
+}

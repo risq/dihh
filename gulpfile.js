@@ -12,6 +12,7 @@ var files = {
             'public/src/js/libs/tween.js/Tween.js',
             'public/src/js/libs/stats.js/stats.min.js',
             'public/src/js/libs/dat-gui/dat.gui.js',
+            'public/src/js/libs/nprogress/nprogress.js',
             'public/src/js/libs/cratedigger.js/threejs_modules.min.js',
             'public/src/js/libs/cratedigger.js/cratedigger.min.js',
         ],
