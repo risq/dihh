@@ -57,31 +57,8 @@
     height: @trackControlsHeight;
     z-index: 8;
     position: relative;
+    user-select: none;
     box-shadow: 0px -5px 46px -11px rgba(0, 0, 0, 0.7);
-
-    .track-bar-container {
-        height: @trackBarHeight;
-        width: 100%;
-        position:relative;
-
-        .bar {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            
-            &.buffer-bar {
-                z-index: 8;
-                background-color: @gray;
-            }
-
-            &.track-bar {
-                z-index: 9;
-                background-color: @main;
-            }
-        }
-    }
 
     ul.track-controls-buttons {
         display: table;
@@ -89,7 +66,7 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        height: @trackControlsHeight - @trackBarHeight;
+        height: @trackControlsHeight;
 
         li.track-control-button {
             display: table-cell;
@@ -99,7 +76,7 @@
             vertical-align: middle;
             color: @gray;
             cursor: pointer;
-            transition: all 0.2s ease-in-out;
+            transition: all 0.1s ease-in-out;
             overflow: hidden;
 
             &:hover, &.active {

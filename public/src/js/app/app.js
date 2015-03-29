@@ -16,6 +16,8 @@ var App = (function() {
 
 		cratedigger.init({
 
+			postprocessing: false,
+
 			sleeveMaskTexture: '/img/sleeve.png',
             crateTexture: '/img/wood.jpg',
 
