@@ -8,9 +8,11 @@ var Api = (function() {
 
 	function getDigs(options, done, fail) {
 
+		var page = options.page || 0;
+
 		NProgress.start();
 
-		$.getJSON('/digs')
+		$.getJSON('/digs/page/' + page)
 			.done(function(data) {
 
 				done(formatDigs(data));
@@ -37,7 +39,7 @@ var Api = (function() {
 				hasSleeve: false
 
 			};
-		});
+		}).reverse();
 	}
 
 	return {

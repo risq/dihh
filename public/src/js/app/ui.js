@@ -1,9 +1,11 @@
 var Ui = (function() {
 
-	var $bottomBar;
-	var $buttonPrev;
-	var $buttonShow;
-	var $buttonNext;
+	var $bottomBar,
+		$buttonPrev,
+		$buttonShow,
+		$buttonNext,
+		$buttonPrevPage,
+		$buttonNextPage;
 
     function init() {
 
@@ -12,11 +14,24 @@ var Ui = (function() {
 		$buttonShow = $bottomBar.find('.bottom-bar-mid-button');
 		$buttonNext = $bottomBar.find('.bottom-bar-next-button');
 
+		$buttonPrevPage = $('.button-prev-page');
+		$buttonNextPage = $('.button-next-page');
+
 		$buttonPrev.on('click', cratedigger.selectPrevRecord);
 
 		$buttonShow.on('click', cratedigger.flipSelectedRecord);
 
 		$buttonNext.on('click', cratedigger.selectNextRecord);
+
+		$buttonPrevPage.on('click', function() {
+			App.prevPage();
+			return false;
+		});
+
+		$buttonNextPage.on('click', function() {
+			App.nextPage();
+			return false;
+		});
 
 	}
 

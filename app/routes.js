@@ -5,12 +5,43 @@ var multer = require('multer');
 
 module.exports = function(app, passport) {
 
+	app.param(function(name, fn) {
+		
+		if (fn instanceof RegExp) {
+
+			return function(req, res, next, val) {
+
+				var captures;
+
+				if (captures = fn.exec(String(val))) {
+
+					req.params[name] = captures;
+					next();
+
+				} else {
+
+					next('route');
+
+				}
+			}
+		}
+	});
+
 // normal routes ===============================================================
 
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
         res.render('index.ejs', {
-			digs: digs
+			pageId: 0
+		});
+	});
+
+	app.param('page', /^\d+$/);
+
+	app.get('/page/:page', function(req, res) {
+		console.log('page' + req.params.page)
+        res.render('index.ejs', {
+			pageId: req.params.page
 		});
 	});
 
@@ -76,7 +107,16 @@ module.exports = function(app, passport) {
 // =============================================================================
 // 
 	app.get('/digs', function(req, res) {
-		digs.getDigs(0, 48, function(err, digs) {
+		digs.getDigsPage(0, function(err, digs) {
+            if (err)
+                res.send(err);
+
+            res.json(digs);
+        });
+	});
+
+	app.get('/digs/page/:page', function(req, res) {
+		digs.getDigsPage(req.params.page, function(err, digs) {
             if (err)
                 res.send(err);
 

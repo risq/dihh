@@ -1,17 +1,16 @@
 <!doctype html>
 <html>
 <head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<title>dihh</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="/style.css">
 	<script src="/head.libs.js"></script>
 </head>
 <body>
 
 <div class="main">
     <div class="main-inner">
-        <div id="cratedigger">
+        <div id="cratedigger" data-cratedigger-page="<%= pageId %>">
             <div id="cratedigger-canvas"></div>
             <div id="cratedigger-loading">
                 <div class="info-container">
@@ -91,7 +90,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer"></div>
+            <div class="footer">
+                <a href="#" class="button button-black button-prev-page">Prev Page</a>
+                <a href="#" class="button button-black button-next-page">Next Page</a>
+            </div>
         </div>
     </div>
 </div>

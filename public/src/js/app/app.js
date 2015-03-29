@@ -2,28 +2,21 @@ var App = (function() {
 
     function init() {
 
-		
+		Routing.init();
+		Ui.init();
 
     	initCratedigger();
 
-		Ui.init();
-
-		
-		Api.getDigs({}, function(digs) {
-
-			cratedigger.loadRecords(digs, false);
-
-		}, function(data) {
-
-			console.log("fail", data);
-
-		});
+    	loadPage(Routing.getCurrentPage());
 	
 	}
 
 	function initCratedigger() {
 
 		cratedigger.init({
+
+			sleeveMaskTexture: '/img/sleeve.png',
+            crateTexture: '/img/wood.jpg',
 
 		    elements: {
 		        rootContainerId     : 'cratedigger',
@@ -39,11 +32,43 @@ var App = (function() {
 
 			infoPanelClosed: Ui.onInfoPanelClosed
 		});
+	}
+
+	function prevPage() {
+
+		loadPage( Routing.getCurrentPage() - 1, true );
 
 	}
 
+	function nextPage() {
+
+		loadPage( Routing.getCurrentPage() + 1, true );
+
+	}
+
+	function loadPage(page, pushState) {
+
+		Api.getDigs({
+
+			page: page
+
+		}, function(digs) {
+
+			cratedigger.loadRecords(digs, false);
+			Routing.changePage(page, pushState);
+
+		}, function(data) {
+
+			console.log('Error', data);
+
+		});
+	}
+
 	return {
-        init: init
+        init: init,
+        loadPage: loadPage,
+        prevPage: prevPage,
+        nextPage: nextPage
     };
 
 })();

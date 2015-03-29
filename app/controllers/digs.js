@@ -1,5 +1,7 @@
 var Dig = require('../models/dig');
 
+var digsPerPage = 48;
+
 module.exports = {
 
 	getDigById: function(id, done) {
@@ -7,9 +9,6 @@ module.exports = {
 	},
 
 	getDigs: function(skip, limit, done) {
-		skip  = skip || 0;
-		limit = limit || 48;
-
 		Dig.find({
 			published: true
 		})
@@ -17,6 +16,10 @@ module.exports = {
 			.skip(skip)
 			.limit(limit)
 			.exec(done);
+	},
+
+	getDigsPage: function(page, done) {
+		this.getDigs(page * digsPerPage, digsPerPage, done);
 	},
 
 	getDigsByCreatorId: function(userId, done) {
