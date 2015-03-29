@@ -9,7 +9,7 @@
 <body>
 
 <div class="main">
-    <div class="main-inner">
+    <div class="scene">
         <div id="cratedigger" data-cratedigger-page="<%= pageId %>">
             <div id="cratedigger-canvas"></div>
             <div id="cratedigger-loading">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="right-column">
+    <main class="right-column">
         <div class="track">
             <div class="track-header">
                 <div class="column-container">
@@ -52,12 +52,13 @@
                     <div class="track-title"></div>
                 </div>
             </div>
-            <div class="track-cover">
-                <div class="label-loading track-cover-loading">
-                    <div class="track-cover-loading-icon">
+            <div class="track-player">
+                <div id="player"></div>
+                <div class="label-loading track-player-loading">
+                    <div class="track-player-loading-icon">
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
-                    <div class="track-cover-loading-label">Loading...</div>
+                    <div class="track-player-loading-label">Loading...</div>
                 </div>
             </div>
             <div class="track-controls">
@@ -95,7 +96,7 @@
                 <a href="#" class="button button-black button-next-page">Next Page</a>
             </div>
         </div>
-    </div>
+    </main>
 </div>
 
 <script src="/libs.min.js"></script>

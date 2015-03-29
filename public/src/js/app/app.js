@@ -4,6 +4,7 @@ var App = (function() {
 
 		Routing.init();
 		Ui.init();
+		Player.init();
 
     	initCratedigger();
 

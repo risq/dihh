@@ -32,22 +32,23 @@ p {
     width: 100%;
     position: relative;
 
-    .main-inner {
+    .scene {
         margin-right: @rightColumnWidth;
         height: 100%;
         position: relative;
     }
+
+    .right-column {
+        position: fixed;
+        height: 100%;
+        width: @rightColumnWidth;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        box-shadow: -5px 0px 51px 2px rgba(0,0,0,0.8);
+    }
 }
 
-.right-column {
-    position: fixed;
-    height: 100%;
-    width: @rightColumnWidth;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    box-shadow: -5px 0px 51px 2px rgba(0,0,0,0.8);
-}
 
 #cratedigger {
     background-color: @black;

@@ -32,10 +32,13 @@ var Api = (function() {
 
 			return {
 
+				id: dig._id,
 				title: dig.title,
 				artist: dig.artists.join(', '),
+				artists: dig.artists,
 				year: dig.year,
 				cover: dig.cover.indexOf('http://') > -1 ? dig.cover : '/uploads/' + dig.cover,
+				links: dig.links,
 				hasSleeve: false
 
 			};

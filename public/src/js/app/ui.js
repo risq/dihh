@@ -5,7 +5,12 @@ var Ui = (function() {
 		$buttonShow,
 		$buttonNext,
 		$buttonPrevPage,
-		$buttonNextPage;
+		$buttonNextPage,
+		$buttonListen,
+		$trackArtist,
+        $trackTitle,
+
+        curentTrackId;
 
     function init() {
 
@@ -17,11 +22,23 @@ var Ui = (function() {
 		$buttonPrevPage = $('.button-prev-page');
 		$buttonNextPage = $('.button-next-page');
 
+		$buttonListen = $( '#cratedigger-record-listen' );
+
+		$trackArtist = $( '.track .track-artist' );
+        $trackTitle = $( '.track .track-title' );
+
+
+
 		$buttonPrev.on('click', cratedigger.selectPrevRecord);
 
 		$buttonShow.on('click', cratedigger.flipSelectedRecord);
 
 		$buttonNext.on('click', cratedigger.selectNextRecord);
+
+		$buttonListen.on('click', function() {
+			onButtonListenClick();
+			return false;
+		});
 
 		$buttonPrevPage.on('click', function() {
 			App.prevPage();
@@ -34,6 +51,31 @@ var Ui = (function() {
 		});
 
 	}
+
+	function updateTrackView(trackData, playTrack) {
+
+		console.log(trackData);
+
+		if ( curentTrackId !== trackData.id ) {
+
+			curentTrackId = trackData.id;
+
+			$trackArtist.text(trackData.artists.join(','));
+			$trackTitle.text(trackData.title);
+
+			if ( playTrack ) {
+
+				Player.playTrack( trackData );
+
+			}
+		}
+	}
+
+	function onButtonListenClick( e ) {
+
+        updateTrackView( cratedigger.getSelectedRecord().data, true );
+        
+    }
 
 	function onInfoPanelOpened() {
 
