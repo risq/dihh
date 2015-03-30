@@ -9,6 +9,8 @@ var Routing = (function() {
     	$cratedigger = $('#cratedigger');
 
         currentPage = parseInt($cratedigger.attr('data-cratedigger-page'));
+        
+        window.history.replaceState({page: currentPage}, 'Page ' + currentPage, currentPage === 0 ? '/' : '/page/' + currentPage);
         window.onpopstate = onPopState;
 	}
 

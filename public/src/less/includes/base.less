@@ -120,6 +120,20 @@ p {
     height: @bottomBarHeight;
     background-color: @black;
     z-index: 12;
+
+    .button {
+        height: @bottomBarHeight;
+        line-height: @bottomBarHeight;
+        font-weight: 500;
+
+        &.button-prev-page {
+            float: left;
+        }
+
+        &.button-next-page {
+            float: right;
+        }
+    }
 }
 
 .column-container {

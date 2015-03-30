@@ -8,7 +8,7 @@ var files = {
         libs: [
             'public/src/js/libs/jquery/jquery.js',
             'public/src/js/libs/classie/classie.js',
-            'public/src/js/libs/three.js/three.min.js',
+            'public/src/js/libs/threejs/three.js',
             'public/src/js/libs/tween.js/Tween.js',
             'public/src/js/libs/stats.js/stats.min.js',
             'public/src/js/libs/dat-gui/dat.gui.js',
