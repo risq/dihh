@@ -1,6 +1,7 @@
 var Player = (function() {
 
-	var player;
+	var player,
+		playerReady = false;
 
     function init() {
 
@@ -32,21 +33,27 @@ var Player = (function() {
 		});
 	}
 
-	function playTrack(data) {
+	function playTrack(trackData) {
 
-		console.log(data);
-		player.loadVideoById(data.links.youtube);
-		player.playVideo();
+		if (playerReady) {
 
+			console.log(trackData.played);
+			player.loadVideoById(trackData.links.youtube);
+			player.playVideo();
+
+			trackData.played = true;
+			
+		}
 	}
 
 	function onPlayerReady(event) {
 		// event.target.playVideo();
+		playerReady = true;
 	}
 
 
 	function onPlayerStateChange(event) {
-		console.log('onPlayerStateChange', event);
+		// console.log('onPlayerStateChange', event);
 	}
 
 
