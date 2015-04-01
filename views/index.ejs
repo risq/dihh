@@ -46,61 +46,70 @@
     </div>
     <main class="right-column">
         <div class="track">
-            <div class="track-header">
-                <div class="column-container">
-                    <div class="track-artist"></div>
-                    <div class="track-title"></div>
-                </div>
-            </div>
-            <div class="track-player">
-                <div id="player"></div>
-                <div class="label-loading track-player-loading">
-                    <div class="track-player-loading-icon">
-                        <i class="fa fa-refresh fa-spin"></i>
-                    </div>
-                    <div class="track-player-loading-label">Loading...</div>
-                </div>
-            </div>
-            <div class="track-controls">
-                <ul class="track-controls-buttons">
-                    <li class="track-control-button button-fullwidth button-prev">
-                        Prev
-                    </li>
-                    <li class="track-control-button button-fullwidth button-playpause">
-                        Play
-                    </li>
-                    <li class="track-control-button button-fullwidth button-next">
-                        Next
-                    </li>
-                </ul>
-            </div>
-            <div class="track-buttons">
-                <div class="column-container">
-                    <a href="#" id="dig-artist-button" class="button button-fullwidth button-main">Dig this artist</a>
-                </div>
-                <div class="column-container">
-                    <div class="column">
-                        <a href="#" class="button button-fullwidth button-black">Discogs</a>
-                    </div>
-                    <div class="column">
-                        <a href="#" class="button button-fullwidth button-black">Deezer</a>
+            <div class="track-inner">
+                <div class="track-header">
+                    <div class="column-container">
+                        <div class="track-artist"></div>
+                        <div class="track-title"></div>
                     </div>
                 </div>
+                <div class="track-player">
+                    <div id="player"></div>
+                    <div class="label-loading track-player-loading">
+                        <div class="track-player-loading-icon">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                        <div class="track-player-loading-label">Loading...</div>
+                    </div>
+                </div>
+                <div class="track-controls">
+                    <ul class="track-controls-buttons">
+                        <li class="track-control-button button-fullwidth button-prev">
+                            Prev
+                        </li>
+                        <li class="track-control-button button-fullwidth button-playpause">
+                            Play
+                        </li>
+                        <li class="track-control-button button-fullwidth button-next">
+                            Next
+                        </li>
+                    </ul>
+                </div>
+                <div class="track-buttons">
+                    <div class="column-container">
+                        <a href="#" id="dig-artist-button" class="button button-fullwidth button-main">Dig this artist</a>
+                    </div>
+                    <div class="column-container">
+                        <div class="column">
+                            <a href="#" class="button button-fullwidth button-black">Discogs</a>
+                        </div>
+                        <div class="column">
+                            <a href="#" class="button button-fullwidth button-black">Deezer</a>
+                        </div>
+                    </div>
+                    <div class="column-container">
+                        <div id="disqus_thread"></div>
+                    </div>                
+                </div>
             </div>
-            <div class="footer">
-                <a href="#" class="button button-black button-prev-page">Prev Page</a>
-                <a href="#" class="button button-black button-next-page">Next Page</a>
-            </div>
+        </div>
+        <div class="footer">
+            <a href="#" class="button button-black button-prev-page">Prev Page</a>
+            <a href="#" class="button button-black button-next-page">Next Page</a>
         </div>
     </main>
 </div>
 
-<script src="/libs.min.js"></script>
-<script src="/app.min.js"></script>
-<script>
+<script type="text/javascript" src="/libs.min.js"></script>
+<script type="text/javascript" src="/app.min.js"></script>
+<script type="text/javascript">
 $(function() {
 	App.init();
 });
+
+    /* * * CONFIGURATION VARIABLES * * */
+
+    
 </script>
 </body>
 </html>

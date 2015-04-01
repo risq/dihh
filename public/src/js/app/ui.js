@@ -58,10 +58,16 @@ var Ui = (function() {
 
 		if ( curentTrackId !== trackData.id ) {
 
+			var trackArtists = trackData.artists.join( ',' );
+			var trackFullTitle = trackArtists + ' - ' + trackData.title;
+
 			curentTrackId = trackData.id;
 
-			$trackArtist.text(trackData.artists.join(','));
-			$trackTitle.text(trackData.title);
+			$trackArtist.text( trackArtists );
+			$trackTitle.text( trackData.title );
+
+
+			Comments.loadCommentsForTrack( trackData.id, trackFullTitle );
 
 			if ( playTrack ) {
 
