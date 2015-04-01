@@ -9,6 +9,10 @@ var Ui = (function() {
 		$buttonListen,
 		$trackArtist,
         $trackTitle,
+        $trackYear,
+        $trackLabel,
+        $trackDescription,
+        $trackLinks,
 
         curentTrackId;
 
@@ -26,6 +30,10 @@ var Ui = (function() {
 
 		$trackArtist = $( '.track .track-artist' );
         $trackTitle = $( '.track .track-title' );
+        $trackYear = $( '.track .track-year' );
+        $trackLabel = $( '.track .track-label' );
+        $trackDescription = $( '.track .track-description' );
+        $trackLinks = $( '.track .track-links' );
 
 
 
@@ -54,20 +62,32 @@ var Ui = (function() {
 
 	function updateTrackView(trackData, playTrack) {
 
-		console.log(trackData);
-
-		if ( curentTrackId !== trackData.id ) {
+		if ( curentTrackId !== trackData._id ) {
 
 			var trackArtists = trackData.artists.join( ',' );
 			var trackFullTitle = trackArtists + ' - ' + trackData.title;
 
-			curentTrackId = trackData.id;
+			curentTrackId = trackData._id;
 
 			$trackArtist.text( trackArtists );
 			$trackTitle.text( trackData.title );
+			$trackYear.text( trackData.year );
+			$trackLabel.text( trackData.label || '' );
+			$trackDescription.text( trackData.description || '' );
 
+			$trackLinks.empty();
 
-			Comments.loadCommentsForTrack( trackData.id, trackFullTitle );
+			for ( var link in trackData.links ) {
+
+            	if ( trackData.links.hasOwnProperty( link ) ) {
+
+            		$trackLinks.append('<a href="' + trackData.links[link] + '" class="button button-black button-small" target="_blank">' + link + '</a>');
+
+            	}
+            }
+			
+
+			Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
 
 			if ( playTrack ) {
 

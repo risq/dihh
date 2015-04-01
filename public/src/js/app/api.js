@@ -28,20 +28,13 @@ var Api = (function() {
 
 	function formatDigs(digs) {
 
-		return $.map(digs, function(dig) {
+		return $.each(digs, function(index, dig) {
 
-			return {
+			dig.artist = dig.artists.join(', ');
+			dig.cover = dig.cover.indexOf('http://') > -1 ? dig.cover : '/uploads/' + dig.cover;
+			dig.hasSleeve = false;
+			dig.links.youtube = '//www.youtube.com/watch?v=' + dig.youtubeId;
 
-				id: dig._id,
-				title: dig.title,
-				artist: dig.artists.join(', '),
-				artists: dig.artists,
-				year: dig.year,
-				cover: dig.cover.indexOf('http://') > -1 ? dig.cover : '/uploads/' + dig.cover,
-				links: dig.links,
-				hasSleeve: false
-
-			};
 		}).reverse();
 	}
 

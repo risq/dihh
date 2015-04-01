@@ -37,8 +37,8 @@ var Player = (function() {
 
 		if (playerReady) {
 
-			console.log(trackData.played);
-			player.loadVideoById(trackData.links.youtube);
+			console.log(trackData);
+			player.loadVideoById(trackData.youtubeId);
 			player.playVideo();
 
 			trackData.played = true;
