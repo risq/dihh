@@ -63,7 +63,7 @@ var Player = (function() {
 		// console.log('onPlayerStateChange', event);
 	}
 
-	function getNextTrack() {
+	function getPrevTrack() {
 
 		var loadedTracks = cratedigger.getRecordsDataList(),
 		    currentTrackIndex = loadedTracks.indexOf( currentTrack );
@@ -84,7 +84,7 @@ var Player = (function() {
 		}
 	}
 
-	function getPrevTrack() {
+	function getNextTrack() {
 
 		var loadedTracks = cratedigger.getRecordsDataList(),
 		    currentTrackIndex = loadedTracks.indexOf( currentTrack );
@@ -92,7 +92,7 @@ var Player = (function() {
 		if (currentTrackIndex < 0) {
 		    
 			console.log( 'Track not found in current crate' );
-			return loadedTracks[ 0 ];
+			return loadedTracks[ loadedTracks.length - 1 ];
 
 		} else if ( currentTrackIndex === 0 ) {
 
