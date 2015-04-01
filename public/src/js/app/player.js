@@ -1,7 +1,9 @@
 var Player = (function() {
 
 	var player,
-		playerReady = false;
+		playerReady = false,
+		currentTrack = null,
+		playlist = [];
 
     function init() {
 
@@ -33,33 +35,81 @@ var Player = (function() {
 		});
 	}
 
-	function playTrack(trackData) {
+	function playTrack( trackData ) {
 
-		if (playerReady) {
+		if ( playerReady ) {
 
-			console.log(trackData);
-			player.loadVideoById(trackData.youtubeId);
+			player.loadVideoById( trackData.youtubeId );
 			player.playVideo();
 
-			trackData.played = true;
-			
+			currentTrack = trackData;			
 		}
 	}
 
-	function onPlayerReady(event) {
+	function initPlaylist() {
+
+		// playlist = cratedigger.getRecordsDataList();
+		console.log( 'playlist', playlist );
+
+	}
+
+	function onPlayerReady( event ) {
 		// event.target.playVideo();
 		playerReady = true;
 	}
 
 
-	function onPlayerStateChange(event) {
+	function onPlayerStateChange( event ) {
 		// console.log('onPlayerStateChange', event);
 	}
 
+	function getNextTrack() {
+
+		var loadedTracks = cratedigger.getRecordsDataList(),
+		    currentTrackIndex = loadedTracks.indexOf( currentTrack );
+
+		if (currentTrackIndex < 0) {
+		    
+			console.log( 'Track not found in current crate' );
+			return loadedTracks[ 0 ];
+
+		} else if ( currentTrackIndex >= loadedTracks.length - 1 ) {
+
+			return loadedTracks[ 0 ];
+
+		} else {
+
+			return loadedTracks[ currentTrackIndex + 1 ];
+
+		}
+	}
+
+	function getPrevTrack() {
+
+		var loadedTracks = cratedigger.getRecordsDataList(),
+		    currentTrackIndex = loadedTracks.indexOf( currentTrack );
+
+		if (currentTrackIndex < 0) {
+		    
+			console.log( 'Track not found in current crate' );
+			return loadedTracks[ 0 ];
+
+		} else if ( currentTrackIndex === 0 ) {
+
+			return loadedTracks[ loadedTracks.length - 1 ];
+
+		} else {
+
+			return loadedTracks[ currentTrackIndex - 1 ];
+
+		}
+	}
 
 	return {
         init: init,
-        playTrack: playTrack
+        playTrack: playTrack,
+        getNextTrack: getNextTrack,
+        getPrevTrack: getPrevTrack,
     };
 
 })();

@@ -49,7 +49,7 @@ var App = (function() {
 
 	}
 
-	function loadPage(page, pushState) {
+	function loadPage( page, pushState ) {
 
 		Api.getDigs({
 
@@ -57,12 +57,15 @@ var App = (function() {
 
 		}, function(digs) {
 
-			cratedigger.loadRecords(digs, false);
-			Routing.changePage(page, pushState);
+			cratedigger.loadRecords( digs, false, function() {
+
+				Routing.changePage( page, pushState );
+
+			} );
 
 		}, function(data) {
 
-			console.log('Error', data);
+			console.log( 'Error', data );
 
 		});
 	}

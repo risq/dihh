@@ -13,6 +13,8 @@ var Ui = (function() {
         $trackLabel,
         $trackDescription,
         $trackLinks,
+        $buttonPrevTrack,
+        $buttonNextTrack,
 
         curentTrackId;
 
@@ -34,6 +36,9 @@ var Ui = (function() {
         $trackLabel = $( '.track .track-label' );
         $trackDescription = $( '.track .track-description' );
         $trackLinks = $( '.track .track-links' );
+
+		$buttonPrevTrack = $( '.button-prev-track' );
+        $buttonNextTrack = $( '.button-next-track' );
 
 
 
@@ -57,6 +62,10 @@ var Ui = (function() {
 			App.nextPage();
 			return false;
 		});
+
+		$buttonPrevTrack.on( 'click', onButtonPrevTrackClick);
+
+		$buttonNextTrack.on( 'click', onButtonNextTrackClick);
 
 	}
 
@@ -85,7 +94,6 @@ var Ui = (function() {
 
             	}
             }
-			
 
 			Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
 
@@ -114,6 +122,20 @@ var Ui = (function() {
 		$bottomBar.removeClass('closed');
 		
 	}
+
+	function onButtonPrevTrackClick() {
+
+		updateTrackView( Player.getPrevTrack(), true);
+
+	}
+
+	function onButtonNextTrackClick() {
+
+		updateTrackView( Player.getNextTrack(), true);
+
+	}
+
+
 
 	return {
         init: init,
