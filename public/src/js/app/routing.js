@@ -1,16 +1,13 @@
 var Routing = (function() {
 
 	var currentPage = 0,
-		currentDig = 0,
-		$cratedigger;
+		currentDig = 0;
 
     function init() {
 
-    	$cratedigger = $('#cratedigger');
-
-        currentPage = parseInt($cratedigger.attr('data-cratedigger-page'));
+        currentPage = Ui.getCurrentPage();
         
-        window.history.replaceState({page: currentPage}, 'Page ' + currentPage, currentPage === 0 ? '/' : '/page/' + currentPage);
+        window.history.replaceState({page: currentPage}, 'Page ' + currentPage, getPageUrl(currentPage));
         window.onpopstate = onPopState;
 	}
 
@@ -24,24 +21,30 @@ var Routing = (function() {
 
 		if (pushState) {
 
-			var url = page === 0 ? '/' : '/page/' + page;
+			var url = getPageUrl(page);
 			window.history.pushState({page: page}, 'Page ' + page, url);
 
 		}
 
 		currentPage = page;
-		$cratedigger.attr('data-cratedigger-page', page);
+		Ui.onPageChange(page);
 
 	}
 
 	function onPopState(event) {
 
-		if (event.state && event.state.page >= 0) {
+		if (event.state && event.state.page >= 1) {
 
 			currentPage = event.state.page;
 			App.loadPage(currentPage);
 			
 		}
+	}
+
+	function getPageUrl(page) {
+
+		return page === 1 ? '/' : '/page/' + page;
+
 	}
 
 	return {

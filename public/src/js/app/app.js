@@ -2,8 +2,8 @@ var App = (function() {
 
     function init() {
 
-		Routing.init();
 		Ui.init();
+		Routing.init();
 		Player.init();
 
     	initCratedigger();

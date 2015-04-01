@@ -1,6 +1,8 @@
 var Ui = (function() {
 
-	var $bottomBar,
+	var $cratedigger,
+		$pageNumber,
+		$bottomBar,
 		$buttonPrev,
 		$buttonShow,
 		$buttonNext,
@@ -19,6 +21,9 @@ var Ui = (function() {
         curentTrackId;
 
     function init() {
+
+    	$cratedigger = $('#cratedigger');
+    	$pageNumber = $('.page-number');
 
 		$bottomBar  = $('#bottom-bar');
 		$buttonPrev = $bottomBar.find('.bottom-bar-prev-button');
@@ -135,12 +140,24 @@ var Ui = (function() {
 
 	}
 
+	function onPageChange(page) {
+
+		$cratedigger.attr('data-cratedigger-page', page);
+		$pageNumber.text(page);
+
+	}
+
+	function getCurrentPage() {
+		return parseInt($cratedigger.attr('data-cratedigger-page'));
+	}
 
 
 	return {
         init: init,
         onInfoPanelOpened: onInfoPanelOpened,
-		onInfoPanelClosed: onInfoPanelClosed
+		onInfoPanelClosed: onInfoPanelClosed,
+		onPageChange: onPageChange,
+		getCurrentPage: getCurrentPage,
     };
 
 })();

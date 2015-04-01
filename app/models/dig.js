@@ -3,17 +3,42 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var digSchema = new Schema({
-    title: String,
-    artists: [String],
-    year: Number,
-    cover: String,
+    title: {
+        type: String,
+        required: true
+    },
+    artists: {
+        type: [String],
+        required: true
+    },
+    year: {
+        type: Number,
+        required: true
+    },
+    cover: {
+        type: String,
+        required: true
+    },
+    youtubeId: {
+        type: String,
+        required: true
+    },
     links: {
-        youtube: String,
         discogs: String
     },
-    published: Boolean,
-    creator: { type: Schema.Types.ObjectId, ref: 'User' },
-    created_at: Date,
+    published: {
+        type: Boolean,
+        required: true
+    },
+    creator: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+    },
+    created_at: {
+        type: Date,
+        required: true
+    }
 });
 
 digSchema.pre('save', function(next){

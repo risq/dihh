@@ -19,7 +19,7 @@ module.exports = {
 	},
 
 	getDigsPage: function(page, done) {
-		this.getDigs(page * digsPerPage, digsPerPage, done);
+		this.getDigs((page - 1) * digsPerPage, digsPerPage, done);
 	},
 
 	getDigsByCreatorId: function(userId, done) {
@@ -37,8 +37,8 @@ module.exports = {
 		dig.title         = data.title;
 		dig.artists       = data.artists;
 		dig.year          = data.year;
-		dig.links.youtube = data.youtube;
 		dig.cover 		  = data.cover;
+		dig.youtubeId 	  = data.youtube;
 		dig.published 	  = true;
 		dig.creator       = creator;
 
@@ -49,6 +49,10 @@ module.exports = {
 		Dig.remove({
             _id: id
         }, done);
+	},
+
+	getDigsCount: function(done) {
+		Dig.count({}, done);
 	}
 
 }

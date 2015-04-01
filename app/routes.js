@@ -31,17 +31,30 @@ module.exports = function(app, passport) {
 
 	// show the home page (will also have our login links)
 	app.get('/', function(req, res) {
-        res.render('index.ejs', {
-			pageId: 0
+		digs.getDigsCount(function(err, count) {
+			if (err)
+                res.send(err);
+
+            res.render('index.ejs', {
+				pageId: 1,
+				count: count,
+				pagesCount: Math.floor(count / 48) + 1
+			});
 		});
 	});
 
 	app.param('page', /^\d+$/);
 
 	app.get('/page/:page', function(req, res) {
-		console.log('page' + req.params.page)
-        res.render('index.ejs', {
-			pageId: req.params.page
+		digs.getDigsCount(function(err, count) {
+			if (err)
+                res.send(err);
+
+            res.render('index.ejs', {
+				pageId: req.params.page,
+				count: count,
+				pagesCount: Math.floor(count / 48) + 1
+			});
 		});
 	});
 
@@ -138,10 +151,22 @@ module.exports = function(app, passport) {
 				youtube: 	req.body.youtube,
 				cover: 		req.files.cover.name
 			}, req.user._id, function(err) {
-	            if (err)
-		            res.send(err);
+				console.log(err);
 
-		        req.flash('digMessage', 'Dig created !');
+	            if (!err) {
+
+		        	req.flash('digMessage', 'Dig created !');
+
+				} else if (err.path) {
+
+            		req.flash('digMessage', 'Error with field ' + err.path);
+
+            	} else { 
+
+	            	req.flash('digMessage', 'Error !');
+
+	            }
+
 				res.redirect('/admin/home');
 	        });
 		}
