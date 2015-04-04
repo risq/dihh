@@ -36,6 +36,9 @@ var Comments = (function() {
 
 	function reloadDisqus ( disqusIdentifier, disqusUrl, disqusTitle ) {
 
+		console.log('title', disqusTitle);
+
+
 		if (DISQUS) {
 
 			DISQUS.reset({

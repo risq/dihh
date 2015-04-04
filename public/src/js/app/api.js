@@ -33,6 +33,11 @@ var Api = (function() {
 			dig.artist = dig.artists.join(', ');
 			dig.cover = dig.cover.indexOf('http://') > -1 ? dig.cover : '/uploads/' + dig.cover;
 			dig.hasSleeve = false;
+
+			if (!dig.links) {
+				dig.links = {};
+			}
+
 			dig.links.youtube = '//www.youtube.com/watch?v=' + dig.youtubeId;
 
 		}).reverse();

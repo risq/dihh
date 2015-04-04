@@ -36,8 +36,7 @@ var digSchema = new Schema({
         required: true
     },
     created_at: {
-        type: Date,
-        required: true
+        type: Date
     }
 });
 
