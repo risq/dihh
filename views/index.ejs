@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>dihh</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/style.css">
 	<script src="/head.libs.js"></script>
 </head>
@@ -65,13 +65,13 @@
                 <div class="track-controls">
                     <ul class="track-controls-buttons">
                         <li class="track-control-button button-fullwidth button-prev-track">
-                            Prev
+                            <i class="icon-prev"></i> Prev
                         </li>
                         <li class="track-control-button button-fullwidth button-playpause">
                             Play
                         </li>
                         <li class="track-control-button button-fullwidth button-next-track">
-                            Next
+                            Next <i class="icon-next"></i>
                         </li>
                     </ul>
                 </div>
@@ -91,9 +91,11 @@
             </div>
         </div>
         <div class="footer">
-            <a href="#" class="button button-black button-prev-page">Prev Page</a>
-            <span href="#" class="button button-black">Page <span class="page-number"><%= pageId %></span>/<%= pagesCount %></span>
-            <a href="#" class="button button-black button-next-page">Next Page</a>
+            <a href="#" class="page-button button-prev-page"><i class="icon-left"></i></a>
+            <div class="pages">
+                Page <span class="page-number"><%= pageId %></span>/<%= pagesCount %>
+            </div>
+            <a href="#" class="page-button button-next-page"><i class="icon-right"></i></a>
         </div>
     </main>
 </div>
@@ -104,8 +106,6 @@
 $(function() {
 	App.init();
 });
-
-    /* * * CONFIGURATION VARIABLES * * */
 
     
 </script>

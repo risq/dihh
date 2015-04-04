@@ -120,19 +120,38 @@ p {
     height: @bottomBarHeight;
     background-color: @black;
     z-index: 12;
+    text-align: center;
 
-    .button {
+    .page-button {
+        height: @bottomBarHeight;
+        width: @bottomBarHeight;
+        line-height: @bottomBarHeight;
+        font-weight: 500;
+        display: inline-block;
+        color: @white;
+        transition: all 0.1s ease-in-out;
+
+        &:hover {
+            color: @main;
+        }
+
+        &:active {
+            background-color: @main;
+            color: @white;
+        }
+
+    }
+
+    .pages {
+
         height: @bottomBarHeight;
         line-height: @bottomBarHeight;
         font-weight: 500;
-
-        &.button-prev-page {
-            float: left;
-        }
-
-        &.button-next-page {
-            float: right;
-        }
+        color: @white;
+        display: inline-block;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 0 6px;
     }
 }
 

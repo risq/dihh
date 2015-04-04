@@ -25,7 +25,8 @@ var files = {
         entry: 'public/src/less/style.less',
         watch: 'public/src/less/**/*.less'
     },
-    images: 'public/src/img/**/*'
+    images: 'public/src/img/**/*',
+    fonts: 'public/src/fonts/**/*'
 }
 
 gulp.task('default', ['watch']);
@@ -63,6 +64,11 @@ gulp.task('copy-images', function() {
     .pipe(gulp.dest('public/dist/img'));
 });
 
+gulp.task('copy-fonts', function() {
+  return gulp.src(files.fonts)
+    .pipe(gulp.dest('public/dist/fonts'));
+});
+
 gulp.task('build-css', function() {
     return gulp.src(files.less.entry)
         .pipe(plugins.plumber())
@@ -91,7 +97,7 @@ gulp.task('build-css', function() {
         .pipe(gulp.dest('public/dist')).on('error', gutil.log);
 });
 
-gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images']);
+gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images', 'copy-fonts']);
 
 gulp.task('watch', ['build'], function() {
     gulp.watch(files.js.libs, ['build-libs']);
