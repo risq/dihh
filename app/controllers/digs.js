@@ -56,4 +56,4 @@ module.exports = {
 		Dig.count({}, done);
 	}
 
-}
+};

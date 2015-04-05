@@ -16,6 +16,8 @@ var session      = require('express-session');
 
 var config = require('./config/config.json');
 
+global.twitter = require('./app/twitter');
+
 // configuration ===============================================================
 mongoose.connect("mongodb://" + config.database.url); // connect to our database
 
@@ -46,6 +48,9 @@ app.use('/public/src', express.static(__dirname + '/public/src'));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// twitter =====================================================================
+twitter.init(config.twitter);
 
 // launch ======================================================================
 app.listen(port);

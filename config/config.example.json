@@ -2,5 +2,11 @@
 	"database": {
 		"url": "localhost/dihh"
 	},
-	"secret": "secret"
+	"secret": "secret",
+	"twitter": {
+		"consumerKey": "",
+		"consumerSecret": "",
+		"accessTokenKey": "",
+		"accessTokenSecret": ""
+	}
 }

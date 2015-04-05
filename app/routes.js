@@ -157,6 +157,8 @@ module.exports = function(app, passport) {
 
 	            if (!err) {
 
+                    twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
+
 		        	req.flash('digMessage', 'Dig created !');
 
 				} else if (err.path) {
