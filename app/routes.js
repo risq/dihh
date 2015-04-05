@@ -142,6 +142,7 @@ module.exports = function(app, passport) {
 			req.body.artists && 
 			req.body.year && 
 			req.body.youtube &&
+			req.body.label &&
 			req.files.cover) {
 
 			digs.createDig({
@@ -149,6 +150,7 @@ module.exports = function(app, passport) {
 				artists: 	req.body.artists,
 				year: 		req.body.year,
 				youtube: 	req.body.youtube,
+				label: 	req.body.label,
 				cover: 		req.files.cover.name
 			}, req.user._id, function(err) {
 				console.log(err);

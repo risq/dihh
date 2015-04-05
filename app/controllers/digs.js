@@ -38,6 +38,7 @@ module.exports = {
 		dig.artists       = data.artists;
 		dig.year          = data.year;
 		dig.cover 		  = data.cover;
+		dig.label 		  = data.label;
 		dig.youtubeId 	  = data.youtube;
 		dig.published 	  = true;
 		dig.creator       = creator;
