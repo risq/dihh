@@ -33,12 +33,38 @@ module.exports = function(app) {
 
 	});
 
-	app.param('page', /^\d+$/);
+	// app.get('/page/:page', function(req, res) {
 
-	app.get('/page/:page', function(req, res) {
+	// 	pages.main(res, {
+	// 		pageId: req.params.page
+	// 	});
+
+	// });
+
+	// app.param('page', /^\d+$/);
+
+	app.get('/page/:page(\\d+)', function(req, res) {
 
 		pages.main(res, {
 			pageId: req.params.page
+		});
+
+	});
+
+	app.get('/digs/:digSlug', function(req, res) {
+
+		pages.main(res, {
+			pageId: req.params.page,
+			digSlug: req.params.digSlug
+		});
+
+	});
+
+	app.get('/page/:page(\\d+)/digs/:digSlug', function(req, res) {
+
+		pages.main(res, {
+			pageId: req.params.page,
+			digSlug: req.params.digSlug
 		});
 
 	});

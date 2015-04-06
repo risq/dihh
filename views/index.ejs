@@ -10,7 +10,10 @@
 
 <div class="main">
     <div class="scene">
-        <div id="cratedigger" data-cratedigger-page="<%= pageId %>">
+        <div id="cratedigger" 
+             data-cratedigger-page="<%= pageId %>" 
+             <% if (dig) { %>data-cratedigger-record="<%= dig._id %>"<% } %> 
+        >
             <div id="cratedigger-canvas"></div>
             <div id="cratedigger-loading">
                 <div class="info-container">

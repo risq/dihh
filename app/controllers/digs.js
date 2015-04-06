@@ -8,6 +8,13 @@ module.exports = {
 		Dig.findById(id, done);
 	},
 
+	getDigBySlug: function(slug, done) {
+		Dig.findOne({
+			slug: slug
+		})
+		.exec(done);
+	},
+
 	getDigs: function(skip, limit, done) {
 		Dig.find({
 			published: true
@@ -32,7 +39,7 @@ module.exports = {
 	},
 
 	createDig: function(data, creator, done) {
-	
+
 		var dig = new Dig();
 
 		dig.title         = data.title;

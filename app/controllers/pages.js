@@ -1,24 +1,35 @@
 var digs = require('./digs');
+var async = require('async');
 
 function main( res, data ) {
 
 	data.pageId = data.pageId || 1;
 
-	digs.getDigsCount(function(err, count) {
+	var queries = {
+		count: digs.getDigsCount
+	};
 
+	if ( data.digSlug ) {
+		queries.dig = function ( done ) {
+			digs.getDigBySlug( data.digSlug, done );
+		}
+	}
+
+	async.parallel( queries, function( err, results ) {
+  		
 		if (err) {
-            
+        
 			error( res, err );
 
 		} else {
 
-            res.render('index.ejs', {
+			res.render('index.ejs', {
 				pageId: data.pageId,
-				count: count,
-				pagesCount: Math.floor(count / 48) + 1
+				count: results.count,
+				pagesCount: Math.floor(results.count / 48) + 1,
+				dig: results.dig
 			});
-
-        }
+		}
 
 	});
 }
