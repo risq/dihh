@@ -47,7 +47,9 @@ app.use('/uploads', express.static(__dirname + '/public/uploads'));
 app.use('/public/src', express.static(__dirname + '/public/src'));
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes/public')(app);
+require('./app/routes/admin')(app, passport);
+require('./app/routes/digs')(app, passport);
 
 // twitter =====================================================================
 twitter.init(config.twitter);
