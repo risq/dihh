@@ -35,22 +35,19 @@ var Player = (function() {
 		});
 	}
 
-	function playTrack( trackData ) {
+	function loadTrack( trackData, autoplay ) {
 
 		if ( playerReady ) {
 
-			player.loadVideoById( trackData.youtubeId );
-			player.playVideo();
+			player.cueVideoById( trackData.youtubeId );
+
+			if( autoplay ) {
+
+				player.playVideo();
+			}
 
 			currentTrack = trackData;			
 		}
-	}
-
-	function initPlaylist() {
-
-		// playlist = cratedigger.getRecordsDataList();
-		console.log( 'playlist', playlist );
-
 	}
 
 	function onPlayerReady( event ) {
@@ -70,7 +67,7 @@ var Player = (function() {
 
 		if (currentTrackIndex < 0) {
 		    
-			console.log( 'Track not found in current crate' );
+			// console.log( 'Track not found in current crate' );
 			return loadedTracks[ 0 ];
 
 		} else if ( currentTrackIndex >= loadedTracks.length - 1 ) {
@@ -91,7 +88,7 @@ var Player = (function() {
 
 		if (currentTrackIndex < 0) {
 		    
-			console.log( 'Track not found in current crate' );
+			// console.log( 'Track not found in current crate' );
 			return loadedTracks[ loadedTracks.length - 1 ];
 
 		} else if ( currentTrackIndex === 0 ) {
@@ -107,7 +104,7 @@ var Player = (function() {
 
 	return {
         init: init,
-        playTrack: playTrack,
+        loadTrack: loadTrack,
         getNextTrack: getNextTrack,
         getPrevTrack: getPrevTrack,
     };

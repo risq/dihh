@@ -1,35 +1,44 @@
 var Routing = (function() {
 
-	var currentPage = 0,
-		currentDig = 0;
+	var currentPageId = 0,
+		currentDigId = null;
 
     function init() {
 
-        currentPage = Ui.getCurrentPage();
-        
-        window.history.replaceState({page: currentPage}, 'Page ' + currentPage, getPageUrl(currentPage));
+        currentPageId = Ui.getCurrentPageId();
+        currentDigId  = Ui.getCurrentDigId();
+
+        // window.history.replaceState({page: currentPageId}, 'Page ' + currentPageId, getPageUrl(currentPageId));
         window.onpopstate = onPopState;
 	}
 
-	function changePage(page, pushState) {
+	function changePage(pageId, digId, pushState) {
+
+		var record = digId ? App.getRecordById( digId ) : null,
+			digSlug = record ? record.dig.slug : null;
 
 		if (pushState) {
 
-			var url = getPageUrl(page);
-			window.history.pushState({page: page}, 'Page ' + page, url);
+			var url = getPageUrl(pageId, digSlug);
+			window.history.pushState({page: pageId}, 'Page ' + pageId, url);
 
 		}
 
-		currentPage = page;
-		Ui.onPageChange(page);
+		if ( record ) {
+
+			Ui.updateTrackView(record.dig);
+			App.selectRecord(record.index);
+		}
+
+		currentPageId = pageId;
+		Ui.onPageChange(pageId);
 
 	}
 
 	function changeDig(slug) {
 
-		var url = getPageUrl(currentPage, slug);
-		console.log('url', url);
-		window.history.replaceState({page: currentPage}, 'Page ' + currentPage, url);
+		var url = getPageUrl(currentPageId, slug);
+		window.history.replaceState({page: currentPageId}, 'Page ' + currentPageId, url);
 
 	}
 
@@ -37,8 +46,8 @@ var Routing = (function() {
 
 		if (event.state && event.state.page >= 1) {
 
-			currentPage = event.state.page;
-			App.loadPage(currentPage);
+			currentPageId = event.state.page;
+			App.loadPage(currentPageId);
 			
 		}
 	}
@@ -49,9 +58,15 @@ var Routing = (function() {
 
 	}
 
-	function getCurrentPage() {
+	function getCurrentPageId() {
 
-		return currentPage;
+		return currentPageId;
+
+	}
+
+	function getCurrentDigId() {
+
+		return currentDigId;
 
 	}
 
@@ -59,7 +74,8 @@ var Routing = (function() {
         init: init,
         changePage: changePage,
         changeDig: changeDig,
-        getCurrentPage: getCurrentPage,
+        getCurrentPageId: getCurrentPageId,
+        getCurrentDigId: getCurrentDigId,
     };
 
 })();

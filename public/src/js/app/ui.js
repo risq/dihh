@@ -108,11 +108,9 @@ var Ui = (function() {
 
 			}
 
-			if ( playTrack ) {
 
-				Player.playTrack( trackData );
+			Player.loadTrack( trackData, playTrack );
 
-			}
 		}
 	}
 
@@ -146,24 +144,30 @@ var Ui = (function() {
 
 	}
 
-	function onPageChange(page) {
+	function onPageChange(pageId) {
 
-		$cratedigger.attr('data-cratedigger-page', page);
-		$pageNumber.text(page);
+		$cratedigger.attr('data-cratedigger-page', pageId);
+		$pageNumber.text(pageId);
 
 	}
 
-	function getCurrentPage() {
+	function getCurrentPageId() {
 		return parseInt($cratedigger.attr('data-cratedigger-page'));
+	}
+
+	function getCurrentDigId() {
+		return $cratedigger.attr('data-cratedigger-record') || null;
 	}
 
 
 	return {
         init: init,
+        updateTrackView: updateTrackView,
         onInfoPanelOpened: onInfoPanelOpened,
 		onInfoPanelClosed: onInfoPanelClosed,
 		onPageChange: onPageChange,
-		getCurrentPage: getCurrentPage,
+		getCurrentPageId: getCurrentPageId,
+		getCurrentDigId: getCurrentDigId
     };
 
 })();

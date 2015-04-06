@@ -8,7 +8,7 @@ var App = (function() {
 
     	initCratedigger();
 
-    	loadPage(Routing.getCurrentPage());
+    	loadPage(Routing.getCurrentPageId(), Routing.getCurrentDigId());
 	
 	}
 
@@ -39,27 +39,27 @@ var App = (function() {
 
 	function prevPage() {
 
-		loadPage( Routing.getCurrentPage() - 1, true );
+		loadPage( Routing.getCurrentPageId() - 1, null, true );
 
 	}
 
 	function nextPage() {
 
-		loadPage( Routing.getCurrentPage() + 1, true );
+		loadPage( Routing.getCurrentPageId() + 1, null, true );
 
 	}
 
-	function loadPage( page, pushState ) {
+	function loadPage( pageId, digId, pushState ) {
 
 		Api.getDigs({
 
-			page: page
+			page: pageId
 
-		}, function(digs) {
+		}, function( digs ) {
 
 			cratedigger.loadRecords( digs, false, function() {
 
-				Routing.changePage( page, pushState );
+				Routing.changePage( pageId, digId, pushState );
 
 			} );
 
@@ -70,11 +70,44 @@ var App = (function() {
 		});
 	}
 
+	function getRecordById( digId ) {
+
+		var loadedRecords = cratedigger.getRecordsDataList(),
+			digs = loadedRecords.slice(), 
+			dig;
+
+	    while( dig = digs.pop() ) { // jshint ignore:line
+
+	        if ( dig._id === digId ) { 
+
+	        	return {
+	        		dig: dig,
+	        		index: digs.length
+	        	};
+	        }
+	    }
+
+	    return null;
+
+	}
+
+	function selectRecord( index ) {
+
+		setTimeout(function() {
+
+			cratedigger.selectRecord( index );
+			
+		}, 1500);
+
+	}
+
 	return {
         init: init,
         loadPage: loadPage,
         prevPage: prevPage,
-        nextPage: nextPage
+        nextPage: nextPage,
+        getRecordById: getRecordById,
+        selectRecord: selectRecord
     };
 
 })();
