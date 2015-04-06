@@ -32,6 +32,7 @@ module.exports = {
 	},
 
 	createDig: function(data, creator, done) {
+	
 		var dig = new Dig();
 
 		dig.title         = data.title;
@@ -40,6 +41,7 @@ module.exports = {
 		dig.cover 		  = data.cover;
 		dig.label 		  = data.label;
 		dig.youtubeId 	  = data.youtube;
+		dig.slug 	  	  = data.slug;
 		dig.published 	  = true;
 		dig.creator       = creator;
 
@@ -54,6 +56,10 @@ module.exports = {
 
 	getDigsCount: function(done) {
 		Dig.count({}, done);
+	},
+
+	getDigsPageByDigSlug: function(done) {
+		done();
 	}
 
 };

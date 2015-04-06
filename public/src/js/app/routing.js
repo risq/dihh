@@ -11,12 +11,6 @@ var Routing = (function() {
         window.onpopstate = onPopState;
 	}
 
-	function getCurrentPage() {
-
-		return currentPage;
-
-	}
-
 	function changePage(page, pushState) {
 
 		if (pushState) {
@@ -31,6 +25,14 @@ var Routing = (function() {
 
 	}
 
+	function changeDig(slug) {
+
+		var url = getPageUrl(currentPage, slug);
+		console.log('url', url);
+		window.history.replaceState({page: currentPage}, 'Page ' + currentPage, url);
+
+	}
+
 	function onPopState(event) {
 
 		if (event.state && event.state.page >= 1) {
@@ -41,15 +43,22 @@ var Routing = (function() {
 		}
 	}
 
-	function getPageUrl(page) {
+	function getPageUrl(page, digSlug) {
 
-		return page === 1 ? '/' : '/page/' + page;
+		return (page === 1 ? '/' : '/page/' + page) + ( digSlug ? 'digs/' + digSlug : '');
+
+	}
+
+	function getCurrentPage() {
+
+		return currentPage;
 
 	}
 
 	return {
         init: init,
         changePage: changePage,
+        changeDig: changeDig,
         getCurrentPage: getCurrentPage,
     };
 

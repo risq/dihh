@@ -128,6 +128,15 @@ module.exports = function(app, passport) {
         });
 	});
 
+	// app.get('/digs/:slug', function(req, res) {
+	// 	digs.getDigsPageByDigSlug(req.params.slug, function(err, digs) {
+ //            if (err)
+ //                res.send(err);
+
+ //            res.json(digs);
+ //        });
+	// });
+
 	app.get('/digs/page/:page', function(req, res) {
 		digs.getDigsPage(req.params.page, function(err, digs) {
             if (err)
@@ -143,15 +152,17 @@ module.exports = function(app, passport) {
 			req.body.year && 
 			req.body.youtube &&
 			req.body.label &&
-			req.files.cover) {
+			req.files.cover &&
+			req.body.slug) {
 
 			digs.createDig({
 				title: 		req.body.title,
 				artists: 	req.body.artists,
 				year: 		req.body.year,
 				youtube: 	req.body.youtube,
-				label: 	req.body.label,
-				cover: 		req.files.cover.name
+				label: 		req.body.label,
+				cover: 		req.files.cover.name,
+				slug: 		req.body.slug
 			}, req.user._id, function(err) {
 				console.log(err);
 

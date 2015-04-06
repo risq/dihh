@@ -102,6 +102,12 @@ var Ui = (function() {
 
 			Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
 
+			if ( trackData.slug ) {
+
+				Routing.changeDig( trackData.slug );
+
+			}
+
 			if ( playTrack ) {
 
 				Player.playTrack( trackData );
