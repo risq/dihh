@@ -4,6 +4,7 @@
 	<title>dihh</title>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/style.css">
+    <link rel="canonical" href="/<% if (pageId > 1) { %>page/<%= pageId %>/<% } %><% if (dig) { %>digs/<%= dig.slug %><% } %>" />
 	<script src="/head.libs.js"></script>
 </head>
 <body>
@@ -52,8 +53,16 @@
             <div class="track-inner">
                 <div class="track-header">
                     <div class="column-container">
-                        <div class="track-artist"></div>
-                        <div class="track-title"></div>
+                        <div class="track-artist">
+                            <% if (dig) { %>
+                                <%= dig.artists.join(', ') %>
+                            <% } %>
+                        </div>
+                        <div class="track-title">
+                            <% if (dig) { %>
+                                <%= dig.title %>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
                 <div class="track-player">
@@ -81,14 +90,37 @@
                 <div class="track-infos">
                     <div class="track-info">
                         <span class="track-info-label">Label</span>
-                        <span class="track-label"></span>
+                        <span class="track-label">
+                            <% if (dig) { %>
+                                <%= dig.label %>
+                            <% } %>
+                        </span>
                     </div>
                     <div class="track-info">
                         <span class="track-info-label">Released</span>
-                        <span class="track-year"></span>
+                        <span class="track-year">
+                            <% if (dig) { %>
+                                <%= dig.year %>
+                            <% } %>
+                        </span>
                     </div>
-                    <div class="track-description"></div>
-                    <div class="track-links"></div>
+                    <div class="track-description">
+                        <% if (dig) { %>
+                            
+                        <% } %>
+                    </div>
+                    <div class="track-links">
+                        <% if (dig) { %>
+
+                            <a href="//www.youtube.com/watch?v=<%= dig.youtubeId %>" class="button button-black button-small" target="_blank">Youtube</a> 
+                            
+                            <% if (dig.links.discogs) { %>
+                            
+                                <a href="<%= dig.links.discogs %>" class="button button-black button-small" target="_blank">Discogs</a> 
+
+                            <% } %>
+                        <% } %>
+                    </div>
                     <div id="disqus_thread"></div>
                 </div>
             </div>

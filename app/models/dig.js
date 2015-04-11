@@ -29,7 +29,8 @@ var digSchema = new Schema({
     },
     slug: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     links: {
         discogs: String
@@ -37,6 +38,9 @@ var digSchema = new Schema({
     published: {
         type: Boolean,
         required: true
+    },
+    page: {
+        type: Number
     },
     creator: { 
         type: Schema.Types.ObjectId, 

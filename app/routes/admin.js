@@ -17,7 +17,7 @@ module.exports = function(app, passport) {
 
 	// SECURED ============================
 	app.get('/admin', isLoggedIn, function(req, res) {
-
+		digs.updatePages();
 		pages.admin(res, {
 			user: req.user,
 			flashMessage: req.flash('digMessage')

@@ -54,7 +54,7 @@ var Routing = (function() {
 
 	function getPageUrl(page, digSlug) {
 
-		return (page === 1 ? '/' : '/page/' + page) + ( digSlug ? 'digs/' + digSlug : '');
+		return (page === 1 ? '/' : '/page/' + page + '/' ) + ( digSlug ? 'digs/' + digSlug : '');
 
 	}
 

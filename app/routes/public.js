@@ -33,16 +33,6 @@ module.exports = function(app) {
 
 	});
 
-	// app.get('/page/:page', function(req, res) {
-
-	// 	pages.main(res, {
-	// 		pageId: req.params.page
-	// 	});
-
-	// });
-
-	// app.param('page', /^\d+$/);
-
 	app.get('/page/:page(\\d+)', function(req, res) {
 
 		pages.main(res, {
@@ -54,7 +44,6 @@ module.exports = function(app) {
 	app.get('/digs/:digSlug', function(req, res) {
 
 		pages.main(res, {
-			pageId: req.params.page,
 			digSlug: req.params.digSlug
 		});
 
@@ -63,7 +52,6 @@ module.exports = function(app) {
 	app.get('/page/:page(\\d+)/digs/:digSlug', function(req, res) {
 
 		pages.main(res, {
-			pageId: req.params.page,
 			digSlug: req.params.digSlug
 		});
 

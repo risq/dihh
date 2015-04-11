@@ -24,7 +24,7 @@ function main( res, data ) {
 		} else {
 
 			res.render('index.ejs', {
-				pageId: data.pageId,
+				pageId: results.dig ? results.dig.page + 1 : data.pageId,
 				count: results.count,
 				pagesCount: Math.floor(results.count / 48) + 1,
 				dig: results.dig

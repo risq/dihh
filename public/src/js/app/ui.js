@@ -91,13 +91,21 @@ var Ui = (function() {
 
 			$trackLinks.empty();
 
-			for ( var link in trackData.links ) {
+			// for ( var link in trackData.links ) {
 
-            	if ( trackData.links.hasOwnProperty( link ) ) {
+   //          	if ( trackData.links.hasOwnProperty( link ) ) {
 
-            		$trackLinks.append('<a href="' + trackData.links[link] + '" class="button button-black button-small" target="_blank">' + link + '</a>');
+   //          		$trackLinks.append('<a href="' + trackData.links[link] + '" class="button button-black button-small" target="_blank">' + link + '</a>');
 
-            	}
+   //          	}
+   //          }
+            
+            $trackLinks.append('<a href="' + trackData.links.youtube + '" class="button button-black button-small" target="_blank">Youtube</a>');
+
+            if ( trackData.links.discogs ){
+
+            	$trackLinks.append('<a href="' + trackData.links.discogs + '" class="button button-black button-small" target="_blank">Discogs</a>');
+            	
             }
 
 			Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
