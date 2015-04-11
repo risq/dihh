@@ -41,7 +41,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // app.use('/public', express.static(__dirname + '/public/dist'));
 app.use(express.static(__dirname + '/public/dist'));
 
-app.use('/uploads', express.static(__dirname + '/public/uploads'));
+app.use('/uploads', express.static(__dirname + '/public/uploads', { maxAge: 2592000000 }));
 
 // DEBUG ONLY
 app.use('/public/src', express.static(__dirname + '/public/src'));
