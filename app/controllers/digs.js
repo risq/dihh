@@ -58,13 +58,39 @@ function createDig(data, creator, done) {
 	dig.published 	  = true;
 	dig.creator       = creator;
 
-	dig.save(done); 
+	dig.save( function(err) {
+
+		if ( err ) {
+
+			done( err );
+
+		} else {
+
+			updatePages( done );
+
+		}
+
+	}); 
 }
 
 function removeDigById(id, done) {
 	Dig.remove({
+
         _id: id
-    }, done);
+
+    }, function(err) {
+
+		if ( err ) {
+
+			done( err );
+
+		} else {
+
+			updatePages( done );
+			
+		}
+
+	});
 }
 
 function getDigsCount(done) {
@@ -74,19 +100,15 @@ function getDigsCount(done) {
 function updatePages(done) {
 	getDigs( null, null, function(error, digs) {
 
-		async.eachSeries(Object.keys(digs), function ( index, done ) {
+		async.eachSeries(Object.keys(digs), function ( index, saveDone ) {
 
 			var dig = digs[ index ],
 				page = Math.floor( index / digsPerPage);
 
 			dig.page = page;
-			dig.save( done )
+			dig.save( saveDone );
 
-		}, function( err ) {
-
-			console.log( 'done !' );
-
-		});
+		}, done);
 	});
 }
 

@@ -34,7 +34,7 @@ var Api = (function() {
 			dig.cover = dig.cover.indexOf('http://') > -1 ? dig.cover : '/uploads/' + dig.cover;
 			dig.hasSleeve = false;
 
-			if (!dig.links) {
+			if ( !dig.links ) {
 				dig.links = {};
 			}
 

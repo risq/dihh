@@ -53,7 +53,8 @@ module.exports = function(app, passport) {
 				cover: 		req.files.cover.name,
 				slug: 		req.body.slug
 			}, req.user._id, function(err) {
-				console.log(err);
+
+				console.log('done.', err)
 
 	            if (!err) {
 
@@ -71,12 +72,12 @@ module.exports = function(app, passport) {
 
 	            }
 
-				res.redirect('/admin/home');
+				res.redirect('/admin');
 	        });
 		}
 		else {
 			req.flash('digMessage', 'Missing field(s).');
-			res.redirect('/admin/home');
+			res.redirect('/admin');
 		}
 	}]);
 
@@ -91,12 +92,12 @@ module.exports = function(app, passport) {
 		                res.send(err);
 
 		            req.flash('digMessage', 'Dig deleted !');
-					res.redirect('/admin/home');
+					res.redirect('/admin');
 		        });
 			}
 			else {
 				req.flash('digMessage', 'Cannot delete this dig.');
-				res.redirect('/admin/home');
+				res.redirect('/admin');
 			}
 		});
     });
