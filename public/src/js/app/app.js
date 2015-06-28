@@ -8,7 +8,7 @@ var App = (function() {
 
     	initCratedigger();
 
-    	loadPage(Routing.getCurrentPageId(), Routing.getCurrentDigId());
+    	loadPage(Routing.getCurrentPageId(), Routing.getCurrentDigId(), false, startIntro);
 	
 	}
 
@@ -49,13 +49,19 @@ var App = (function() {
 
 	}
 
-	function loadPage( pageId, digId, pushState ) {
+	function loadPage( pageId, digId, pushState, done ) {
 
 		Api.getDigs({
 
 			page: pageId
 
 		}, function( digs ) {
+
+			if (done) {
+
+				done();
+			
+			}
 
 			cratedigger.loadRecords( digs, false, function() {
 
@@ -99,6 +105,35 @@ var App = (function() {
 			
 		}, 1500);
 
+	}
+
+	function startIntro() {
+
+		setTimeout(function() {
+
+			new Vivus('intro-svg', {
+				file: '/img/intro.svg',
+			    type: 'delayed',
+			    duration: 250,
+		        start: 'autostart'
+			}, onIntroEnd);
+
+		}, 1000);
+	}
+
+	function onIntroEnd() {
+
+		setTimeout(function() {
+
+			$('.intro').addClass('intro-hidden');
+
+			setTimeout(function() {
+
+				$('.intro').remove();
+
+			}, 1000);
+
+		}, 2000);
 	}
 
 	return {
