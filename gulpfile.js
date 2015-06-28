@@ -105,7 +105,7 @@ gulp.task('build-css', function() {
 
 gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images', 'copy-fonts']);
 
-gulp.task('watch', function() {
+gulp.task('watch', ['build'], function() {
     browserSync({
         server: {
             baseDir: 'public/dist',
