@@ -32,7 +32,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: config.secret })); // session secret
+app.use(session({ 
+	secret: config.secret,
+	resave: false,
+	saveUninitialized: false
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -55,5 +59,11 @@ require('./app/routes/digs')(app, passport);
 twitter.init(config.twitter);
 
 // launch ======================================================================
-app.listen(port);
+
+var server = require('http').createServer(app);
+
+server.listen(port);
 console.log('The magic happens on port ' + port);
+
+module.exports = app;
+

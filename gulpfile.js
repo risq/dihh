@@ -3,6 +3,10 @@ var gulp    = require('gulp'),
     gutil   = require('gulp-util');
     plugins = require('gulp-load-plugins')();
 
+var browserSync = require('browser-sync');
+
+var reload = browserSync.reload;
+
 var files = {
     js: {
         libs: [
@@ -56,7 +60,8 @@ gulp.task('build-app', function() {
           ascii_only : true
         }
       }))
-    .pipe(gulp.dest('public/dist'));
+    .pipe(gulp.dest('public/dist'))
+    .pipe(reload({ stream: true }));
 });
 
 gulp.task('copy-images', function() {
@@ -94,12 +99,21 @@ gulp.task('build-css', function() {
             }
         ))
         .pipe(plugins.cssmin())
-        .pipe(gulp.dest('public/dist')).on('error', gutil.log);
+        .pipe(gulp.dest('public/dist')).on('error', gutil.log)
+        .pipe(reload({ stream: true }));
 });
 
 gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images', 'copy-fonts']);
 
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', function() {
+    browserSync({
+        server: {
+            baseDir: 'public/dist',
+            middleware: function(req, res, next) {
+                require('./server')(req, res, next);
+            }
+        }
+    });
     gulp.watch(files.js.libs, ['build-libs']);
     gulp.watch(files.js.headLibs, ['build-head-libs']);
     gulp.watch(files.js.app, ['build-app']);
