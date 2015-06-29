@@ -31,9 +31,9 @@ var App = (function() {
 		        coverContainerId    : 'cratedigger-record-cover'
 		    },
 
-		    infoPanelOpened: Ui.onInfoPanelOpened,
+		    onInfoPanelOpened: Ui.onInfoPanelOpened,
 
-			infoPanelClosed: Ui.onInfoPanelClosed
+			onInfoPanelClosed: Ui.onInfoPanelClosed
 		});
 	}
 
