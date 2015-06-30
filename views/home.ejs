@@ -11,36 +11,37 @@
 	</div>
 
 	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
+		<div class="alert alert-primary"><%= message %></div>
 	<% } %>
 
 	<div class="row">
 
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-disc"></span> My digs</h3>
+		<div class="col-sm-8">
 
-				<% if (digs.length > 0) { %>
+			<h3><span class="fa fa-disc"></span> My digs</h3>
 
-					<ul>
+			<% if (digs.length > 0) { %>
 
-						<% for(var i=0; i<digs.length; i++) {%>
+				<ul>
 
-						   <li>
-						   		<%= digs[i].title %> - <a href="/digs/<%= digs[i]._id %>/delete">Delete</a>
-						   	</li>
+					<% for(var i=0; i<digs.length; i++) {%>
 
-						<% } %>
+					   <li>
+					   		<%= digs[i].title %> - <%= digs[i].artists.join(', ') %> - <a href="/digs/<%= digs[i]._id %>/delete">Delete</a>
+					   	</li>
 
-					</ul>
+					<% } %>
 
-				<% } %>
-			</div>
+				</ul>
+
+			<% } %>
 		</div>
 
-		<div class="col-sm-6">
+		<div class="col-sm-4">
+			<div class="well">
 				<h3><span class="fa fa-disc"></span> New dig</h3>
 				<% include ./partials/dig/create %>
+			</div>
 		</div>
 
 	</div>

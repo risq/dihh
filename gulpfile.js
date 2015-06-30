@@ -31,7 +31,8 @@ var files = {
         watch: 'public/src/less/**/*.less'
     },
     images: 'public/src/img/**/*',
-    fonts: 'public/src/fonts/**/*'
+    fonts: 'public/src/fonts/**/*',
+    adminAssets: 'public/src/admin/**/*'
 }
 
 gulp.task('default', ['watch']);
@@ -75,6 +76,11 @@ gulp.task('copy-fonts', function() {
     .pipe(gulp.dest('public/dist/fonts'));
 });
 
+gulp.task('copy-admin-assets', function() {
+  return gulp.src(files.adminAssets)
+    .pipe(gulp.dest('public/dist/admin/assets'));
+});
+
 gulp.task('build-css', function() {
     return gulp.src(files.less.entry)
         .pipe(plugins.plumber())
@@ -104,7 +110,7 @@ gulp.task('build-css', function() {
         .pipe(reload({ stream: true }));
 });
 
-gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images', 'copy-fonts']);
+gulp.task('build', ['build-libs', 'build-app', 'build-css', 'build-head-libs', 'copy-images', 'copy-admin-assets', 'copy-fonts']);
 
 gulp.task('watch', ['build'], function() {
     browserSync({
@@ -119,4 +125,7 @@ gulp.task('watch', ['build'], function() {
     gulp.watch(files.js.headLibs, ['build-head-libs']);
     gulp.watch(files.js.app, ['build-app']);
     gulp.watch(files.less.watch, ['build-css']);
+    gulp.watch(files.images, ['copy-images']);
+    gulp.watch(files.fonts, ['copy-fonts']);
+    gulp.watch(files.adminAssets, ['copy-admin-assets']);
 });
