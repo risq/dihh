@@ -47,7 +47,8 @@ function admin( res, data ) {
 	        res.render('home.ejs', {
 				user: data.user,
 				digs: digs,
-				message: data.flashMessage
+				message: data.flashMessage,
+				formData: data.formData[0] ? data.formData[0] : {}
 			});
 	    }
 

@@ -2,39 +2,39 @@
 
 	<div class="form-group">
 		<label for="input-title">Title</label>
-		<input type="text" class="form-control" name="title" id="input-title">
+		<input type="text" class="form-control" name="title" id="input-title" value="<%= formData.title || '' %>">
 	</div>
 	<div class="form-group">
 		<label for="input-artists">Artists</label>
-		<input type="text" class="form-control" name="artists" id="input-artists">
+		<input type="text" class="form-control" name="artists" value="<%= formData.artists || '' %>" id="input-artists">
 	</div>
 	<div class="form-group">
 		<label for="input-year">Year</label>
-		<input type="text" class="form-control" name="year" id="input-year">
+		<input type="text" class="form-control" name="year" value="<%= formData.year || '' %>" id="input-year">
 	</div>
 	<div class="form-group">
 		<label for="input-label">Label</label>
-		<input type="text" class="form-control" name="label" id="input-label">
+		<input type="text" class="form-control" name="label" value="<%= formData.label || '' %>" id="input-label">
 	</div>
 	<div class="form-group">
 		<label for="input-youtube">Youtube ID</label>
-		<input type="text" class="form-control" name="youtube" id="input-youtube">
+		<input type="text" class="form-control" name="youtube" value="<%= formData.youtube || '' %>" id="input-youtube">
 	</div>
 	<div class="form-group">
 		<label for="input-cover">Cover</label>
-		<input type="file" class="form-control" name="cover" id="input-cover">
+		<input type="file" class="form-control" name="cover" value="<%= formData.cover || '' %>" id="input-cover">
 	</div>
 	<div class="radio">
 	    <label for="input-sleeve-1">
-	      <input type="radio" name="hasSleeve" value="false" id="input-sleeve-1" checked> Image is a cover picture
+	      <input type="radio" name="hasSleeve" value="false" id="input-sleeve-1" <% if ( !formData.hasSleeve ) { %> checked <% } %> > Image is a cover picture
 	    </label>
 	    <label for="input-sleeve-2">
-	      <input type="radio" name="hasSleeve" value="true" id="input-sleeve-2"> Image is the record label picture
+	      <input type="radio" name="hasSleeve" value="true" id="input-sleeve-2" <% if ( formData.hasSleeve ) { %> checked <% } %> > Image is the record label picture
 	    </label>
 	  </div>
 	<div class="form-group">
 		<label for="input-slug">Slug</label>
-		<input type="text" class="form-control" name="slug" id="input-slug">
+		<input type="text" class="form-control" name="slug" value="<%= formData.slug || '' %>" id="input-slug">
 	</div>
 
 	<button type="submit" class="btn btn-danger">Create</button>

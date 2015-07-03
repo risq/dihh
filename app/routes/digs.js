@@ -36,6 +36,7 @@ module.exports = function(app, passport) {
 
  	// SECURED ==================================
 	app.post('/digs', isLoggedIn, [ multer({ dest: './public/uploads/'}), function(req, res){
+
 	    if (req.body.title && 
 			req.body.artists && 
 			req.body.year && 
@@ -78,6 +79,7 @@ module.exports = function(app, passport) {
 		}
 		else {
 			req.flash('digMessage', 'Missing field(s).');
+			req.flash('formData', req.body);
 			res.redirect('/admin');
 		}
 	}]);

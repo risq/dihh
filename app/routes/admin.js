@@ -17,10 +17,10 @@ module.exports = function(app, passport) {
 
 	// SECURED ============================
 	app.get('/admin', isLoggedIn, function(req, res) {
-
 		pages.admin(res, {
 			user: req.user,
-			flashMessage: req.flash('digMessage')
+			flashMessage: req.flash('digMessage'),
+			formData: req.flash('formData')
 		});
 
 	});
