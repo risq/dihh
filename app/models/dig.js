@@ -19,6 +19,10 @@ var digSchema = new Schema({
         type: String,
         required: true
     },
+    hasSleeve: {
+        type: Boolean,
+        required: true
+    },
     label: {
         type: String,
         required: true

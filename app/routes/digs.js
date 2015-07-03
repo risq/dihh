@@ -42,6 +42,7 @@ module.exports = function(app, passport) {
 			req.body.youtube &&
 			req.body.label &&
 			req.files.cover &&
+			req.body.hasSleeve &&
 			req.body.slug) {
 
 			digs.createDig({
@@ -51,10 +52,9 @@ module.exports = function(app, passport) {
 				youtube: 	req.body.youtube,
 				label: 		req.body.label,
 				cover: 		req.files.cover.name,
+				hasSleeve: 	req.body.hasSleeve,
 				slug: 		req.body.slug
 			}, req.user._id, function(err) {
-
-				console.log('done.', err)
 
 	            if (!err) {
 
@@ -68,7 +68,8 @@ module.exports = function(app, passport) {
 
             	} else { 
 
-	            	req.flash('digMessage', 'Error !');
+            		console.log(err);
+;	            	req.flash('digMessage', 'Error !');
 
 	            }
 
@@ -83,16 +84,20 @@ module.exports = function(app, passport) {
 
 	app.get('/digs/:dig_id/delete', isLoggedIn, function(req, res) {
 		digs.getDigById(req.params.dig_id, function(err, dig) {	
-			if (err)
+
+			if (err) {
 	            res.send(err);
+			}
 
-			if (req.user._id == dig.creator.toString()) {
+			else if (req.user._id == dig.creator.toString()) {
 		        digs.removeDigById(req.params.dig_id, function(err, dig) {
-		            if (err)
+	
+		            if (err) {
 		                res.send(err);
-
-		            req.flash('digMessage', 'Dig deleted !');
-					res.redirect('/admin');
+		            } else {
+			            req.flash('digMessage', 'Dig deleted !');
+						res.redirect('/admin');
+		            }
 		        });
 			}
 			else {

@@ -52,6 +52,7 @@ function createDig(data, creator, done) {
 	dig.artists       = data.artists;
 	dig.year          = data.year;
 	dig.cover 		  = data.cover;
+	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
 	dig.youtubeId 	  = data.youtube;
 	dig.slug 	  	  = data.slug;

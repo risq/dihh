@@ -1,32 +1,40 @@
 <form action="/digs" method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
-		<label>Title</label>
-		<input type="text" class="form-control" name="title">
+		<label for="input-title">Title</label>
+		<input type="text" class="form-control" name="title" id="input-title">
 	</div>
 	<div class="form-group">
-		<label>Artists</label>
-		<input type="text" class="form-control" name="artists">
+		<label for="input-artists">Artists</label>
+		<input type="text" class="form-control" name="artists" id="input-artists">
 	</div>
 	<div class="form-group">
-		<label>Year</label>
-		<input type="text" class="form-control" name="year">
+		<label for="input-year">Year</label>
+		<input type="text" class="form-control" name="year" id="input-year">
 	</div>
 	<div class="form-group">
-		<label>Label</label>
-		<input type="text" class="form-control" name="label">
+		<label for="input-label">Label</label>
+		<input type="text" class="form-control" name="label" id="input-label">
 	</div>
 	<div class="form-group">
-		<label>Youtube ID</label>
-		<input type="text" class="form-control" name="youtube">
+		<label for="input-youtube">Youtube ID</label>
+		<input type="text" class="form-control" name="youtube" id="input-youtube">
 	</div>
 	<div class="form-group">
-		<label>Cover</label>
-		<input type="file" class="form-control" name="cover">
+		<label for="input-cover">Cover</label>
+		<input type="file" class="form-control" name="cover" id="input-cover">
 	</div>
+	<div class="radio">
+	    <label for="input-sleeve-1">
+	      <input type="radio" name="hasSleeve" value="false" id="input-sleeve-1" checked> Image is a cover picture
+	    </label>
+	    <label for="input-sleeve-2">
+	      <input type="radio" name="hasSleeve" value="true" id="input-sleeve-2"> Image is the record label picture
+	    </label>
+	  </div>
 	<div class="form-group">
-		<label>Slug</label>
-		<input type="text" class="form-control" name="slug">
+		<label for="input-slug">Slug</label>
+		<input type="text" class="form-control" name="slug" id="input-slug">
 	</div>
 
 	<button type="submit" class="btn btn-danger">Create</button>
