@@ -69,7 +69,7 @@ module.exports = function(app, passport) {
             	} else { 
 
             		console.log(err);
-;	            	req.flash('digMessage', 'Error !');
+	            	req.flash('digMessage', 'Error !');
 
 	            }
 
