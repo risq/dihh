@@ -48,7 +48,8 @@ function admin( res, data ) {
 				user: data.user,
 				digs: digs,
 				message: data.flashMessage,
-				formData: data.formData[0] ? data.formData[0] : {}
+				formData: data.formData ? data.formData : {},
+				page: data.page || 'home'
 			});
 	    }
 

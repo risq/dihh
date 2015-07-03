@@ -1,6 +1,6 @@
-<h3><span class="fa fa-disc"></span> New dig</h3>
+<h3><span class="fa fa-disc"></span> Update dig</h3>
 
-<form action="/digs" method="post" enctype="multipart/form-data">
+<form action="/digs/<%= formData._id || '' %>" method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label for="input-title">Title</label>
@@ -39,6 +39,7 @@
 		<input type="text" class="form-control" name="slug" value="<%= formData.slug || '' %>" id="input-slug">
 	</div>
 
-	<button type="submit" class="btn btn-danger">Create</button>
+	<a href="/admin" class="btn btn-primary pull-right">Cancel</a>
+	<button type="submit" class="btn btn-danger">Update</button>
 	
 </form>

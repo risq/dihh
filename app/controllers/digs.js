@@ -54,7 +54,7 @@ function createDig(data, creator, done) {
 	dig.cover 		  = data.cover;
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
-	dig.youtubeId 	  = data.youtube;
+	dig.youtubeId 	  = data.youtubeId;
 	dig.slug 	  	  = data.slug;
 	dig.published 	  = true;
 	dig.creator       = creator;
@@ -74,12 +74,42 @@ function createDig(data, creator, done) {
 	}); 
 }
 
-function removeDigById(id, done) {
-	Dig.remove({
+function updateDig(dig, data, done) {
 
-        _id: id
+	console.log('data', data);
 
-    }, function(err) {
+	dig.title         = data.title;
+	dig.artists       = data.artists;
+	dig.year          = data.year;
+	dig.hasSleeve 	  = data.hasSleeve;
+	dig.label 		  = data.label;
+	dig.youtubeId 	  = data.youtubeId;
+	dig.slug 	  	  = data.slug;
+	dig.published 	  = true;
+
+	if (dig.cover) {
+
+		dig.cover = data.cover;
+
+	}
+
+	dig.save( function(err) {
+
+		if ( err ) {
+
+			done( err );
+
+		} else {
+
+			done();
+
+		}
+
+	}); 
+}
+
+function removeDig(dig, done) {
+	dig.remove(function(err) {
 
 		if ( err ) {
 
@@ -90,7 +120,6 @@ function removeDigById(id, done) {
 			updatePages( done );
 			
 		}
-
 	});
 }
 
@@ -120,7 +149,8 @@ module.exports = {
 	getDigsPage: getDigsPage,
 	getDigsByCreatorId: getDigsByCreatorId,
 	createDig: createDig,
-	removeDigById: removeDigById,
+	removeDig: removeDig,
+	updateDig: updateDig,
 	getDigsCount: getDigsCount,
 	updatePages: updatePages,
 };

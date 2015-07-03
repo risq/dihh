@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
 	    if (req.body.title && 
 			req.body.artists && 
 			req.body.year && 
-			req.body.youtube &&
+			req.body.youtubeId &&
 			req.body.label &&
 			req.files.cover &&
 			req.body.hasSleeve &&
@@ -50,7 +50,7 @@ module.exports = function(app, passport) {
 				title: 		req.body.title,
 				artists: 	req.body.artists,
 				year: 		req.body.year,
-				youtube: 	req.body.youtube,
+				youtubeId: 	req.body.youtubeId,
 				label: 		req.body.label,
 				cover: 		req.files.cover.name,
 				hasSleeve: 	req.body.hasSleeve,
@@ -76,23 +76,27 @@ module.exports = function(app, passport) {
 
 				res.redirect('/admin');
 	        });
-		}
-		else {
+
+		} else {
+
 			req.flash('digMessage', 'Missing field(s).');
 			req.flash('formData', req.body);
 			res.redirect('/admin');
+
 		}
 	}]);
 
 	app.get('/digs/:dig_id/delete', isLoggedIn, function(req, res) {
+
 		digs.getDigById(req.params.dig_id, function(err, dig) {	
 
 			if (err) {
-	            res.send(err);
-			}
 
-			else if (req.user._id == dig.creator.toString()) {
-		        digs.removeDigById(req.params.dig_id, function(err, dig) {
+	            res.send(err);
+
+			} else if (req.user._id.toString() === dig.creator.toString()) {
+
+		        digs.removeDig(dig, function(err, dig) {
 	
 		            if (err) {
 		                res.send(err);
@@ -101,13 +105,74 @@ module.exports = function(app, passport) {
 						res.redirect('/admin');
 		            }
 		        });
-			}
-			else {
+
+			} else {
+
 				req.flash('digMessage', 'Cannot delete this dig.');
 				res.redirect('/admin');
+
 			}
 		});
     });
+
+    app.post('/digs/:dig_id', isLoggedIn, [ multer({ dest: './public/uploads/'}), function(req, res) {
+		
+		console.log('req.body', req.body);
+
+    	if (req.body.title && 
+			req.body.artists && 
+			req.body.year && 
+			req.body.youtubeId &&
+			req.body.label &&
+			req.body.hasSleeve &&
+			req.body.slug) {
+
+			digs.getDigById(req.params.dig_id, function(err, dig) {
+
+				if (err) {
+
+		            res.send(err);
+
+				} else if (req.user._id == dig.creator.toString()) {
+
+			        digs.updateDig(dig, {
+							title: 		req.body.title,
+							artists: 	req.body.artists,
+							year: 		req.body.year,
+							youtubeId: 	req.body.youtubeId,
+							label: 		req.body.label,
+							cover: 		req.files.cover ? req.files.cover.name : dig.cover,
+							hasSleeve: 	req.body.hasSleeve,
+							slug: 		req.body.slug
+						},
+
+			        	function(err, dig) {
+
+				            if (err) {
+
+				                res.send(err);
+
+				            } else {
+
+					            req.flash('digMessage', 'Dig updated !');
+								res.redirect('/admin');
+
+				            }
+			       		});
+
+				} else {
+					req.flash('digMessage', 'Cannot update this dig.');
+					res.redirect('/admin');
+				}
+			});
+		} else {
+
+			req.flash('digMessage', 'Missing field(s).');
+			req.flash('formData', req.body);
+			res.redirect('/admin');
+
+		}
+    }]);
 
     app.get('/digs/generate', isLoggedIn, function(req, res) {
 

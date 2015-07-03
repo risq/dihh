@@ -27,7 +27,7 @@
 					<% for(var i=0; i<digs.length; i++) {%>
 
 					   <li>
-					   		<%= digs[i].title %> - <%= digs[i].artists.join(', ') %> - <a href="/digs/<%= digs[i]._id %>/delete">Delete</a>
+					   		<%= digs[i].title %> - <%= digs[i].artists.join(', ') %> - <a href="/digs/<%= digs[i]._id %>/delete">Delete</a> - <a href="/admin/update/<%= digs[i]._id %>">Update</a>
 					   	</li>
 
 					<% } %>
@@ -39,8 +39,17 @@
 
 		<div class="col-sm-4">
 			<div class="well">
-				<h3><span class="fa fa-disc"></span> New dig</h3>
-				<% include ./partials/dig/create %>
+
+				<% if (page === 'update') { %>
+
+					<% include ./partials/dig/update %>
+
+				<% } else { %>
+
+					<% include ./partials/dig/create %>
+
+				<% } %>
+
 			</div>
 		</div>
 

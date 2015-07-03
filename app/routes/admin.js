@@ -17,13 +17,42 @@ module.exports = function(app, passport) {
 
 	// SECURED ============================
 	app.get('/admin', isLoggedIn, function(req, res) {
+
+		var formData = req.flash('formData');
+
 		pages.admin(res, {
 			user: req.user,
 			flashMessage: req.flash('digMessage'),
-			formData: req.flash('formData')
+			formData: formData[0] ? formData[0] : null
 		});
 
 	});
+
+	app.get('/admin/update/:dig_id', isLoggedIn, function(req, res) {
+
+		digs.getDigById(req.params.dig_id, function(err, dig) {	
+
+			if (err) {
+
+	            res.send(err);
+
+			} else if (req.user._id.toString() === dig.creator.toString()) {
+
+				pages.admin(res, {
+					user: req.user,
+					flashMessage: req.flash('digMessage'),
+					formData: dig,
+					page: 'update'
+				});
+		     
+			} else {
+
+				req.flash('digMessage', 'Cannot update this dig.');
+				res.redirect('/admin');
+
+			}
+		});
+    });
 
 	// LOGIN ===============================
 	// show the login form
@@ -58,6 +87,7 @@ module.exports = function(app, passport) {
 		failureRedirect : '/admin/signup',
 		failureFlash : true
 	}));
+
 
 }
 

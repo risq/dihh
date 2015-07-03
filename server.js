@@ -49,6 +49,7 @@ app.use('/uploads', express.static(__dirname + '/public/uploads', { maxAge: 2592
 
 // DEBUG ONLY
 app.use('/public/src', express.static(__dirname + '/public/src'));
+app.locals.inspect = require('util').inspect;
 
 // routes ======================================================================
 require('./app/routes/public')(app);
