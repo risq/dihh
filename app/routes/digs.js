@@ -117,8 +117,6 @@ module.exports = function(app, passport) {
 
     app.post('/digs/:dig_id', isLoggedIn, [ multer({ dest: './public/uploads/'}), function(req, res) {
 		
-		console.log('req.body', req.body);
-
     	if (req.body.title && 
 			req.body.artists && 
 			req.body.year && 

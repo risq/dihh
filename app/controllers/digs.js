@@ -76,8 +76,6 @@ function createDig(data, creator, done) {
 
 function updateDig(dig, data, done) {
 
-	console.log('data', data);
-
 	dig.title         = data.title;
 	dig.artists       = data.artists;
 	dig.year          = data.year;
@@ -109,6 +107,7 @@ function updateDig(dig, data, done) {
 }
 
 function removeDig(dig, done) {
+
 	dig.remove(function(err) {
 
 		if ( err ) {
@@ -124,10 +123,13 @@ function removeDig(dig, done) {
 }
 
 function getDigsCount(done) {
+
 	Dig.count({}, done);
+
 }
 
 function updatePages(done) {
+	
 	getDigs( null, null, function(error, digs) {
 
 		async.eachSeries(Object.keys(digs), function ( index, saveDone ) {
