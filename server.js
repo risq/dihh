@@ -56,6 +56,9 @@ require('./app/routes/public')(app);
 require('./app/routes/admin')(app, passport);
 require('./app/routes/digs')(app, passport);
 
+// helpers =====================================================================
+require('./app/helpers')(app);
+
 // twitter =====================================================================
 twitter.init(config.twitter);
 

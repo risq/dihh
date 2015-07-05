@@ -26,7 +26,7 @@
 
 					   	<li class="dig">
 					   		<div class="dig--header">
-					   			<span class="dig--artist"><%= digs[i].artists.join(', ') %></span> - <span class="dig--title"><%= digs[i].title %></span>
+					   			<span class="dig--artist"><%= displayArtists(digs[i].artists) %></span> - <span class="dig--title"><%= digs[i].title %></span>
 					   		</div>
 					   		<div class="dig--controls">
 					   			<a href="/admin/update/<%= digs[i]._id %>"><i class="fa fa-pencil"></i> Update</a>

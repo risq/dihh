@@ -50,7 +50,7 @@ function createDig(data, creator, done) {
 	var dig = new Dig();
 
 	dig.title         = data.title;
-	dig.artists       = data.artists;
+	dig.artists       = formatArtists(data.artists);
 	dig.year          = data.year;
 	dig.cover 		  = data.cover;
 	dig.hasSleeve 	  = data.hasSleeve;
@@ -89,12 +89,10 @@ function createDig(data, creator, done) {
 
 function updateDig(dig, data, done) {
 
-	console.log(data);
-
 	var oldCover = data.updateCover ? dig.cover : null;
 
 	dig.title         = data.title;
-	dig.artists       = data.artists;
+	dig.artists       = formatArtists(data.artists);
 	dig.year          = data.year;
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
@@ -102,8 +100,6 @@ function updateDig(dig, data, done) {
 	dig.cover 		  = data.cover;
 	dig.slug 	  	  = data.slug;
 	dig.published 	  = true;
-
-	console.log('updateCover', data.updateCover)
 
 	dig.save( function(err) {
 
@@ -159,8 +155,6 @@ function updateDig(dig, data, done) {
 
 function removeDig(dig, done) {
 
-	console.log(dig.cover);
-
 	dig.remove(function(err) {
 
 		if ( err ) {
@@ -205,6 +199,21 @@ function updatePages(done) {
 
 		}, done);
 	});
+}
+
+function formatArtists(artistsStr) {
+	var artists = [];
+
+	artistsStr.split(',').forEach(function(artist, i) {
+		artist = artist.trim();
+		if (artist.length > 0 && artist !== '') {
+			artists.push(artist);
+		}
+	});
+
+	console.log(artists);
+
+	return artists;
 }
 
 module.exports = {

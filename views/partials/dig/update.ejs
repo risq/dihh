@@ -1,10 +1,11 @@
-<h3><span class="fa fa-disc"></span> Update dig</h3>
+<h3><span class="fa fa-pencil"></span> Update dig</h3>
+<hr>
 
 <form id="update-dig" action="/digs/<%= formData._id || '' %>" method="post" enctype="multipart/form-data">
 
 	<div class="form-group">
-		<label for="input-artists">Artists</label>
-		<input type="text" class="form-control" name="artists" value="<%= formData.artists || '' %>" id="input-artists">
+		<label for="input-artists">Artists</label> <i>separated by a comma ( , )</i>
+		<input type="text" class="form-control" name="artists" value="<%= displayArtists(formData.artists) || '' %>" id="input-artists">
 	</div>
 	<div class="form-group">
 		<label for="input-title">Title</label>
