@@ -5,9 +5,9 @@
 
 <div class="container">
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/admin/logout" class="btn btn-default btn-sm">Logout</a>
+	<div class="page-header">
+		<h1>admin - <%= user.username %> <a href="/admin/logout" class="btn btn-default btn-sm pull-right">Logout</a></h1>
+	<hr>
 	</div>
 
 	<% if (message.length > 0) { %>
@@ -16,9 +16,7 @@
 
 	<div class="row">
 
-		<div class="col-sm-8">
-
-			<h3><span class="fa fa-disc"></span> My digs</h3>
+		<div class="col-sm-7">
 
 			<% if (digs.length > 0) { %>
 
@@ -26,8 +24,14 @@
 
 					<% for(var i=0; i<digs.length; i++) {%>
 
-					   <li>
-					   		<%= digs[i].title %> - <%= digs[i].artists.join(', ') %> - <a href="/digs/<%= digs[i]._id %>/delete">Delete</a> - <a href="/admin/update/<%= digs[i]._id %>">Update</a>
+					   	<li class="dig">
+					   		<div class="dig--header">
+					   			<span class="dig--artist"><%= digs[i].artists.join(', ') %></span> - <span class="dig--title"><%= digs[i].title %></span>
+					   		</div>
+					   		<div class="dig--controls">
+					   			<a href="/admin/update/<%= digs[i]._id %>"><i class="fa fa-pencil"></i> Update</a>
+					   			<a href="/digs/<%= digs[i]._id %>/delete"><i class="fa fa-times"></i> Delete</a>
+					   		</div>
 					   	</li>
 
 					<% } %>
@@ -37,7 +41,7 @@
 			<% } %>
 		</div>
 
-		<div class="col-sm-4">
+		<div class="col-sm-5">
 			<div class="well">
 
 				<% if (page === 'update') { %>
@@ -54,24 +58,8 @@
 		</div>
 
 	</div>
-
-	<div class="row">
-
-		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-12">
-			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
-					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>username</strong>: <%= user.username %><br>
-						<strong>email</strong>: <%= user.email %><br>
-						<strong>password</strong>: <%= user.password %>
-					</p>
-			</div>
-		</div>
-
-	</div>
-
 </div>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="/admin/assets/script.js"></script>
 </body>
 </html>

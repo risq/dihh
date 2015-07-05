@@ -1,14 +1,14 @@
 <h3><span class="fa fa-disc"></span> New dig</h3>
 
-<form action="/digs" method="post" enctype="multipart/form-data">
+<form id="create-dig" action="/digs" method="post" enctype="multipart/form-data">
 
-	<div class="form-group">
-		<label for="input-title">Title</label>
-		<input type="text" class="form-control" name="title" id="input-title" value="<%= formData.title || '' %>">
-	</div>
 	<div class="form-group">
 		<label for="input-artists">Artists</label>
 		<input type="text" class="form-control" name="artists" value="<%= formData.artists || '' %>" id="input-artists">
+	</div>
+	<div class="form-group">
+		<label for="input-title">Title</label>
+		<input type="text" class="form-control" name="title" id="input-title" value="<%= formData.title || '' %>">
 	</div>
 	<div class="form-group">
 		<label for="input-year">Year</label>
@@ -19,8 +19,8 @@
 		<input type="text" class="form-control" name="label" value="<%= formData.label || '' %>" id="input-label">
 	</div>
 	<div class="form-group">
-		<label for="input-youtube">Youtube ID</label>
-		<input type="text" class="form-control" name="youtubeId" value="<%= formData.youtubeId || '' %>" id="input-youtube">
+		<label for="input-youtubeId">Youtube ID</label>
+		<input type="text" class="form-control" name="youtubeId" value="<%= formData.youtubeId || '' %>" id="input-youtubeId">
 	</div>
 	<div class="form-group">
 		<label for="input-cover">Cover</label>
