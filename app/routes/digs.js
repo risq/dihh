@@ -1,4 +1,5 @@
 var path = require('path');
+var fs = require('fs');
 var digs = require('../controllers/digs');
 var multer = require('multer');
 
@@ -79,6 +80,12 @@ module.exports = function(app, passport) {
 
 		} else {
 
+			if (req.files.cover) {
+
+				fs.unlink('./public/uploads/' + req.files.cover.name);
+				
+			} 
+
 			req.flash('digMessage', 'Missing field(s).');
 			req.flash('formData', req.body);
 			res.redirect('/admin');
@@ -99,10 +106,15 @@ module.exports = function(app, passport) {
 		        digs.removeDig(dig, function(err, dig) {
 	
 		            if (err) {
-		                res.send(err);
+
+		                req.flash('digMessage', err.message);
+						res.redirect('/admin');
+
 		            } else {
+
 			            req.flash('digMessage', 'Dig deleted !');
 						res.redirect('/admin');
+
 		            }
 		        });
 
@@ -134,21 +146,23 @@ module.exports = function(app, passport) {
 				} else if (req.user._id == dig.creator.toString()) {
 
 			        digs.updateDig(dig, {
-							title: 		req.body.title,
-							artists: 	req.body.artists,
-							year: 		req.body.year,
-							youtubeId: 	req.body.youtubeId,
-							label: 		req.body.label,
-							cover: 		req.files.cover ? req.files.cover.name : dig.cover,
-							hasSleeve: 	req.body.hasSleeve,
-							slug: 		req.body.slug
+							title: 		  req.body.title,
+							artists: 	  req.body.artists,
+							year: 		  req.body.year,
+							youtubeId: 	  req.body.youtubeId,
+							label: 		  req.body.label,
+							cover: 		  req.files.cover ? req.files.cover.name : dig.cover,
+							hasSleeve: 	  req.body.hasSleeve,
+							slug: 		  req.body.slug,
+							updateCover:  req.files.cover !== undefined
 						},
 
 			        	function(err, dig) {
 
 				            if (err) {
 
-				                res.send(err);
+				                req.flash('digMessage', err.message);
+								res.redirect('/admin/update/' + req.params.dig_id);
 
 				            } else {
 
@@ -159,15 +173,22 @@ module.exports = function(app, passport) {
 			       		});
 
 				} else {
+
 					req.flash('digMessage', 'Cannot update this dig.');
 					res.redirect('/admin');
 				}
 			});
 		} else {
 
+			if (req.files.cover) {
+
+				fs.unlink('./public/uploads/' + req.files.cover.name);
+				
+			} 
+
 			req.flash('digMessage', 'Missing field(s).');
 			req.flash('formData', req.body);
-			res.redirect('/admin');
+			res.redirect('/admin/update/' + req.params.dig_id);
 
 		}
     }]);

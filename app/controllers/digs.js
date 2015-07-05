@@ -1,4 +1,5 @@
 var async = require('async');
+var fs = require('fs');
 var Dig = require('../models/dig');
 
 var digsPerPage = 48;
@@ -63,7 +64,19 @@ function createDig(data, creator, done) {
 
 		if ( err ) {
 
-			done( err );
+			if ( dig.cover ) {
+
+				fs.unlink('./public/uploads/' + dig.cover, function( unlinkErr ) {
+
+					done( unlinkErr || err );
+									
+				});
+
+			} else {
+
+				done( err );
+
+			}
 
 		} else {
 
@@ -76,37 +89,77 @@ function createDig(data, creator, done) {
 
 function updateDig(dig, data, done) {
 
+	console.log(data);
+
+	var oldCover = data.updateCover ? dig.cover : null;
+
 	dig.title         = data.title;
 	dig.artists       = data.artists;
 	dig.year          = data.year;
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
 	dig.youtubeId 	  = data.youtubeId;
+	dig.cover 		  = data.cover;
 	dig.slug 	  	  = data.slug;
 	dig.published 	  = true;
 
-	if (dig.cover) {
-
-		dig.cover = data.cover;
-
-	}
+	console.log('updateCover', data.updateCover)
 
 	dig.save( function(err) {
 
 		if ( err ) {
 
-			done( err );
+			if ( data.updateCover ) {
+
+				fs.unlink('./public/uploads/' + data.cover, function( unlinkErr ) {
+
+					if ( unlinkErr ) {
+
+						done( unlinkErr );
+
+					} else {
+
+						done( err );
+						
+					}			
+				});
+
+			} else {
+
+				done( err );
+
+			}
 
 		} else {
 
-			done();
+			if (oldCover) {
 
+				fs.unlink('./public/uploads/' + oldCover, function(err) {
+
+					if ( err ) {
+
+						done( err );
+
+					} else {
+
+						done();
+						
+					}			
+				});
+
+			} else {
+
+				done();
+
+			}
 		}
 
 	}); 
 }
 
 function removeDig(dig, done) {
+
+	console.log(dig.cover);
 
 	dig.remove(function(err) {
 
@@ -116,8 +169,18 @@ function removeDig(dig, done) {
 
 		} else {
 
-			updatePages( done );
-			
+			fs.unlink('./public/uploads/' + dig.cover, function(err) {
+
+				if ( err ) {
+
+					done( err );
+
+				} else {
+
+					updatePages( done );
+					
+				}			
+			});
 		}
 	});
 }
@@ -129,7 +192,7 @@ function getDigsCount(done) {
 }
 
 function updatePages(done) {
-	
+
 	getDigs( null, null, function(error, digs) {
 
 		async.eachSeries(Object.keys(digs), function ( index, saveDone ) {
