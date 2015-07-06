@@ -45,10 +45,13 @@ function initForm() {
 			$year: 			$('input[name="year"]', form.$el),
 			$label: 		$('input[name="label"]', form.$el),
 			$youtubeId: 	$('input[name="youtubeId"]', form.$el),
+			$links: 		$('input[name="links"]', form.$el),
 			$cover: 		$('input[name="cover"]', form.$el),
 			$hasSleeve: 	$('input[name="hasSleeve"]', form.$el),
 			$slug: 			$('input[name="slug"]', form.$el)
-		}
+		};
+
+		form.$linksContainer = $('.links-inputs');
 	}
 
 	return form;
@@ -62,6 +65,59 @@ function initEvents(form) {
 			updateSlug(form);
 		});
 
+	form.$linksContainer.on('input', 'input', function() {
+		onLinksChange(form);
+	});
+
+}
+
+function onLinksChange(form) {
+
+	var links = {},
+		errors = false;
+
+	form.$linksContainer.find('.links-inputs--link input').removeClass('error');
+
+	form.$linksContainer.find('.links-inputs--link').each(function(i, linkFields) {
+		var $linkFields = $(linkFields),
+			linkName = $linkFields.find('.link-name').val().trim(),
+			linkUrl = $linkFields.find('.link-url').val().trim();
+
+		if ( ( linkName.length || linkUrl.length ) && $linkFields.index() === $linkFields.siblings().length ) {
+			
+			$linkFields.clone()
+				.appendTo(form.$linksContainer)
+				.find('input')
+				.val('');
+		}
+
+		if (linkName.length && linkUrl.length) {
+			
+			if ( !links[linkName] ) {
+
+				links[linkName] = linkUrl;
+
+			} else {
+				
+				$linkFields.find('input.link-name').addClass('error');
+				errors = false;
+
+			}
+			
+		} else if (linkName.length) {
+
+			$linkFields.find('input.link-url').addClass('error');
+			errors = false;
+
+		} else if (linkUrl.length) {
+
+			$linkFields.find('input.link-name').addClass('error');
+			errors = false;
+
+		}
+	});
+
+	form.inputs.$links.val(JSON.stringify(links));
 }
 
 function updateSlug(form) {
@@ -74,6 +130,7 @@ function updateSlug(form) {
 }
 
 function stringToSlug(string) {
+
     st = string.toLowerCase();
     st = st.replace(/[\u00C0-\u00C5]/ig,'a')
     st = st.replace(/[\u00C8-\u00CB]/ig,'e')
@@ -85,4 +142,5 @@ function stringToSlug(string) {
     st = st.trim().replace(/ /g,'-');
     st = st.replace(/[\-]{2}/g,'');
     return (st.replace(/[^a-z\- ]*/gi,''));
+
 }

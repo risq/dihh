@@ -24,6 +24,16 @@
 		<input type="text" class="form-control" name="youtubeId" value="<%= formData.youtubeId || '' %>" id="input-youtubeId">
 	</div>
 	<div class="form-group">
+		<label for="input-youtubeId">Links</label>
+		<div class="links-inputs">
+			<div class="links-inputs--link">
+				<input type="text" class="form-control link-name" placeholder="Website Name">
+				<input type="text" class="form-control link-url" placeholder="URL">
+			</div>
+		</div>
+		<input type="hidden" name="links" value="<%= formData.links || '' %>" id="input-links">
+	</div>
+	<div class="form-group">
 		<label for="input-cover">Cover</label>
 		<img src="/uploads/<%= formData.cover %>" class="img-responsive">
 		<label for="input-cover" class="text-muted">Update cover</label>

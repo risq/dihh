@@ -33,3 +33,22 @@ body {
 	display: inline-block;
 	margin-left: 8px;
 }
+
+.links-inputs {
+	width: 100%;
+	position: relative;
+}
+
+.links-inputs--link {
+	margin-bottom: 4px;
+}
+
+.links-inputs input {
+	width: 49%;
+	display: inline-block;
+}
+
+.links-inputs input.error {
+	border: 2px solid #e74c3c;
+}
+
