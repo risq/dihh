@@ -1,6 +1,12 @@
 {
   "name": "dihh",
   "main": "server.js",
+  "scripts": {
+    "start": "./node_modules/.bin/gulp build && node server.js"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
   "dependencies": {
     "async": "^0.9.0",
     "bcrypt-nodejs": "latest",
