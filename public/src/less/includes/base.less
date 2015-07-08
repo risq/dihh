@@ -127,25 +127,30 @@ p {
     z-index: 12;
     text-align: center;
 
-    .page-button {
-        height: @bottomBarHeight;
-        width: @bottomBarHeight;
-        line-height: @bottomBarHeight;
-        font-weight: 500;
+    .page-button-container {
         display: inline-block;
-        color: @white;
-        transition: all 0.1s ease-in-out;
+        width: @bottomBarHeight;
 
-        &:hover {
-            color: @main;
-        }
-
-        &:active {
-            background-color: @main;
+        .page-button {
+            height: @bottomBarHeight;
+            width: @bottomBarHeight;
+            line-height: @bottomBarHeight;
+            font-weight: 500;
+            display: inline-block;
             color: @white;
-        }
+            transition: all 0.1s ease-in-out;
 
+            &:hover {
+                color: @main;
+            }
+
+            &:active {
+                background-color: @main;
+                color: @white;
+            }
+        }
     }
+
 
     .pages {
 

@@ -13,8 +13,9 @@
 <div class="main">
     <div class="scene">
         <div id="cratedigger" 
-             data-cratedigger-page="<%= pageId %>" 
-             <% if (dig) { %>data-cratedigger-record="<%= dig._id %>"<% } %> 
+            data-cratedigger-page="<%= pageId %>"
+            data-cratedigger-pages-count="<%= pagesCount %>"
+            <% if (dig) { %>data-cratedigger-record="<%= dig._id %>"<% } %> 
         >
             <div id="cratedigger-canvas"></div>
             <div id="cratedigger-loading">
@@ -127,11 +128,15 @@
             </div>
         </div>
         <div class="footer">
-            <a href="#" class="page-button button-prev-page"><i class="icon-left"></i></a>
+            <div class="page-button-container">        
+                <a href="#" class="page-button button-prev-page"><i class="icon-left"></i></a>
+            </div>
             <div class="pages">
                 Crate <span class="page-number"><%= pageId %></span>/<%= pagesCount %>
             </div>
-            <a href="#" class="page-button button-next-page"><i class="icon-right"></i></a>
+            <div class="page-button-container">            
+                <a href="#" class="page-button button-next-page"><i class="icon-right"></i></a>
+            </div>
         </div>
     </main>
 </div>

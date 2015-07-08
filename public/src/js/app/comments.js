@@ -14,17 +14,14 @@ var Comments = (function() {
         	loadDisqus( trackId, 'http://localhost:8080/' + trackId, trackFullTitle );
 
         }
-
 	}
 
 	function loadDisqus ( disqusIdentifier, disqusUrl, disqusTitle ) {
-
 
 		window.disqus_shortname = disqusShortname;
 		window.disqus_identifier = disqusIdentifier;
 		window.disqus_url = disqusUrl;
 		window.disqus_title = disqusTitle;
-
 
 		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = '//' + disqusShortname + '.disqus.com/embed.js';
@@ -35,9 +32,6 @@ var Comments = (function() {
 	}
 
 	function reloadDisqus ( disqusIdentifier, disqusUrl, disqusTitle ) {
-
-		console.log('title', disqusTitle);
-
 
 		if (DISQUS) {
 
@@ -51,9 +45,7 @@ var Comments = (function() {
 
 				}
 			});
-
 		}
-
 	}
 
 	return {

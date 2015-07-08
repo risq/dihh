@@ -18,7 +18,8 @@ var Ui = (function() {
         $buttonPrevTrack,
         $buttonNextTrack,
 
-        curentTrackId;
+        curentTrackId,
+        pagesCount;
 
     function init() {
 
@@ -71,6 +72,8 @@ var Ui = (function() {
 		$buttonPrevTrack.on( 'click', onButtonPrevTrackClick);
 
 		$buttonNextTrack.on( 'click', onButtonNextTrackClick);
+
+		pagesCount = getPagesCount();
 
 	}
 
@@ -157,10 +160,28 @@ var Ui = (function() {
 		$cratedigger.attr('data-cratedigger-page', pageId);
 		$pageNumber.text(pageId);
 
+		if ( pageId === 1 ) {
+
+			$buttonPrevPage.hide();
+
+		} else if ( pageId === pagesCount ) {
+
+			$buttonNextPage.hide();
+
+		} else {
+
+			$buttonPrevPage.show();
+			$buttonNextPage.show();
+			
+		}
 	}
 
 	function getCurrentPageId() {
 		return parseInt($cratedigger.attr('data-cratedigger-page'));
+	}
+
+	function getPagesCount() {
+		return parseInt($cratedigger.attr('data-cratedigger-pages-count'));
 	}
 
 	function getCurrentDigId() {
@@ -175,6 +196,7 @@ var Ui = (function() {
 		onInfoPanelClosed: onInfoPanelClosed,
 		onPageChange: onPageChange,
 		getCurrentPageId: getCurrentPageId,
+		getPagesCount: getPagesCount,
 		getCurrentDigId: getCurrentDigId
     };
 
