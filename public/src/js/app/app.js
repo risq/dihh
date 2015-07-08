@@ -68,7 +68,7 @@ var App = (function() {
 
 				Routing.changePage( pageId, digId, pushState );
 
-			} );
+			});
 
 		}, function(data) {
 

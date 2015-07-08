@@ -114,14 +114,18 @@
                     <div class="track-links">
                         <% if (dig) { %>
 
-                            <a href="//www.youtube.com/watch?v=<%= dig.youtubeId %>" class="button button-black button-small" target="_blank">Youtube</a> 
-                            
-                            <% if (dig.links.discogs) { %>
-                            
-                                <a href="<%= dig.links.discogs %>" class="button button-black button-small" target="_blank">Discogs</a> 
+                            <a href="//www.youtube.com/watch?v=<%= dig.youtubeId %>" class="button button-black button-small" target="_blank">Youtube</a>
 
-                            <% } %>
-                        <% } %>
+                            <% for ( var link in dig.links ) {
+
+                                if ( dig.links.hasOwnProperty( link ) ) {
+
+                                    %>
+                                    <a href="<%= dig.links[link] %>" class="button button-black button-small" target="_blank"><%= link %></a>
+                                    <%
+                                }
+                            }   
+                        } %>
                     </div>
                     <div id="disqus_thread"></div>
                 </div>

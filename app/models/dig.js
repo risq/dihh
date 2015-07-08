@@ -37,7 +37,7 @@ var digSchema = new Schema({
         unique: true
     },
     links: {
-        discogs: String
+        type: Schema.Types.Mixed
     },
     published: {
         type: Boolean,

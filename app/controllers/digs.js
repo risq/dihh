@@ -56,35 +56,44 @@ function createDig(data, creator, done) {
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
 	dig.youtubeId 	  = data.youtubeId;
+	dig.links 	  	  = formatLinks(data.links);
 	dig.slug 	  	  = data.slug;
 	dig.published 	  = true;
 	dig.creator       = creator;
 
-	dig.save( function(err) {
+	if (dig.links) {
 
-		if ( err ) {
+		dig.save( function(err) {
 
-			if ( dig.cover ) {
+			if ( err ) {
 
-				fs.unlink('./public/uploads/' + dig.cover, function( unlinkErr ) {
+				if ( dig.cover ) {
 
-					done( unlinkErr || err );
-									
-				});
+					fs.unlink('./public/uploads/' + dig.cover, function( unlinkErr ) {
+
+						done( unlinkErr || err );
+										
+					});
+
+				} else {
+
+					done( err );
+
+				}
 
 			} else {
 
-				done( err );
+				updatePages( done );
 
 			}
 
-		} else {
+		});
+		
+	} else {
 
-			updatePages( done );
+		done( new Error('Error parsing links.') );
 
-		}
-
-	}); 
+	}
 }
 
 function updateDig(dig, data, done) {
@@ -97,60 +106,68 @@ function updateDig(dig, data, done) {
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
 	dig.youtubeId 	  = data.youtubeId;
+	dig.links 	  	  = formatLinks(data.links);
 	dig.cover 		  = data.cover;
 	dig.slug 	  	  = data.slug;
 	dig.published 	  = true;
 
-	dig.save( function(err) {
+	if (dig.links) {
 
-		if ( err ) {
+		dig.save( function(err) {
 
-			if ( data.updateCover ) {
+			if ( err ) {
 
-				fs.unlink('./public/uploads/' + data.cover, function( unlinkErr ) {
+				if ( data.updateCover ) {
 
-					if ( unlinkErr ) {
+					fs.unlink('./public/uploads/' + data.cover, function( unlinkErr ) {
 
-						done( unlinkErr );
+						if ( unlinkErr ) {
 
-					} else {
+							done( unlinkErr );
 
-						done( err );
-						
-					}			
-				});
+						} else {
 
-			} else {
+							done( err );
+							
+						}			
+					});
 
-				done( err );
+				} else {
 
-			}
+					done( err );
 
-		} else {
-
-			if (oldCover) {
-
-				fs.unlink('./public/uploads/' + oldCover, function(err) {
-
-					if ( err ) {
-
-						done( err );
-
-					} else {
-
-						done();
-						
-					}			
-				});
+				}
 
 			} else {
 
-				done();
+				if (oldCover) {
 
+					fs.unlink('./public/uploads/' + oldCover, function(err) {
+
+						if ( err ) {
+
+							done( err );
+
+						} else {
+
+							done();
+							
+						}			
+					});
+
+				} else {
+
+					done();
+
+				}
 			}
-		}
+		}); 
 
-	}); 
+	} else {
+
+		done( new Error('Error parsing links.') );
+
+	}
 }
 
 function removeDig(dig, done) {
@@ -202,6 +219,7 @@ function updatePages(done) {
 }
 
 function formatArtists(artistsStr) {
+
 	var artists = [];
 
 	artistsStr.split(',').forEach(function(artist, i) {
@@ -214,6 +232,19 @@ function formatArtists(artistsStr) {
 	console.log(artists);
 
 	return artists;
+}
+
+function formatLinks(links) {
+
+    try {
+
+        return JSON.parse(links);
+
+    } catch (e) {
+
+        return false;
+
+    }
 }
 
 module.exports = {

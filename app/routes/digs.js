@@ -42,6 +42,7 @@ module.exports = function(app, passport) {
 			req.body.artists && 
 			req.body.year && 
 			req.body.youtubeId &&
+			req.body.links &&
 			req.body.label &&
 			req.files.cover &&
 			req.body.hasSleeve &&
@@ -52,6 +53,7 @@ module.exports = function(app, passport) {
 				artists: 	req.body.artists,
 				year: 		req.body.year,
 				youtubeId: 	req.body.youtubeId,
+				links: 		req.body.links,
 				label: 		req.body.label,
 				cover: 		req.files.cover.name,
 				hasSleeve: 	req.body.hasSleeve,
@@ -60,7 +62,8 @@ module.exports = function(app, passport) {
 
 	            if (!err) {
 
-                    twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
+                    // TODO: remove in production
+                    // twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
 
 		        	req.flash('digMessage', 'Dig created !');
 
@@ -133,6 +136,7 @@ module.exports = function(app, passport) {
 			req.body.artists && 
 			req.body.year && 
 			req.body.youtubeId &&
+			req.body.links &&
 			req.body.label &&
 			req.body.hasSleeve &&
 			req.body.slug) {
@@ -150,6 +154,7 @@ module.exports = function(app, passport) {
 							artists: 	  req.body.artists,
 							year: 		  req.body.year,
 							youtubeId: 	  req.body.youtubeId,
+							links: 		  req.body.links,
 							label: 		  req.body.label,
 							cover: 		  req.files.cover ? req.files.cover.name : dig.cover,
 							hasSleeve: 	  req.body.hasSleeve,
