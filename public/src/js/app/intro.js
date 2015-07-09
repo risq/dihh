@@ -7,7 +7,7 @@ var Intro = (function() {
 
     function init() {
 
-		$intro = ('#intro');
+		$intro = $('.intro');
 	
 	}
 
@@ -44,11 +44,11 @@ var Intro = (function() {
 
 			setTimeout(function() {
 
-				$('.intro').addClass('intro-hidden');
+				$intro.addClass('intro-hidden');
 
 				setTimeout(function() {
 
-					$('.intro').remove();
+					$intro.remove();
 
 				}, 1250);
 
