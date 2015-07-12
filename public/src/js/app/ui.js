@@ -50,7 +50,18 @@ var Ui = (function() {
 
 		$buttonPrev.on('click', cratedigger.selectPrevRecord);
 
-		$buttonShow.on('click', cratedigger.flipSelectedRecord);
+		$buttonShow.on('click', function() {
+
+			if (cratedigger.getSelectedRecord()) {
+
+				cratedigger.flipSelectedRecord();
+
+			} else {
+
+				cratedigger.selectNextRecord();
+				
+			}
+		});
 
 		$buttonNext.on('click', cratedigger.selectNextRecord);
 
