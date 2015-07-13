@@ -1,7 +1,8 @@
 var Routing = (function() {
 
 	var currentPageId = 0,
-		currentDigId = null;
+		currentDigId = null,
+		currentDig;
 
     function init() {
 
@@ -30,15 +31,23 @@ var Routing = (function() {
 			App.selectRecord(record.index);
 		}
 
+		// If no record is passed, get current record
+		currentRecord = record ? record.dig : currentDig;
+
+		Ui.updateTitle( currentRecord, pageId );
+
 		currentPageId = pageId;
 		Ui.onPageChange(pageId);
 
 	}
 
-	function changeDig(slug) {
+	function changeDig( dig ) {
 
-		var url = getPageUrl(currentPageId, slug);
+		var url = getPageUrl(currentPageId, dig.slug);
+
+		currentDig = dig;
 		window.history.replaceState({page: currentPageId}, 'Page ' + currentPageId, url);
+		Ui.updateTitle( dig, currentPageId );
 
 	}
 

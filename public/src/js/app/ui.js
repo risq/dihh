@@ -116,12 +116,7 @@ var Ui = (function() {
             
 			Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
 
-			if ( trackData.slug ) {
-
-				Routing.changeDig( trackData.slug );
-
-			}
-
+			Routing.changeDig( trackData );
 
 			Player.loadTrack( trackData, playTrack );
 
@@ -130,7 +125,9 @@ var Ui = (function() {
 
 	function onButtonListenClick( e ) {
 
-        updateTrackView( cratedigger.getSelectedRecord().data, true );
+		var dig = cratedigger.getSelectedRecord().data;
+
+        updateTrackView( dig, true );
         
     }
 
@@ -179,6 +176,26 @@ var Ui = (function() {
 		}
 	}
 
+	function updateTitle( dig, page ) {
+
+		var title = 'Digging Into Hip Hop'
+
+		if ( dig ) {
+
+			title = dig.artist + ' - ' + dig.title + ' | ' + title;
+			
+		}
+
+		if ( page && page > 1 ) {
+
+			title = title + ' -¨Page ' + page;
+
+		}
+
+		document.title = title;
+		
+	}
+
 	function getCurrentPageId() {
 		return parseInt($cratedigger.attr('data-cratedigger-page'));
 	}
@@ -198,6 +215,7 @@ var Ui = (function() {
         onInfoPanelOpened: onInfoPanelOpened,
 		onInfoPanelClosed: onInfoPanelClosed,
 		onPageChange: onPageChange,
+		updateTitle: updateTitle,
 		getCurrentPageId: getCurrentPageId,
 		getPagesCount: getPagesCount,
 		getCurrentDigId: getCurrentDigId
