@@ -14,23 +14,6 @@
     "test",
     "tests"
   ],
-  "install": {
-    "path": {
-      "less": "public/src/less/libs",
-      "css": "public/src/less/libs",
-      "js": "public/src/js/libs"
-    },
-    "sources": {
-      "modernizr": [
-        "bower_components/modernizr/modernizr.js"
-      ],
-      "cratedigger.js": [
-        "bower_components/cratedigger.js/dist/scripts/cratedigger.min.js",
-        "bower_components/cratedigger.js/dist/scripts/threejs_modules.min.js",
-        "bower_components/cratedigger.js/dist/styles/cratedigger.min.css"
-      ]
-    }
-  },
   "dependencies": {
     "cratedigger.js": "master",
     "jquery": "~2.1.3",
