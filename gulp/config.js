@@ -3,6 +3,10 @@ var src = './client';
 var bowerComponents = './bower_components';
 
 module.exports = {
+  adminAssets: {
+    src: src + '/admin/**',
+    dest: dest + '/admin/assets'
+  },
   bower: {
     dest: dest + '/',
     filename: 'libs.min.js',

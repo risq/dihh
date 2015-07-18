@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('default', ['bower', 'less', 'fonts', 'images', 'watch']);
+gulp.task('default', ['bower', 'less', 'fonts', 'adminAssets', 'images', 'watch']);
