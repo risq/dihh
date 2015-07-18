@@ -25,8 +25,6 @@ function loadPage( pageId, digId, pushState, done ) {
 		
 		}
 
-		console.log('loadPage')
-
 		Crates.loadDigs( digs, function() {
 
 			Routing.changePage( pageId, digId, pushState );
