@@ -1,4 +1,4 @@
-var dest = "./public/dist";
+var dest = './public/dist';
 var src = './client';
 var bowerComponents = './bower_components';
 
@@ -22,14 +22,18 @@ module.exports = {
       }
     }
   },
+  fonts: {
+    src: src + '/fonts/**',
+    dest: dest + '/fonts'
+  },
   less: {
     entry: src + '/less/style.less',
-    src: src + "/styles/*.css",
-    dest: dest + "/"
+    src: src + '/styles/*.css',
+    dest: dest + '/'
   },
   images: {
-    src: src + "/img/**",
-    dest: dest + "/img"
+    src: src + '/img/**',
+    dest: dest + '/img'
   },
   browserify: {
     // A separate bundle will be generated for each

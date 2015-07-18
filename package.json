@@ -26,7 +26,7 @@
     "browser-sync": "^2.7.13",
     "connect-flash": "~0.1.1",
     "cookie-parser": "^1.0.1",
-    "cratedigger.js": "git://github.com/risq/cratedigger.js",
+    "cratedigger.js": "0.0.1",
     "ejs": "^0.8.8",
     "express": "^4.0.0",
     "express-session": "^1.0.4",
