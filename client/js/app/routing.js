@@ -1,11 +1,16 @@
-var Ui = require('./ui');
+var Ui = require('./ui'),
+	Crates = require('./crates');
 
 
 var currentPageId = 0,
 	currentDigId = null,
-	currentDig;
+	currentDig,
 
-function init() {
+	events;
+
+function init(callbacks) {
+
+	events = callbacks;
 
     currentPageId = Ui.getCurrentPageId();
     currentDigId  = Ui.getCurrentDigId();
@@ -16,10 +21,15 @@ function init() {
 
 function changePage(pageId, digId, pushState) {
 
-	var record = digId ? App.getRecordById( digId ) : null,
+	var record = digId ? Crates.getRecordById( digId ) : null,
 		digSlug = record ? record.dig.slug : null;
 
 	if (pushState) {
+
+		var url = getPageUrl(pageId, digSlug);
+		window.history.pushState({page: pageId}, 'Page ' + pageId, url);
+
+	} else {
 
 		var url = getPageUrl(pageId, digSlug);
 		window.history.pushState({page: pageId}, 'Page ' + pageId, url);
@@ -29,7 +39,7 @@ function changePage(pageId, digId, pushState) {
 	if ( record ) {
 
 		Ui.updateTrackView(record.dig);
-		App.selectRecord(record.index);
+		Crates.selectRecord(record.index);
 	}
 
 	// If no record is passed, get current record
@@ -57,7 +67,7 @@ function onPopState(event) {
 	if (event.state && event.state.page >= 1) {
 
 		currentPageId = event.state.page;
-		App.loadPage(currentPageId);
+		events.onPageChange(currentPageId);
 		
 	}
 }

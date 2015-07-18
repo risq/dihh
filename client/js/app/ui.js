@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+	EventEmitter = require('events').EventEmitter;
 
 var Comments = require('./comments');
 
@@ -24,20 +25,11 @@ var $cratedigger,
     curentTrackId,
     pagesCount,
 
-    onPrevPage = function () {},
-    onNextPage = function () {},
-    onListenDig = function () {},
-    onPrevTrack = function () {},
-	onNextTrack = function () {};
+    events;
 
 function init(callbacks) {
 
-
-	onPrevPage = callbacks.onPrevPage;
-	onNextPage = callbacks.onNextPage;
-	onListenDig = callbacks.onListenDig;
-	onPrevTrack = callbacks.onPrevTrack;
-	onNextTrack = callbacks.onNextTrack;
+	events = callbacks;
 
 	$cratedigger = $('#cratedigger');
 	$pageNumber = $('.page-number');
@@ -81,17 +73,10 @@ function init(callbacks) {
 
 	$buttonNext.on('click', cratedigger.selectNextRecord);
 
-	$buttonListen.on('click', function() {
-		onButtonListenClick();
-		return false;
-	});
-
-	$buttonPrevPage.on('click', onPrevPage);
-
-	$buttonNextPage.on('click', onNextPage);
-
+	$buttonListen.on('click', onButtonListenClick);
+	$buttonPrevPage.on('click', onButtonPrevPageClick);
+	$buttonNextPage.on('click', onButtonNextPageClick);
 	$buttonPrevTrack.on( 'click', onButtonPrevTrackClick);
-
 	$buttonNextTrack.on( 'click', onButtonNextTrackClick);
 
 	pagesCount = getPagesCount();
@@ -141,21 +126,38 @@ function onInfoPanelClosed() {
 	
 }
 
-function onButtonListenClick( e ) {
+function onButtonPrevPageClick() {
 
-	onListenDig();
-    
+	events.onPrevPage();
+	return false;
+
+}
+
+function onButtonNextPageClick() {
+
+	events.onNextPage();
+	return false;
+
+}
+
+function onButtonListenClick() {
+
+	events.onListenDig();
+	return false;
+
 }
 
 function onButtonPrevTrackClick() {
 
-	onPrevTrack();
+	events.onPrevTrack();
+	return false;
 
 }
 
 function onButtonNextTrackClick() {
 
-	onNextTrack();
+	events.onNextTrack();
+	return false;
 
 }
 
@@ -221,5 +223,5 @@ module.exports =  {
 	updateTitle: updateTitle,
 	getCurrentPageId: getCurrentPageId,
 	getPagesCount: getPagesCount,
-	getCurrentDigId: getCurrentDigId,
+	getCurrentDigId: getCurrentDigId
 };
