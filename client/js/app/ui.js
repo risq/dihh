@@ -1,7 +1,8 @@
 var $ = require('jquery'),
 	EventEmitter = require('events').EventEmitter;
 
-var Comments = require('./comments');
+var Comments = require('./comments'),
+	Crates = require('./crates');
 
 
 var $cratedigger,
@@ -56,22 +57,9 @@ function init(callbacks) {
 
 
 
-	$buttonPrev.on('click', cratedigger.selectPrevRecord);
-
-	$buttonShow.on('click', function() {
-
-		if (cratedigger.getSelectedRecord()) {
-
-			cratedigger.flipSelectedRecord();
-
-		} else {
-
-			cratedigger.selectNextRecord();
-			
-		}
-	});
-
-	$buttonNext.on('click', cratedigger.selectNextRecord);
+	$buttonPrev.on('click', Crates.selectPrevRecord);
+	$buttonShow.on('click', Crates.showRecord);
+	$buttonNext.on('click', Crates.selectNextRecord);
 
 	$buttonListen.on('click', onButtonListenClick);
 	$buttonPrevPage.on('click', onButtonPrevPageClick);

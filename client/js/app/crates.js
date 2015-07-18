@@ -1,8 +1,6 @@
-var cratedigger = require('cratedigger.js'),
+var cratedigger = require('cratedigger.js');
 
-	Ui = require('./ui');
-
-function init() {
+function init(Ui) {
 
 	cratedigger.init({
 
@@ -71,10 +69,39 @@ function getSelectedRecordData() {
 
 }
 
+function selectPrevRecord() {
+
+	cratedigger.selectPrevRecord();
+
+}
+
+function showRecord() {
+
+	if (cratedigger.getSelectedRecord()) {
+
+		cratedigger.flipSelectedRecord();
+
+	} else {
+
+		cratedigger.selectNextRecord();
+		
+	}
+}
+
+function selectNextRecord() {
+
+	cratedigger.selectNextRecord();
+
+}
+
+
 module.exports = {
 	init: init,
 	loadDigs: loadDigs,
 	selectRecord: selectRecord,
 	getRecordById: getRecordById,
-	getSelectedRecordData: getSelectedRecordData
+	getSelectedRecordData: getSelectedRecordData,
+	selectPrevRecord: selectPrevRecord,
+	showRecord: showRecord,
+	selectNextRecord: selectNextRecord
 }

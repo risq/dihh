@@ -8,7 +8,6 @@ var Intro = require('./intro'),
 
 function init() {
 
-	Crates.init();
 	Ui.init({
 		onPrevPage: Nav.onPrevPage,
 		onNextPage: Nav.onNextPage,
@@ -16,6 +15,7 @@ function init() {
 		onPrevTrack: Nav.onPrevTrack,
 		onNextTrack: Nav.onNextTrack
 	});
+	Crates.init(Ui);
 	Player.init();
 	Intro.init();
 	Routing.init({
