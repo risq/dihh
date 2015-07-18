@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+	Vivus = require('vivus');
 
 var $intro,
 

@@ -16,7 +16,8 @@
   "browserify-shim": {
     "three": "global:THREE",
     "Modernizr": "global:Modernizr",
-    "dat-gui": "global:dat"
+    "dat-gui": "global:dat",
+    "nprogress": "global:nprogress"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -39,7 +40,8 @@
     "multer": "^0.1.8",
     "passport": "^0.1.18",
     "passport-local": "~0.1.6",
-    "twitter": "^1.2.5"
+    "twitter": "^1.2.5",
+    "vivus": "^0.2.2"
   },
   "devDependencies": {
     "browser-sync": "~2.2.2",
