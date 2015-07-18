@@ -10,6 +10,8 @@ function init() {
 
 	Intro.init();
 	Ui.init({
+		onPrevPage: onPrevPage,
+		onNextPage: onNextPage,
 		onListenDig: onListenDig,
 		onPrevTrack: onButtonPrevTrack,
 		onNextTrack: onButtonNextTrack
@@ -51,15 +53,17 @@ function initCratedigger() {
 	});
 }
 
-function prevPage() {
+function onPrevPage() {
 
 	loadPage( Routing.getCurrentPageId() - 1, null, true );
+	return false;
 
 }
 
-function nextPage() {
+function onNextPage() {
 
 	loadPage( Routing.getCurrentPageId() + 1, null, true );
+	return false;
 
 }
 
@@ -150,8 +154,6 @@ function onButtonNextTrack() {
 module.exports = {
     init: init,
     loadPage: loadPage,
-    prevPage: prevPage,
-    nextPage: nextPage,
     getRecordById: getRecordById,
     selectRecord: selectRecord
 };

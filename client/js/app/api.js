@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+	NProgress = require('nprogress');
 
 
 function init() {

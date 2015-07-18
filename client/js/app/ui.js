@@ -24,11 +24,20 @@ var $cratedigger,
     curentTrackId,
     pagesCount,
 
+    onPrevPage = function () {},
+    onNextPage = function () {},
     onListenDig = function () {},
     onPrevTrack = function () {},
 	onNextTrack = function () {};
 
 function init(callbacks) {
+
+
+	onPrevPage = callbacks.onPrevPage;
+	onNextPage = callbacks.onNextPage;
+	onListenDig = callbacks.onListenDig;
+	onPrevTrack = callbacks.onPrevTrack;
+	onNextTrack = callbacks.onNextTrack;
 
 	$cratedigger = $('#cratedigger');
 	$pageNumber = $('.page-number');
@@ -77,25 +86,15 @@ function init(callbacks) {
 		return false;
 	});
 
-	$buttonPrevPage.on('click', function() {
-		App.prevPage();
-		return false;
-	});
+	$buttonPrevPage.on('click', onPrevPage);
 
-	$buttonNextPage.on('click', function() {
-		App.nextPage();
-		return false;
-	});
+	$buttonNextPage.on('click', onNextPage);
 
 	$buttonPrevTrack.on( 'click', onButtonPrevTrackClick);
 
 	$buttonNextTrack.on( 'click', onButtonNextTrackClick);
 
 	pagesCount = getPagesCount();
-
-	onListenDig = callbacks.onListenDig;
-	onPrevTrack = callbacks.onPrevTrack;
-	onNextTrack = callbacks.onNextTrack;
 
 }
 
