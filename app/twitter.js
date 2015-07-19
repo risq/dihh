@@ -5,14 +5,17 @@ var client;
 
 module.exports = {
 
-	init: function(crendentials) {
+	init: function(config) {
 
-		client = new Twitter({
-			consumer_key: crendentials.consumerKey,
-			consumer_secret: crendentials.consumerSecret,
-			access_token_key: crendentials.accessTokenKey,
-			access_token_secret: crendentials.accessTokenSecret
-		});
+		if (config.enabled) {
+
+			client = new Twitter({
+				consumer_key: config.consumerKey,
+				consumer_secret: config.consumerSecret,
+				access_token_key: config.accessTokenKey,
+				access_token_secret: config.accessTokenSecret
+			});
+		}
 
 	},
 

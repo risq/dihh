@@ -63,8 +63,7 @@ module.exports = function(app, passport) {
 
 	            if (!err) {
 
-                    // TODO: remove in production
-                    // twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
+                    twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
 
 		        	req.flash('digMessage', 'Dig created !');
 
