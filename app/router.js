@@ -1,5 +1,5 @@
-var digs = require('./digs');
 var async = require('async');
+var digs = require('./controllers/digs');
 
 function main( res, data ) {
 

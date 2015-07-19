@@ -1,7 +1,7 @@
 var path = require('path');
 var digs = require('../controllers/digs');
 var multer = require('multer');
-var pages = require('../controllers/pages');
+var router = require('../router');
 
 
 module.exports = function(app, passport) {
@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
 
 		var formData = req.flash('formData');
 
-		pages.admin(res, {
+		router.admin(res, {
 			user: req.user,
 			flashMessage: req.flash('digMessage'),
 			formData: formData[0] ? formData[0] : null
@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
 
 			} else if (req.user._id.toString() === dig.creator.toString()) {
 
-				pages.admin(res, {
+				router.admin(res, {
 					user: req.user,
 					flashMessage: req.flash('digMessage'),
 					formData: dig,
@@ -58,7 +58,7 @@ module.exports = function(app, passport) {
 	// show the login form
 	app.get('/admin/login', function(req, res) {
 
-		pages.login(res, {
+		router.login(res, {
 			flashMessage: req.flash('loginMessage')
 		});
 
@@ -75,7 +75,7 @@ module.exports = function(app, passport) {
 	// show the signup form
 	app.get('/admin/signup', function(req, res) {
 
-		pages.signup(res, {
+		router.signup(res, {
 			flashMessage: req.flash('signupMessage')
 		});
 

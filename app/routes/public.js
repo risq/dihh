@@ -1,11 +1,11 @@
 var digs = require('../controllers/digs');
-var pages = require('../controllers/pages');
+var router = require('../router');
 
 module.exports = function(app) {
 
 	app.get('/', function(req, res) {
 
-		pages.main(res, {
+		router.main(res, {
 			pageId: 1
 		});
 
@@ -13,7 +13,7 @@ module.exports = function(app) {
 
 	app.get('/page/:page(\\d+)', function(req, res) {
 
-		pages.main(res, {
+		router.main(res, {
 			pageId: req.params.page
 		});
 
@@ -21,7 +21,7 @@ module.exports = function(app) {
 
 	app.get('/digs/:digSlug', function(req, res) {
 
-		pages.main(res, {
+		router.main(res, {
 			digSlug: req.params.digSlug
 		});
 
@@ -29,7 +29,7 @@ module.exports = function(app) {
 
 	app.get('/page/:page(\\d+)/digs/:digSlug', function(req, res) {
 
-		pages.main(res, {
+		router.main(res, {
 			digSlug: req.params.digSlug
 		});
 
