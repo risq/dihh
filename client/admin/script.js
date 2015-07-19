@@ -61,7 +61,7 @@ function createLinks() {
 	if (linksValue) {
 
 		var links = JSON.parse(linksValue);
-
+		links = typeof links === 'string' ? JSON.parse(links) : links;
 		for (link in links) {
 
 			form.$linksContainer.find('.links-inputs--link').last()
