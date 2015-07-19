@@ -1,4 +1,4 @@
-var dest = './public/dist';
+var dest = './public/app';
 var src = './client';
 var bowerComponents = './bower_components';
 
@@ -22,7 +22,7 @@ module.exports = {
     server: {
       baseDir: 'public/dist',
       middleware: function(req, res, next) {
-        require('../server')(req, res, next);
+        require('../app.js')(req, res, next);
       }
     }
   },
