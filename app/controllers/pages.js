@@ -44,7 +44,7 @@ function admin( res, data ) {
 
 		} else {
 
-	        res.render('home.ejs', {
+	        res.render('admin.ejs', {
 				user: data.user,
 				digs: digs,
 				message: data.flashMessage,

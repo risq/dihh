@@ -55,6 +55,7 @@ function createDig(data, creator, done) {
 	dig.cover 		  = data.cover;
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
+	dig.description   = data.description;
 	dig.youtubeId 	  = data.youtubeId;
 	dig.links 	  	  = formatLinks(data.links);
 	dig.slug 	  	  = data.slug;
@@ -105,6 +106,7 @@ function updateDig(dig, data, done) {
 	dig.year          = data.year;
 	dig.hasSleeve 	  = data.hasSleeve;
 	dig.label 		  = data.label;
+	dig.description   = data.description;
 	dig.youtubeId 	  = data.youtubeId;
 	dig.links 	  	  = formatLinks(data.links);
 	dig.cover 		  = data.cover;

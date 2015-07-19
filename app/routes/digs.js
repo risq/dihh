@@ -49,15 +49,16 @@ module.exports = function(app, passport) {
 			req.body.slug) {
 
 			digs.createDig({
-				title: 		req.body.title,
-				artists: 	req.body.artists,
-				year: 		req.body.year,
-				youtubeId: 	req.body.youtubeId,
-				links: 		req.body.links,
-				label: 		req.body.label,
-				cover: 		req.files.cover.name,
-				hasSleeve: 	req.body.hasSleeve,
-				slug: 		req.body.slug
+				title: 		 req.body.title,
+				artists: 	 req.body.artists,
+				year: 		 req.body.year,
+				youtubeId: 	 req.body.youtubeId,
+				links: 		 req.body.links,
+				label: 		 req.body.label,
+				description: req.body.description,
+				cover: 		 req.files.cover.name,
+				hasSleeve: 	 req.body.hasSleeve,
+				slug: 		 req.body.slug
 			}, req.user._id, function(err) {
 
 	            if (!err) {
@@ -156,6 +157,7 @@ module.exports = function(app, passport) {
 							youtubeId: 	  req.body.youtubeId,
 							links: 		  req.body.links,
 							label: 		  req.body.label,
+							description:  req.body.description,
 							cover: 		  req.files.cover ? req.files.cover.name : dig.cover,
 							hasSleeve: 	  req.body.hasSleeve,
 							slug: 		  req.body.slug,

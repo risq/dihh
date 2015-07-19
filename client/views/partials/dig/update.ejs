@@ -20,6 +20,10 @@
 		<input type="text" class="form-control" name="label" value="<%= formData.label || '' %>" id="input-label">
 	</div>
 	<div class="form-group">
+		<label for="input-description">Description</label>
+		<textarea class="form-control" name="description" id="input-description"><%= formData.description || '' %></textarea>
+	</div>
+	<div class="form-group">
 		<label for="input-youtubeId">Youtube ID</label>
 		<input type="text" class="form-control" name="youtubeId" value="<%= formData.youtubeId || '' %>" id="input-youtubeId">
 	</div>
@@ -31,7 +35,7 @@
 				<input type="text" class="form-control link-url" placeholder="URL">
 			</div>
 		</div>
-		<input type="hidden" name="links" value="<%= formData.links || '' %>" id="input-links">
+		<input type="hidden" name="links" value="<%= formData.links ? JSON.stringify(formData.links) : '{}' %>" id="input-links">
 	</div>
 	<div class="form-group">
 		<label for="input-cover">Cover</label>

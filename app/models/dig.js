@@ -27,6 +27,10 @@ var digSchema = new Schema({
         type: String,
         required: true
     },
+    description: {
+        type: String,
+        required: false
+    },
     youtubeId: {
         type: String,
         required: true
