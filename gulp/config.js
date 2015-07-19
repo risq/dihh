@@ -32,7 +32,7 @@ module.exports = {
   },
   less: {
     entry: src + '/less/style.less',
-    src: src + '/styles/*.css',
+    src: src + '/less/**',
     dest: dest + '/'
   },
   images: {
