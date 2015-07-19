@@ -1,25 +1,24 @@
+var form;
+
 $(init);
 
 function init() {
 
-	var form = initForm();
+	initForm();
 
 	if (form) {
 
-		initEvents(form);
+		createLinks();
+		initEvents();
 
 	}
-
-	console.log(form);
 
 }
 
 function initForm() {
 
 	var $createForm = $('#create-dig'),
-		$updateForm = $('#update-dig'),
-
-	    form;
+		$updateForm = $('#update-dig');
 
 	if ($createForm.length) {
 
@@ -53,25 +52,47 @@ function initForm() {
 
 		form.$linksContainer = $('.links-inputs');
 	}
-
-	return form;
 }
 
-function initEvents(form) {
+function createLinks() {
+
+	var linksValue = form.inputs.$links.val();
+
+	if (linksValue) {
+
+		var links = JSON.parse(linksValue);
+
+		for (link in links) {
+
+			form.$linksContainer.find('.links-inputs--link').last()
+			  .find('.link-name')
+			    .val(link)
+			    .end()
+			  .find('.link-url')
+			    .val(links[link])
+			    .end()
+			  .clone()
+			  .appendTo(form.$linksContainer)
+			  .find('input')
+				.val('');
+		}
+	}
+}
+
+function initEvents() {
 
 	form.inputs.$title
 		.add(form.inputs.$artists)
 		.on('input', function() {
-			updateSlug(form);
+			updateSlug();
 		});
 
 	form.$linksContainer.on('input', 'input', function() {
-		onLinksChange(form);
+		onLinksChange();
 	});
-
 }
 
-function onLinksChange(form) {
+function onLinksChange() {
 
 	var links = {},
 		errors = false;
@@ -93,9 +114,9 @@ function onLinksChange(form) {
 
 		if (linkName.length && linkUrl.length) {
 			
-			if ( !links[linkName] ) {
+			if ( !links[linkName.toLowerCase()] ) {
 
-				links[linkName] = linkUrl;
+				links[linkName.toLowerCase()] = linkUrl;
 
 			} else {
 				
@@ -120,7 +141,7 @@ function onLinksChange(form) {
 	form.inputs.$links.val(JSON.stringify(links));
 }
 
-function updateSlug(form) {
+function updateSlug() {
 
 	var title = stringToSlug(form.inputs.$title.val());
 	var artists = stringToSlug(form.inputs.$artists.val());
