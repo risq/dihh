@@ -12,9 +12,16 @@
     <meta name="twitter:description" content="<%= getDescription(dig) %>">
     <meta name="twitter:image" content="<%= getImageUrl(dig) %>">
 
+    <meta property="og:title" content="<%= getPageTitle(dig, pageId) %>" />
+    <meta property="og:site_name" content="Digging Into Hip Hop" />
+    <meta property="og:url" content="<%= getCanonicalUrl(dig, pageId) %>" />
+    <meta property="og:description" content="<%= getDescription(dig) %>" />
+    <meta property="og:image" content="<%= getImageUrl(dig) %>" />
+    <meta property="og:type" content="music.playlist" />
+
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/style.css">
-    <link rel="canonical" href="/<% if (pageId > 1) { %>page/<%= pageId %>/<% } %><% if (dig) { %>digs/<%= dig.slug %><% } %>" />
+    <link rel="canonical" href="<%= getCanonicalUrl(dig, pageId) %>" />
 </head>
 <body>
 

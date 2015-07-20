@@ -24,6 +24,17 @@ module.exports = function(app, config) {
 		return title;
 	}
 
+	app.locals.getCanonicalUrl = function(dig, pageId) {
+		var url = config.twitter.shareUrl + '/';
+		if (pageId && pageId > 1) { 
+			url += 'page/' + pageId + '/';
+		} 
+		if (dig) { 
+			url += 'digs/' + dig.slug;
+		}
+		return url;
+	}
+
 	app.locals.getImageUrl = function(dig) {
 		if (dig) {
 			return config.twitter.shareUrl + '/uploads/' + dig.cover;
