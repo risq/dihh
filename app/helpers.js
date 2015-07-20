@@ -45,7 +45,7 @@ module.exports = function(app, config) {
 
 	app.locals.getDescription = function(dig) {
 		if (dig) {
-			return 'Digging ' + dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + '), released under label : ' + dig.label + '. Listen & discover more hip hop records on Digging Into Hip Hop';
+			return 'Digging ' + dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + '), released under label : ' + dig.label + '. Listen & discover more hip hop records on Digging Into Hip Hop.';
 		} else {
 			return 'Listen & discover hip hop records on Digging Into Hip Hop.';
 		}
