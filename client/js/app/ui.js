@@ -75,7 +75,7 @@ function updateTrackView(trackData) {
 
 	if ( curentTrackId !== trackData._id ) {
 
-		var trackArtists = trackData.artists.join( ',' );
+		var trackArtists = trackData.artists.join( ', ' );
 		var trackFullTitle = trackArtists + ' - ' + trackData.title;
 
 		curentTrackId = trackData._id;

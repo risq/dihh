@@ -5,11 +5,11 @@ function loadCommentsForTrack ( trackId, trackFullTitle ) {
 
     if ( disqusLoaded ) {
 
-    	reloadDisqus( trackId, 'http://localhost:8080/' + trackId, trackFullTitle );
+    	reloadDisqus( trackId, 'http://dihh.io/digs/' + trackId, trackFullTitle );
 
     } else {
 
-    	loadDisqus( trackId, 'http://localhost:8080/' + trackId, trackFullTitle );
+    	loadDisqus( trackId, 'http://dihh.io/digs/' + trackId, trackFullTitle );
 
     }
 }
