@@ -5,6 +5,7 @@
 	"secret": "secret",
 	"twitter": {
 		"enabled": true,
+		"shareUrl": "dihh.valentinledrapier.com",
 		"consumerKey": "",
 		"consumerSecret": "",
 		"accessTokenKey": "",

@@ -84,7 +84,9 @@ function createDig(data, creator, done) {
 
 			} else {
 
-				updatePages( done );
+				updatePages( function() {
+					done(null, dig);
+				} );
 
 			}
 
@@ -230,8 +232,6 @@ function formatArtists(artistsStr) {
 			artists.push(artist);
 		}
 	});
-
-	console.log(artists);
 
 	return artists;
 }

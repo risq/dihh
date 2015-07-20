@@ -59,11 +59,11 @@ module.exports = function(app, passport) {
 				cover: 		 req.files.cover.name,
 				hasSleeve: 	 req.body.hasSleeve,
 				slug: 		 req.body.slug
-			}, req.user._id, function(err) {
+			}, req.user._id, function(err, dig) {
 
 	            if (!err) {
 
-                    twitter.tweet(req.body.artists + ' - ' + req.body.title + ' (' + req.body.year + ')');
+                    twitter.tweetDig(dig);
 
 		        	req.flash('digMessage', 'Dig created !');
 

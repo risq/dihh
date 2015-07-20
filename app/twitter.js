@@ -1,6 +1,7 @@
 var Twitter = require('twitter');
- 
-var client;
+
+var client,
+	shareUrl;
 
 
 module.exports = {
@@ -8,6 +9,8 @@ module.exports = {
 	init: function(config) {
 
 		if (config.enabled) {
+
+			shareUrl = config.shareUrl;
 
 			client = new Twitter({
 				consumer_key: config.consumerKey,
@@ -27,13 +30,17 @@ module.exports = {
 				status: message
 			}, function(error, tweet, response){
 
-				if ( !error ) {
-					// console.log(tweet);
+				if ( error ) {
+					console.log(error, tweet);
 				}
 				
 			});
 
 		}
 	},
+
+	tweetDig: function(dig) {
+		this.tweet(dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + ') ' + shareUrl + '/digs/' + dig.slug);
+	}
 
 };
