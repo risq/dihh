@@ -2,13 +2,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <% if (dig) { %>
-        <title><%= dig.artists.join(', ') %> - <%= dig.title %> | Digging Into Hip Hop<% if (pageId > 1) { %> - Page <%= pageId %><% } %></title>
-    <% } else { %>
-	   <title>Digging Into Hip Hop<% if (pageId > 1) { %> - Page <%= pageId %><% } %></title>
-    <% } %>
+    
+    <title><%= getPageTitle(dig, pageId) %></title>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@diggingIntoHH">
+    <meta name="twitter:creator" content="@diggingIntoHH">
+    <meta name="twitter:title" content="<%= getPageTitle(dig, pageId) %>">
+    <meta name="twitter:description" content="<%= getDescription(dig) %>">
+    <meta name="twitter:image" content="<%= getImageUrl(dig) %>">
+
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/style.css">
     <link rel="canonical" href="/<% if (pageId > 1) { %>page/<%= pageId %>/<% } %><% if (dig) { %>digs/<%= dig.slug %><% } %>" />
 </head>
 <body>
