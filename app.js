@@ -19,7 +19,7 @@ var config = require('./config/config.json');
 global.twitter = require('./app/twitter');
 
 // configuration ===============================================================
-mongoose.connect("mongodb://" + config.database.url); // connect to our database
+mongoose.connect(process.env.MONGO_URI ? process.env.MONGO_URI : 'mongodb://' + config.database.url); // connect to our database
 
 require('./app/passport')(passport); // pass passport for configuration
 
