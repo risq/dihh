@@ -2,7 +2,8 @@
   "name": "dihh",
   "main": "server.js",
   "scripts": {
-    "start": "./node_modules/.bin/gulp build && node server.js"
+    "start": "./node_modules/.bin/gulp production && node app.js",
+    "postinstall": " ./node_modules/.bin/bower install"
   },
   "engines": {
     "node": "0.12.x"
