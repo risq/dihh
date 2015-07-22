@@ -32,7 +32,7 @@ function changePage(pageId, digId, pushState) {
 	} else {
 
 		var url = getPageUrl(pageId, digSlug);
-		window.history.pushState({page: pageId}, 'Page ' + pageId, url);
+		window.history.replaceState({page: pageId}, 'Page ' + pageId, url);
 
 	}
 
