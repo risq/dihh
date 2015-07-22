@@ -44,11 +44,23 @@ module.exports = function(app, config) {
 	}
 
 	app.locals.getDescription = function(dig) {
+
+		var description;
+
 		if (dig) {
-			return 'Digging ' + dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + '), released under label : ' + dig.label + '. Listen & discover more hip hop records on Digging Into Hip Hop.';
+
+			description =  'Digging ' + dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + '), released under label : ' + dig.label + '. ';
+
+			if (dig.description) {
+				description += dig.description + ' - ';
+			}
+			description += 'Listen & discover more hip hop records on dihh.io.';
+
 		} else {
-			return 'Listen & discover hip hop records on Digging Into Hip Hop.';
+			description = 'Listen & discover hip hop records on dihh.io.';
 		}
+
+		return description;
 	}
 
 }
