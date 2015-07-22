@@ -154,18 +154,18 @@ function onPageChange(pageId) {
 	$cratedigger.attr('data-cratedigger-page', pageId);
 	$pageNumber.text(pageId);
 
+	$buttonPrevPage.show();
+	$buttonNextPage.show();
+
 	if ( pageId === 1 ) {
 
 		$buttonPrevPage.hide();
 
-	} else if ( pageId === pagesCount ) {
+	} 
+
+	if ( pageId === pagesCount ) {
 
 		$buttonNextPage.hide();
-
-	} else {
-
-		$buttonPrevPage.show();
-		$buttonNextPage.show();
 
 	}
 }
