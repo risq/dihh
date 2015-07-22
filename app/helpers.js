@@ -25,7 +25,7 @@ module.exports = function(app, config) {
 	}
 
 	app.locals.getCanonicalUrl = function(dig, pageId) {
-		var url = config.twitter.shareUrl + '/';
+		var url = 'http://' + config.twitter.shareUrl + '/';
 		if (pageId && pageId > 1) { 
 			url += 'page/' + pageId + '/';
 		} 
@@ -37,9 +37,9 @@ module.exports = function(app, config) {
 
 	app.locals.getImageUrl = function(dig) {
 		if (dig) {
-			return config.twitter.shareUrl + '/uploads/' + dig.cover;
+			return 'http://' + config.twitter.shareUrl + '/uploads/' + dig.cover;
 		} else {
-			return config.twitter.shareUrl + '/img/share.png';
+			return 'http://' + config.twitter.shareUrl + '/img/share.png';
 		}
 	}
 
