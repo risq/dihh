@@ -71,33 +71,33 @@ function init(callbacks) {
 
 }
 
-function updateTrackView(trackData) {
+function updateTrackView(dig) {
 
-	if ( curentTrackId !== trackData._id ) {
+	if ( curentTrackId !== dig._id ) {
 
-		var trackArtists = trackData.artists.join( ', ' );
-		var trackFullTitle = trackArtists + ' - ' + trackData.title;
+		var trackArtists = dig.artists.join( ', ' );
+		var trackFullTitle = trackArtists + ' - ' + dig.title;
 
-		curentTrackId = trackData._id;
+		curentTrackId = dig._id;
 
 		$trackArtist.text( trackArtists );
-		$trackTitle.text( trackData.title );
-		$trackYear.text( trackData.year );
-		$trackLabel.text( trackData.label || '' );
-		$trackDescription.text( trackData.description || '' );
+		$trackTitle.text( dig.title );
+		$trackYear.text( dig.year );
+		$trackLabel.text( dig.label || '' );
+		$trackDescription.text( dig.description || '' );
 
 		$trackLinks.empty();
 
-		for ( var link in trackData.links ) {
+		for ( var link in dig.links ) {
 
-        	if ( trackData.links.hasOwnProperty( link ) ) {
+        	if ( dig.links.hasOwnProperty( link ) ) {
 
-        		$trackLinks.append('<a href="' + trackData.links[link] + '" class="button button-black button-small" target="_blank">' + link + '</a>');
+        		$trackLinks.append('<a href="' + dig.links[link] + '" class="button button-black button-small" target="_blank">' + link + '</a>');
 
         	}
         }
         
-		Comments.loadCommentsForTrack( trackData._id, trackFullTitle );
+		Comments.loadCommentsForTrack( dig, trackFullTitle );
 
 	}
 }

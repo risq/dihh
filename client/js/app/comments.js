@@ -1,15 +1,15 @@
 var disqusLoaded = false,
 	disqusShortname = 'dihh';
 
-function loadCommentsForTrack ( trackId, trackFullTitle ) {
+function loadCommentsForTrack ( dig, trackFullTitle ) {
 
     if ( disqusLoaded ) {
 
-    	reloadDisqus( trackId, 'http://dihh.io/digs/' + trackId, trackFullTitle );
+    	reloadDisqus( dig._id, 'http://dihh.io/digs/' + dig.slug, trackFullTitle );
 
     } else {
 
-    	loadDisqus( trackId, 'http://dihh.io/digs/' + trackId, trackFullTitle );
+    	loadDisqus( dig._id, 'http://dihh.io/digs/' + dig.slug, trackFullTitle );
 
     }
 }
