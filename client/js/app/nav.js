@@ -86,7 +86,8 @@ function onListenDig() {
 
 	Player.loadTrack( dig, true );
 	Routing.changeDig( dig );
-	Ui.updateTrackView( dig )
+	Ui.updateTrackView( dig );
+	Crates.flipBackSelectedRecord();
 
 }
 

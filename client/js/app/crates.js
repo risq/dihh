@@ -97,6 +97,12 @@ function selectNextRecord() {
 
 }
 
+function flipBackSelectedRecord() {
+
+	cratedigger.flipBackSelectedRecord();
+
+}
+
 
 module.exports = {
 	init: init,
@@ -106,5 +112,6 @@ module.exports = {
 	getSelectedRecordData: getSelectedRecordData,
 	selectPrevRecord: selectPrevRecord,
 	showRecord: showRecord,
-	selectNextRecord: selectNextRecord
+	selectNextRecord: selectNextRecord,
+	flipBackSelectedRecord: flipBackSelectedRecord
 }
