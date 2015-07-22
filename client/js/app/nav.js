@@ -19,10 +19,6 @@ function init() {
 
 function loadPage( options ) {
 
-	options.pushState = options.pushState || false;
-
-	console.log( 'loadPage', options );
-
 	Api.getDigs({
 
 		page: options.pageId
@@ -39,6 +35,16 @@ function loadPage( options ) {
 
 			Routing.changePage( options.pageId, options.digId, options.pushState );
 
+			if (options.playTrack && options.digId) {
+
+				var record = Crates.getRecordById(options.digId);
+
+				if (record.dig) {
+
+					Player.loadTrack( record.dig, false );
+				
+				}
+			}
 		});
 
 	}, function(data) {

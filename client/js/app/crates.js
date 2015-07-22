@@ -59,7 +59,10 @@ function getRecordById( digId ) {
         }
     }
 
-    return null;
+    return {
+		dig: null,
+		index: -1
+	};
 
 }
 
