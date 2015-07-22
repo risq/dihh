@@ -7,27 +7,37 @@ var Routing = require('./routing'),
 
 function init() {
 
-	loadPage(Routing.getCurrentPageId(), Routing.getCurrentDigId(), false, Intro.startIntro);
+	loadPage({
+		pageId: Routing.getCurrentPageId(), 
+		digId: Routing.getCurrentDigId(), 
+		pushState: false, 
+		playTrack: true, 
+		onGetSuccess: Intro.startIntro
+	});
 
 }
 
-function loadPage( pageId, digId, pushState, done ) {
+function loadPage( options ) {
+
+	options.pushState = options.pushState || false;
+
+	console.log( 'loadPage', options );
 
 	Api.getDigs({
 
-		page: pageId
+		page: options.pageId
 
 	}, function( digs ) {
 
-		if (done) {
+		if (options.onGetSuccess) {
 
-			done();
+			options.onGetSuccess();
 		
 		}
 
 		Crates.loadDigs( digs, function() {
 
-			Routing.changePage( pageId, digId, pushState );
+			Routing.changePage( options.pageId, options.digId, options.pushState );
 
 		});
 
@@ -40,19 +50,27 @@ function loadPage( pageId, digId, pushState, done ) {
 
 function onPageChange( pageId ) {
 
-	loadPage( pageId );
+	loadPage({
+		pageId: pageId
+	});
 
 }
 
 function onPrevPage() {
 
-	loadPage( Routing.getCurrentPageId() - 1, null, true );
+	loadPage({
+		pageId: Routing.getCurrentPageId() - 1, 
+		pushState: true
+	});
 
 }
 
 function onNextPage() {
 
-	loadPage( Routing.getCurrentPageId() + 1, null, true );
+	loadPage({
+		pageId: Routing.getCurrentPageId() + 1, 
+		pushState: true
+	});
 
 }
 
