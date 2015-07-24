@@ -78,12 +78,41 @@ function error( res, err ) {
 
 }
 
+function sitemap( res ) {
+
+	var queries = {
+		count: digs.getDigsCount,
+		digs: function ( done ) {
+			digs.getDigs( 0, 0, done );
+		}
+	};
+
+	async.parallel( queries, function( err, results ) {
+
+		if (err) {
+            
+			error( res, err );
+
+		} else {
+
+			res.header('Content-Type', 'application/xml');
+			res.render('sitemap.ejs', {
+				digs: results.digs,
+				pagesCount: Math.floor(results.count / 48) + 1,
+				lastModificationDate: results.digs[0].created_at
+			});
+		}
+		
+	})
+}
+
 module.exports = {
 
 	main: main,
 	admin: admin,
 	login: login,
 	signup: signup,
-	error: error
+	error: error,
+	sitemap: sitemap
 
 };

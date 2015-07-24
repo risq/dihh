@@ -43,4 +43,10 @@ module.exports = function(app) {
 
 	});
 
+	app.get('/sitemap.xml', function(req, res) {
+
+		router.sitemap(res);
+
+	});
+
 }
