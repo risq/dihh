@@ -15,6 +15,16 @@ function init() {
 		onGetSuccess: Intro.startIntro
 	});
 
+	Ui.on('page:prev', onPrevPage);
+	Ui.on('page:next', onNextPage);
+	Ui.on('dig:listen', onListenDig);
+	Ui.on('track:prev', onPrevTrack);
+	Ui.on('track:next', onNextTrack);
+
+	Player.on('track:end', onTrackEnd);
+
+	Crates.on('infoPanel:open', onInfoPanelOpen);
+	Crates.on('infoPanel:close', onInfoPanelClose);
 }
 
 function loadPage( options ) {
@@ -108,6 +118,25 @@ function onNextTrack() {
 	Player.loadTrack( dig, true );
 	Routing.changeDig( dig );
 	Ui.updateTrackView( dig )
+}
+
+function onTrackEnd() {
+
+	// if autoplay
+	// wait and play next track
+	onNextTrack();
+
+}
+
+function onInfoPanelOpen() {
+
+	Ui.hideBottomBar();
+
+}
+function onInfoPanelClose() {
+
+	Ui.showBottomBar();
+
 }
 
 module.exports = {

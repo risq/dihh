@@ -1,9 +1,12 @@
-var cratedigger = require('cratedigger.js');
+var cratedigger = require('cratedigger.js'),
+	EventEmitter = require('events').EventEmitter;
 
 var player,
 	playerReady = false,
 	currentTrack = null,
-	playlist = [];
+	playlist = [],
+	autoplay = true,
+	emitter = new EventEmitter();
 
 function init() {
 
@@ -35,13 +38,13 @@ function onYouTubeIframeAPIReady() {
 	});
 }
 
-function loadTrack( trackData, autoplay ) {
+function loadTrack( trackData, play ) {
 
 	if ( playerReady ) {
 
 		player.cueVideoById( trackData.youtubeId );
 
-		if( autoplay ) {
+		if( play ) {
 
 			player.playVideo();
 		}
@@ -57,7 +60,9 @@ function onPlayerReady( event ) {
 
 
 function onPlayerStateChange( event ) {
-	// console.log('onPlayerStateChange', event);
+	if ( event.data === YT.PlayerState.ENDED ) {
+		emitter.emit('track:end', currentTrack);
+	}
 }
 
 function getPrevTrack() {
@@ -107,5 +112,6 @@ module.exports = {
     loadTrack: loadTrack,
     getNextTrack: getNextTrack,
     getPrevTrack: getPrevTrack,
+    on: emitter.on.bind(emitter)
 };
 

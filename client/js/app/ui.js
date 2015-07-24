@@ -26,11 +26,9 @@ var $cratedigger,
     curentTrackId,
     pagesCount,
 
-    events;
+    emitter = new EventEmitter();
 
-function init(callbacks) {
-
-	events = callbacks;
+function init() {
 
 	$cratedigger = $('#cratedigger');
 	$pageNumber = $('.page-number');
@@ -64,8 +62,8 @@ function init(callbacks) {
 	$buttonListen.on('click', onButtonListenClick);
 	$buttonPrevPage.on('click', onButtonPrevPageClick);
 	$buttonNextPage.on('click', onButtonNextPageClick);
-	$buttonPrevTrack.on( 'click', onButtonPrevTrackClick);
-	$buttonNextTrack.on( 'click', onButtonNextTrackClick);
+	$buttonPrevTrack.on('click', onButtonPrevTrackClick);
+	$buttonNextTrack.on('click', onButtonNextTrackClick);
 
 	pagesCount = getPagesCount();
 
@@ -102,13 +100,13 @@ function updateTrackView(dig) {
 	}
 }
 
-function onInfoPanelOpened() {
+function hideBottomBar() {
 
 	$bottomBar.addClass('closed');
 
 }
 
-function onInfoPanelClosed() {
+function showBottomBar() {
 
 	$bottomBar.removeClass('closed');
 	
@@ -116,35 +114,35 @@ function onInfoPanelClosed() {
 
 function onButtonPrevPageClick() {
 
-	events.onPrevPage();
+	emitter.emit('page:prev');
 	return false;
 
 }
 
 function onButtonNextPageClick() {
 
-	events.onNextPage();
+	emitter.emit('page:next');
 	return false;
 
 }
 
 function onButtonListenClick() {
 
-	events.onListenDig();
+	emitter.emit('dig:listen');
 	return false;
 
 }
 
 function onButtonPrevTrackClick() {
 
-	events.onPrevTrack();
+	emitter.emit('track:prev');
 	return false;
 
 }
 
 function onButtonNextTrackClick() {
 
-	events.onNextTrack();
+	emitter.emit('track:next');
 	return false;
 
 }
@@ -205,11 +203,12 @@ function getCurrentDigId() {
 module.exports =  {
     init: init,
     updateTrackView: updateTrackView,
-    onInfoPanelOpened: onInfoPanelOpened,
-	onInfoPanelClosed: onInfoPanelClosed,
+    hideBottomBar: hideBottomBar,
+	showBottomBar: showBottomBar,
 	onPageChange: onPageChange,
 	updateTitle: updateTitle,
 	getCurrentPageId: getCurrentPageId,
 	getPagesCount: getPagesCount,
-	getCurrentDigId: getCurrentDigId
+	getCurrentDigId: getCurrentDigId,
+	on: emitter.on.bind(emitter)
 };

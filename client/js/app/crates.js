@@ -1,6 +1,9 @@
-var cratedigger = require('cratedigger.js');
+var cratedigger = require('cratedigger.js'),
+	EventEmitter = require('events').EventEmitter;
 
-function init(Ui) {
+var emitter = new EventEmitter();
+
+function init() {
 
 	cratedigger.init({
 
@@ -20,9 +23,8 @@ function init(Ui) {
 	        coverContainerId    : 'cratedigger-record-cover'
 	    },
 
-	    onInfoPanelOpened: Ui.onInfoPanelOpened,
-
-		onInfoPanelClosed: Ui.onInfoPanelClosed
+	    onInfoPanelOpened: onInfoPanelOpen,
+		onInfoPanelClosed: onInfoPanelClose
 	});
 }
 
@@ -103,6 +105,16 @@ function flipBackSelectedRecord() {
 
 }
 
+function onInfoPanelOpen() {
+
+	emitter.emit('infoPanel:open');
+
+}
+function onInfoPanelClose() {
+
+	emitter.emit('infoPanel:close');
+
+}
 
 module.exports = {
 	init: init,
@@ -113,5 +125,6 @@ module.exports = {
 	selectPrevRecord: selectPrevRecord,
 	showRecord: showRecord,
 	selectNextRecord: selectNextRecord,
-	flipBackSelectedRecord: flipBackSelectedRecord
+	flipBackSelectedRecord: flipBackSelectedRecord,
+	on: emitter.on.bind(emitter)
 }
