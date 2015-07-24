@@ -23,10 +23,11 @@ function main( res, data ) {
 
 		} else {
 
+			var pagesCount = Math.floor(results.count / 48) + 1;
 			res.render('index.ejs', {
-				pageId: results.dig ? results.dig.page + 1 : data.pageId,
+				pageId: getPageId(data.pageId, pagesCount, results.dig),
 				count: results.count,
-				pagesCount: Math.floor(results.count / 48) + 1,
+				pagesCount: pagesCount,
 				dig: results.dig
 			});
 		}
@@ -104,6 +105,20 @@ function sitemap( res ) {
 		}
 		
 	})
+}
+
+function getPageId(page, pagesCount, dig) {
+	
+	if ( dig && dig.page ) {	
+		return dig.page + 1;
+	} else if (page > 0 && page <= pagesCount) {
+		return page;
+	} else if (page > pagesCount) {
+		return pagesCount;
+	} else {
+		return 1;
+	}
+
 }
 
 module.exports = {

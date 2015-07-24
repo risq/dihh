@@ -21,8 +21,9 @@ function init(callbacks) {
 
 function changePage(pageId, digId, pushState) {
 
-	var record = digId ? Crates.getRecordById( digId ) : null,
-		digSlug = record ? record.dig.slug : null;
+	var record = digId ? Crates.getRecordById( digId ) : null;
+		digSlug = (record && record.dig) ? record.dig.slug : null;
+
 
 	if (pushState) {
 
