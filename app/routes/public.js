@@ -11,6 +11,14 @@ module.exports = function(app) {
 
 	});
 
+	app.get('/digs', function(req, res) {
+
+		router.main(res, {
+			pageId: 1
+		});
+
+	});
+
 	app.get('/page/:page(\\d+)', function(req, res) {
 
 		router.main(res, {

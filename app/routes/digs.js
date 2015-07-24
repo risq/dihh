@@ -6,24 +6,7 @@ var multer = require('multer');
 
 module.exports = function(app, passport) {
 
-	// PUBLIC ==================================
-	app.get('/digs', function(req, res) {
-		digs.getDigsPage(0, function(err, digs) {
-            if (err)
-                res.send(err);
-
-            res.json(digs);
-        });
-	});
-
-	// app.get('/digs/:slug', function(req, res) {
-	// 	digs.getDigsPageByDigSlug(req.params.slug, function(err, digs) {
-	//            if (err)
-	//                res.send(err);
-	//                
-	//            res.json(digs);
-	//        });
-	// });
+	// PUBLIC =================================
 
 	app.get('/digs/page/:page', function(req, res) {
 		digs.getDigsPage(req.params.page, function(err, digs) {
