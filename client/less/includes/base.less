@@ -135,6 +135,24 @@ p {
     text-decoration: none;
 }
 
+.cratedigger-label a {
+    border-bottom: 2px solid @white;
+    padding-bottom: 2px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        padding-bottom: 6px;
+        color: @red;
+        border-color: @red;
+    }
+
+    &:active {
+        padding-bottom: 8px;
+        color: fade(@red, 50%);
+        border-color: fade(@red, 0%);
+    }
+}
+
 .footer {
     position: absolute;
     left: 0;
