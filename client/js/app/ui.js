@@ -1,4 +1,5 @@
 var $ = require('jquery'),
+	store = require('store'),
 	EventEmitter = require('events').EventEmitter;
 
 var Comments = require('./comments'),
@@ -22,9 +23,11 @@ var $cratedigger,
     $trackLinks,
     $buttonPrevTrack,
     $buttonNextTrack,
+    $buttonAutoplay,
 
     curentTrackId,
     pagesCount,
+    autoplay = store.get('autoplay') === undefined ? true : store.get('autoplay'),
 
     emitter = new EventEmitter();
 
@@ -53,7 +56,7 @@ function init() {
 	$buttonPrevTrack = $( '.button-prev-track' );
     $buttonNextTrack = $( '.button-next-track' );
 
-
+    $buttonAutoplay = $( '.button-autoplay' );
 
 	$buttonPrev.on('click', Crates.selectPrevRecord);
 	$buttonShow.on('click', Crates.showRecord);
@@ -64,8 +67,11 @@ function init() {
 	$buttonNextPage.on('click', onButtonNextPageClick);
 	$buttonPrevTrack.on('click', onButtonPrevTrackClick);
 	$buttonNextTrack.on('click', onButtonNextTrackClick);
+	$buttonAutoplay.on('click', onButtonAutoplayClick);
 
 	pagesCount = getPagesCount();
+
+	updateAutoplay();
 
 }
 
@@ -147,6 +153,21 @@ function onButtonNextTrackClick() {
 
 }
 
+function onButtonAutoplayClick() {
+
+	autoplay = !autoplay;
+	store.set('autoplay', autoplay);
+	updateAutoplay();
+	return false;
+
+}
+
+function updateAutoplay() {
+
+	$buttonAutoplay.text( 'Autoplay ' + (autoplay ? 'On' : 'Off') );
+
+}
+
 function onPageChange(pageId) {
 
 	$cratedigger.attr('data-cratedigger-page', pageId);
@@ -200,6 +221,10 @@ function getCurrentDigId() {
 	return $cratedigger.attr('data-cratedigger-record') || null;
 }
 
+function getAutoplay() {
+	return autoplay;
+}
+
 module.exports =  {
     init: init,
     updateTrackView: updateTrackView,
@@ -210,5 +235,6 @@ module.exports =  {
 	getCurrentPageId: getCurrentPageId,
 	getPagesCount: getPagesCount,
 	getCurrentDigId: getCurrentDigId,
+	getAutoplay: getAutoplay,
 	on: emitter.on.bind(emitter)
 };

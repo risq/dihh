@@ -122,9 +122,9 @@ function onNextTrack() {
 
 function onTrackEnd() {
 
-	// if autoplay
-	// wait and play next track
-	onNextTrack();
+	if (Ui.getAutoplay()) {
+		setTimeout(onNextTrack, 2000)
+	}
 
 }
 
