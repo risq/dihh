@@ -14,6 +14,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var favicon = require('serve-favicon');
+
 var config = require('./config/config.json');
 
 global.twitter = require('./app/twitter');
@@ -28,6 +30,7 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(favicon(__dirname + '/client/img/favicon.ico'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.set('views', __dirname + '/client/views');
