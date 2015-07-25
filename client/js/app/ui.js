@@ -8,6 +8,7 @@ var Comments = require('./comments'),
 
 var $cratedigger,
 	$pageNumber,
+	$about,
 	$bottomBar,
 	$buttonPrev,
 	$buttonShow,
@@ -35,6 +36,8 @@ function init() {
 
 	$cratedigger = $('#cratedigger');
 	$pageNumber = $('.page-number');
+
+	$about = $('.about');
 
 	$bottomBar  = $('#bottom-bar');
 	$buttonPrev = $bottomBar.find('.bottom-bar-prev-button');
@@ -78,6 +81,8 @@ function init() {
 function updateTrackView(dig) {
 
 	if ( curentTrackId !== dig._id ) {
+
+		hideAbout();
 
 		var trackArtists = dig.artists.join( ', ' );
 		var trackFullTitle = trackArtists + ' - ' + dig.title;
@@ -209,6 +214,18 @@ function updateTitle( dig, page ) {
 	
 }
 
+function hideAbout() {
+
+	$about.addClass('hidden');
+
+}
+
+function showAbout() {
+
+	$about.removeClass('hidden');
+
+}
+
 function getCurrentPageId() {
 	return parseInt($cratedigger.attr('data-cratedigger-page'));
 }
@@ -232,6 +249,8 @@ module.exports =  {
 	showBottomBar: showBottomBar,
 	onPageChange: onPageChange,
 	updateTitle: updateTitle,
+	hideAbout: hideAbout,
+	showAbout: showAbout,
 	getCurrentPageId: getCurrentPageId,
 	getPagesCount: getPagesCount,
 	getCurrentDigId: getCurrentDigId,
