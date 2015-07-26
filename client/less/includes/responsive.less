@@ -1,4 +1,4 @@
-@media only screen and (max-height : 720px) {
+@media only screen and (max-height : 784px) {
 
 	#cratedigger-record-artist {
 		font-size: 18px;
@@ -23,6 +23,17 @@
 	.cratedigger-label, .cratedigger-label a {
 		font-size: 20px;
 	}
+}
+
+@media only screen and (max-height : 472px),
+	   only screen and (max-width : 472px) {
+
+	#cratedigger-record-cover {
+		width: 232px;
+		height: 232px;
+		margin: 12px 0 24px;
+	}
+
 }
 
 @media only screen and (max-width : 960px),
@@ -71,5 +82,32 @@
 	}
 	.track-panel-toggle-button {
 		display: block;
+	}
+}
+
+@media only screen and (max-width : 480px) {
+
+	.main .right-column {
+		width: 100%;
+
+		&.hidden {
+			right: -100%;
+
+			.track-panel-toggle-button {
+				  left: -64px;
+			}
+		}
+
+		.track-panel-toggle-button {
+			left: 0;
+		}
+
+		.track {
+			width: 100%;
+
+			.track-header {
+				padding: 17px 0 12px 48px;
+			}
+		}
 	}
 }

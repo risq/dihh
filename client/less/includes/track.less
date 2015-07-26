@@ -112,7 +112,7 @@
     }
 
     .track-description {
-        font-size: 12px;
+        font-size: 14px;
         color: @black;
         margin-bottom: 24px;
     }
@@ -154,12 +154,14 @@
     position: absolute;
     width: 64px;
     height: 64px;
-    right: 100%;
+    left: -64px;
     color: @white;
     line-height: 64px;
     text-align: center;
     font-size: 28px;
     background-color: @main;
+    z-index: 32;
+    transition: left 0.4s ease-in-out;
 
     .button-open-icon {
         display: none; 
