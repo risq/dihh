@@ -66,9 +66,11 @@ function init() {
     $buttonAutoplay = $( '.button-autoplay' );
 	$buttonTrackPanelToggle = $( '.track-panel-toggle-button' );
 
-	$buttonPrev.on('click', Crates.selectPrevRecord);
-	$buttonShow.on('click', Crates.showRecord);
-	$buttonNext.on('click', Crates.selectNextRecord);
+	$cratedigger.on('click', onCratediggerClick);
+
+	$buttonPrev.on('click', onButtonPrevClick);
+	$buttonShow.on('click', onButtonShowClick);
+	$buttonNext.on('click', onButtonNextClick);
 
 	$buttonListen.on('click', onButtonListenClick);
 	$buttonPrevPage.on('click', onButtonPrevPageClick);
@@ -131,8 +133,15 @@ function showBottomBar() {
 	
 }
 
+function onCratediggerClick() {
+
+	hideTrackPanel();
+
+}
+
 function onButtonPrevPageClick() {
 
+	hideTrackPanel();
 	emitter.emit('page:prev');
 	return false;
 
@@ -140,6 +149,7 @@ function onButtonPrevPageClick() {
 
 function onButtonNextPageClick() {
 
+	hideTrackPanel();
 	emitter.emit('page:next');
 	return false;
 
@@ -147,6 +157,7 @@ function onButtonNextPageClick() {
 
 function onButtonListenClick() {
 
+	hideTrackPanel();
 	emitter.emit('dig:listen');
 	return false;
 
@@ -178,6 +189,28 @@ function onButtonAutoplayClick() {
 function onButtonTrackPanelToggleClick() {
 	$rightColumn.toggleClass('hidden');
 }
+
+function onButtonPrevClick() {
+	
+	hideTrackPanel();
+	Crates.selectPrevRecord();
+	return false;
+}
+
+function onButtonShowClick() {
+	
+	hideTrackPanel();
+	Crates.showRecord();
+	return false;
+}
+
+function onButtonNextClick() {
+	
+	hideTrackPanel();
+	Crates.selectNextRecord();
+	return false;
+}
+
 
 function hideTrackPanel() {
 	$rightColumn.addClass('hidden');
@@ -245,7 +278,6 @@ function showAbout() {
 	$about.removeClass('hidden');
 
 }
-
 
 function getCurrentPageId() {
 	return parseInt($cratedigger.attr('data-cratedigger-page'));
