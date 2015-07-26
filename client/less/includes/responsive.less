@@ -37,6 +37,10 @@
   		}
 	}
 
+	.track {
+		bottom: 48px;
+	}
+
 	.footer {
 		height: 48px;
 
@@ -46,16 +50,23 @@
 		}
 	}
 
-
-	.main .right-column, .track {
-		width: 400px;
-	}
-
-	.main .scene {
-		margin-right: 400px;
-	}
-
 	.social {
 		display: none;
+	}
+}
+
+@media only screen and (max-width : 960px) {
+	.main .scene {
+		margin-right: 0;
+	}
+	.main .right-column.hidden {
+		right: -480px;
+
+		.button-open-icon {
+			display: inline-block; 
+		}
+		.button-close-icon {
+			display: none; 
+		}
 	}
 }

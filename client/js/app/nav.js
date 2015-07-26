@@ -107,7 +107,7 @@ function onPrevTrack() {
 
 	Player.loadTrack( dig, true );
 	Routing.changeDig( dig );
-	Ui.updateTrackView( dig )
+	Ui.updateTrackView( dig );
 	
 }
 
@@ -117,13 +117,13 @@ function onNextTrack() {
 
 	Player.loadTrack( dig, true );
 	Routing.changeDig( dig );
-	Ui.updateTrackView( dig )
+	Ui.updateTrackView( dig );
 }
 
 function onTrackEnd() {
 
 	if (Ui.getAutoplay()) {
-		setTimeout(onNextTrack, 2000)
+		setTimeout(onNextTrack, 2000);
 	}
 
 }
@@ -131,6 +131,7 @@ function onTrackEnd() {
 function onInfoPanelOpen() {
 
 	Ui.hideBottomBar();
+	Ui.hideTrackPanel();
 
 }
 function onInfoPanelClose() {

@@ -7,6 +7,7 @@ var Comments = require('./comments'),
 
 
 var $cratedigger,
+	$rightColumn,
 	$pageNumber,
 	$about,
 	$bottomBar,
@@ -25,6 +26,8 @@ var $cratedigger,
     $buttonPrevTrack,
     $buttonNextTrack,
     $buttonAutoplay,
+    $buttonTrackPanelToggle,
+
 
     curentTrackId,
     pagesCount,
@@ -35,6 +38,7 @@ var $cratedigger,
 function init() {
 
 	$cratedigger = $('#cratedigger');
+	$rightColumn = $('.right-column');
 	$pageNumber = $('.page-number');
 
 	$about = $('.about');
@@ -60,6 +64,7 @@ function init() {
     $buttonNextTrack = $( '.button-next-track' );
 
     $buttonAutoplay = $( '.button-autoplay' );
+	$buttonTrackPanelToggle = $( '.track-panel-toggle-button' );
 
 	$buttonPrev.on('click', Crates.selectPrevRecord);
 	$buttonShow.on('click', Crates.showRecord);
@@ -72,6 +77,8 @@ function init() {
 	$buttonNextTrack.on('click', onButtonNextTrackClick);
 	$buttonAutoplay.on('click', onButtonAutoplayClick);
 
+	$buttonTrackPanelToggle.on('click', onButtonTrackPanelToggleClick);
+
 	pagesCount = getPagesCount();
 
 	updateAutoplay();
@@ -83,6 +90,7 @@ function updateTrackView(dig) {
 	if ( curentTrackId !== dig._id ) {
 
 		hideAbout();
+		showTrackPanel();
 
 		var trackArtists = dig.artists.join( ', ' );
 		var trackFullTitle = trackArtists + ' - ' + dig.title;
@@ -167,6 +175,18 @@ function onButtonAutoplayClick() {
 
 }
 
+function onButtonTrackPanelToggleClick() {
+	$rightColumn.toggleClass('hidden');
+}
+
+function hideTrackPanel() {
+	$rightColumn.addClass('hidden');
+}
+
+function showTrackPanel() {
+	$rightColumn.removeClass('hidden');
+}
+
 function updateAutoplay() {
 
 	$buttonAutoplay.text( 'Autoplay ' + (autoplay ? 'On' : 'Off') );
@@ -196,7 +216,7 @@ function onPageChange(pageId) {
 
 function updateTitle( dig, page ) {
 
-	var title = 'Digging Into Hip Hop'
+	var title = 'Digging Into Hip Hop';
 
 	if ( dig ) {
 
@@ -226,6 +246,7 @@ function showAbout() {
 
 }
 
+
 function getCurrentPageId() {
 	return parseInt($cratedigger.attr('data-cratedigger-page'));
 }
@@ -251,6 +272,8 @@ module.exports =  {
 	updateTitle: updateTitle,
 	hideAbout: hideAbout,
 	showAbout: showAbout,
+	hideTrackPanel: hideTrackPanel,
+	showTrackPanel: showTrackPanel,
 	getCurrentPageId: getCurrentPageId,
 	getPagesCount: getPagesCount,
 	getCurrentDigId: getCurrentDigId,

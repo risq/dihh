@@ -2,7 +2,7 @@
 .track {
     width: @rightColumnWidth;
     top: 0;
-    right: 10px;
+    right: 0;
     bottom: @bottomBarHeight;
     left: 0;
     position: absolute;
@@ -147,4 +147,23 @@
     color: @black;
     text-transform: uppercase;
     font-weight: 700;
+}
+
+.track-panel-toggle-button {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    right: 100%;
+    color: @white;
+    line-height: 64px;
+    text-align: center;
+    font-size: 28px;
+    background-color: @main;
+
+    .button-open-icon {
+        display: none; 
+    }
+    .button-close-icon {
+        display: inline-block; 
+    }
 }

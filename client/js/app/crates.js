@@ -127,4 +127,4 @@ module.exports = {
 	selectNextRecord: selectNextRecord,
 	flipBackSelectedRecord: flipBackSelectedRecord,
 	on: emitter.on.bind(emitter)
-}
+};

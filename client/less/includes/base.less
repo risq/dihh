@@ -62,13 +62,14 @@ p {
     }
 
     .right-column {
-        position: fixed;
+        position: absolute;
         height: 100%;
         width: @rightColumnWidth;
         right: 0;
         top: 0;
         bottom: 0;
         box-shadow: -5px 0px 51px 2px rgba(0,0,0,0.8);
+        transition: right 0.3s ease-in-out;
     }
 }
 
