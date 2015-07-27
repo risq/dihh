@@ -27,7 +27,9 @@ var $cratedigger,
     $buttonNextTrack,
     $buttonAutoplay,
     $buttonTrackPanelToggle,
-
+    $infoPanelTitle,
+	$infoPanelArtist,
+	$infoPanelCover,
 
     curentTrackId,
     pagesCount,
@@ -52,6 +54,9 @@ function init() {
 	$buttonNextPage = $('.button-next-page');
 
 	$buttonListen = $( '#cratedigger-record-listen' );
+	$infoPanelTitle = $( '#cratedigger-record-title' );
+	$infoPanelArtist = $( '#cratedigger-record-artist' );
+	$infoPanelCover = $( '#cratedigger-record-cover' );
 
 	$trackArtist = $( '.track .track-artist' );
     $trackTitle = $( '.track .track-title' );
@@ -120,6 +125,15 @@ function updateTrackView(dig) {
 
 	}
 }
+
+function fillInfoPanel (record) {
+
+    $infoPanelTitle.text(record.title || '');
+    $infoPanelArtist.text(record.artist || '');
+	$infoPanelCover.css({
+		backgroundImage: record.cover ? 'url(' + record.cover + ')' : 'none'
+	});
+};
 
 function hideBottomBar() {
 
@@ -298,6 +312,7 @@ function getAutoplay() {
 module.exports =  {
     init: init,
     updateTrackView: updateTrackView,
+    fillInfoPanel: fillInfoPanel,
     hideBottomBar: hideBottomBar,
 	showBottomBar: showBottomBar,
 	onPageChange: onPageChange,

@@ -14,13 +14,10 @@ function init() {
         crateTexture: '/img/wood.jpg',
 
 	    elements: {
-	        rootContainerId     : 'cratedigger',
-	        canvasContainerId   : 'cratedigger-canvas',
-	        loadingContainerId  : 'cratedigger-loading',
-	        infoContainerId     : 'cratedigger-info',
-	        titleContainerId    : 'cratedigger-record-title',
-	        artistContainerId   : 'cratedigger-record-artist',
-	        coverContainerId    : 'cratedigger-record-cover'
+	        rootContainer     : document.getElementById('cratedigger'),
+        	canvasContainer   : document.getElementById('cratedigger-canvas'),
+        	loadingContainer  : document.getElementById('cratedigger-loading'),
+        	infoContainer     : document.getElementById('cratedigger-info')
 	    },
 
 	    onInfoPanelOpened: onInfoPanelOpen,

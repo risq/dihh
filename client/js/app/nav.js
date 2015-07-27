@@ -130,6 +130,7 @@ function onTrackEnd() {
 
 function onInfoPanelOpen() {
 
+	Ui.fillInfoPanel(Crates.getSelectedRecordData());
 	Ui.hideBottomBar();
 	Ui.hideTrackPanel();
 
