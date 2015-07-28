@@ -53,10 +53,10 @@ function init() {
 	$buttonPrevPage = $('.button-prev-page');
 	$buttonNextPage = $('.button-next-page');
 
-	$buttonListen = $( '#cratedigger-record-listen' );
-	$infoPanelTitle = $( '#cratedigger-record-title' );
-	$infoPanelArtist = $( '#cratedigger-record-artist' );
-	$infoPanelCover = $( '#cratedigger-record-cover' );
+	$buttonListen = $( '.info-listen-button' );
+	$infoPanelTitle = $( '.info-artist' );
+	$infoPanelArtist = $( '.info-title' );
+	$infoPanelCover = $( '.info-cover' );
 
 	$trackArtist = $( '.track .track-artist' );
     $trackTitle = $( '.track .track-title' );
