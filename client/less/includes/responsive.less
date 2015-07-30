@@ -1,15 +1,16 @@
-@media only screen and (max-height : 784px) {
+@media only screen and (max-height : 820px) {
 
-	#cratedigger-record-artist {
+	.info-artist {
 		font-size: 18px;
+		line-height: 24px;
 	}
 
-	#cratedigger-record-title {
+	.info-title {
 		font-size: 32px;
 		line-height: 42px;
 	}
 
-	#cratedigger-record-cover {
+	.info-cover {
 		width: 300px;
 		height: 300px;
 		margin: 16px 0 32px;
@@ -22,42 +23,70 @@
 
 	.cratedigger-label, .cratedigger-label a {
 		font-size: 20px;
+		line-height: 20px;
 	}
 }
 
-@media only screen and (max-height : 472px),
+@media only screen and (max-height : 540px),
 	   only screen and (max-width : 472px) {
 
-	#cratedigger-record-cover {
+	.info-cover {
 		width: 232px;
 		height: 232px;
-		margin: 12px 0 24px;
+		margin: 12px 0;
+	}
+}
+
+@media only screen and (max-height : 340px) {
+
+	.logo img {
+		width: 107px;
+		height: 43px;
 	}
 
+	.info-cover {
+		width: 160px;
+		height: 160px;
+	}
 }
 
 @media only screen and (max-width : 960px),
-	   only screen and (max-height : 512px) {
+	   only screen and (max-height : 560px) {
 
 	#bottom-bar {
-		height: 48px;
+		height: 40px;
 
 		.bottom-bar-item {
   			font-size: 24px;
-  			line-height: 48px;
+  			line-height: 40px;
   		}
 	}
 
 	.track {
-		bottom: 48px;
+		bottom: 40px;
+	}
+
+	.track-artist,
+	.track-title {
+		font-size: 16px;
+	}
+
+	.track-infos .track-info {
+		font-size: 14px;
+	}
+
+	.button.button-small {
+		height: 26px;
+		line-height: 25px;
+		font-size: 13px;
 	}
 
 	.footer {
-		height: 48px;
+		height: 40px;
 
 		.pages, .page-button-container .page-button {
-			line-height: 52px;
-			height: 48px;
+			line-height: 41px;
+			height: 40px;
 		}
 	}
 
@@ -74,10 +103,10 @@
 		right: -480px;
 
 		.button-open-icon {
-			display: inline-block; 
+			display: inline-block;
 		}
 		.button-close-icon {
-			display: none; 
+			display: none;
 		}
 	}
 	.track-panel-toggle-button {
