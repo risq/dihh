@@ -179,7 +179,11 @@
         Loading...
     </div>
 </div>
-
+<noscript>
+  <% for(var i=0; i < digs.length; i++) {%>
+		<a href="http://dihh.io/digs/<%= digs[i].slug %>"><%= getDigTitle(digs[i]) %></a> 
+	<% } %>
+</noscript>
 <script type="text/javascript" src="/libs.min.js"></script>
 <script type="text/javascript" src="/main.js"></script>
 

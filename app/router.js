@@ -6,7 +6,10 @@ function main( res, data ) {
 	data.pageId = data.pageId || 1;
 
 	var queries = {
-		count: digs.getDigsCount
+		count: digs.getDigsCount,
+		digs: function ( done ) {
+			digs.getDigsPage( data.pageId, done );
+		}
 	};
 
 	if ( data.digSlug ) {
@@ -16,9 +19,9 @@ function main( res, data ) {
 	}
 
 	async.parallel( queries, function( err, results ) {
-  		
+
 		if (err) {
-        
+
 			error( res, err );
 
 		} else {
@@ -28,7 +31,8 @@ function main( res, data ) {
 				pageId: getPageId(data.pageId, pagesCount, results.dig),
 				count: results.count,
 				pagesCount: pagesCount,
-				dig: results.dig
+				dig: results.dig,
+				digs: results.digs
 			});
 		}
 
@@ -40,12 +44,12 @@ function admin( res, data ) {
 	digs.getDigsByCreatorId(data.user._id, function(err, digs) {
 
         if (err) {
-            
+
 			error( res, err );
 
 		} else {
 
-	        res.render('admin.ejs', {
+	    res.render('admin.ejs', {
 				user: data.user,
 				digs: digs,
 				message: data.flashMessage,
@@ -59,16 +63,16 @@ function admin( res, data ) {
 
 function login( res, data ) {
 
-	res.render('login.ejs', { 
-		message: data.flashMessage 
+	res.render('login.ejs', {
+		message: data.flashMessage
 	});
 
 }
 
 function signup( res, data ) {
 
-	res.render('signup.ejs', { 
-		message: data.flashMessage 
+	res.render('signup.ejs', {
+		message: data.flashMessage
 	});
 
 }
@@ -91,7 +95,7 @@ function sitemap( res ) {
 	async.parallel( queries, function( err, results ) {
 
 		if (err) {
-            
+
 			error( res, err );
 
 		} else {
@@ -103,13 +107,13 @@ function sitemap( res ) {
 				lastModificationDate: results.digs[0].created_at
 			});
 		}
-		
+
 	})
 }
 
 function getPageId(page, pagesCount, dig) {
-	
-	if ( dig && dig.page ) {	
+
+	if ( dig && dig.page ) {
 		return dig.page + 1;
 	} else if (page > 0 && page <= pagesCount) {
 		return page;

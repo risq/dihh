@@ -17,19 +17,24 @@ module.exports = function(app, config) {
 			title = 'Digging Into Hip Hop';
 		}
 
-		if (pageId && pageId > 1) { 
+		if (pageId && pageId > 1) {
 			title += ' - Page ' + pageId;
 		}
 
 		return title;
 	}
 
+	app.locals.getDigTitle = function(dig) {
+		return dig ? dig.artists.join(', ') + ' - ' + dig.title + ' (' + dig.year + ') - ' + dig.label :
+			'';
+	}
+
 	app.locals.getCanonicalUrl = function(dig, pageId) {
 		var url = 'http://' + config.twitter.shareUrl + '/';
-		if (pageId && pageId > 1) { 
+		if (pageId && pageId > 1) {
 			url += 'page/' + pageId + '/';
-		} 
-		if (dig) { 
+		}
+		if (dig) {
 			url += 'digs/' + dig.slug;
 		}
 		return url;
@@ -64,4 +69,3 @@ module.exports = function(app, config) {
 	}
 
 }
-
