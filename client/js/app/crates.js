@@ -11,7 +11,7 @@ function init() {
 		postprocessing: false,
 
 		sleeveMaskTexture: '/img/sleeve.png',
-        crateTexture: '/img/wood.jpg',
+    crateTexture: '/img/wood.jpg',
 
 	    elements: {
 	        rootContainer     : document.getElementById('cratedigger'),
@@ -20,7 +20,7 @@ function init() {
         	infoContainer     : document.getElementById('cratedigger-info')
 	    },
 
-	    onInfoPanelOpened: onInfoPanelOpen,
+	  onInfoPanelOpened: onInfoPanelOpen,
 		onInfoPanelClosed: onInfoPanelClose
 	});
 }
@@ -36,7 +36,7 @@ function selectRecord( index ) {
 	setTimeout(function() {
 
 		cratedigger.selectRecord( index );
-		
+
 	}, 1500);
 
 }
@@ -44,12 +44,12 @@ function selectRecord( index ) {
 function getRecordById( digId ) {
 
 	var loadedRecords = cratedigger.getRecordsDataList(),
-		digs = loadedRecords.slice(), 
+		digs = loadedRecords.slice(),
 		dig;
 
     while( dig = digs.pop() ) { // jshint ignore:line
 
-        if ( dig._id === digId ) { 
+        if ( dig._id === digId ) {
 
         	return {
         		dig: dig,
@@ -62,7 +62,6 @@ function getRecordById( digId ) {
 		dig: null,
 		index: -1
 	};
-
 }
 
 function getSelectedRecordData() {
@@ -86,7 +85,7 @@ function showRecord() {
 	} else {
 
 		cratedigger.selectNextRecord();
-		
+
 	}
 }
 

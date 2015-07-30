@@ -8,10 +8,10 @@ var Routing = require('./routing'),
 function init() {
 
 	loadPage({
-		pageId: Routing.getCurrentPageId(), 
-		digId: Routing.getCurrentDigId(), 
-		pushState: false, 
-		playTrack: true, 
+		pageId: Routing.getCurrentPageId(),
+		digId: Routing.getCurrentDigId(),
+		pushState: false,
+		playTrack: true,
 		onGetSuccess: Intro.startIntro
 	});
 
@@ -38,7 +38,7 @@ function loadPage( options ) {
 		if (options.onGetSuccess) {
 
 			options.onGetSuccess();
-		
+
 		}
 
 		Crates.loadDigs( digs, function() {
@@ -52,7 +52,7 @@ function loadPage( options ) {
 				if (record.dig) {
 
 					Player.loadTrack( record.dig, false );
-				
+
 				}
 			}
 		});
@@ -75,7 +75,7 @@ function onPageChange( pageId ) {
 function onPrevPage() {
 
 	loadPage({
-		pageId: Routing.getCurrentPageId() - 1, 
+		pageId: Routing.getCurrentPageId() - 1,
 		pushState: true
 	});
 
@@ -84,7 +84,7 @@ function onPrevPage() {
 function onNextPage() {
 
 	loadPage({
-		pageId: Routing.getCurrentPageId() + 1, 
+		pageId: Routing.getCurrentPageId() + 1,
 		pushState: true
 	});
 
@@ -108,11 +108,11 @@ function onPrevTrack() {
 	Player.loadTrack( dig, true );
 	Routing.changeDig( dig );
 	Ui.updateTrackView( dig );
-	
+
 }
 
 function onNextTrack() {
-	
+
 	var dig = Player.getNextTrack();
 
 	Player.loadTrack( dig, true );
@@ -129,7 +129,6 @@ function onTrackEnd() {
 }
 
 function onInfoPanelOpen() {
-
 	Ui.fillInfoPanel(Crates.getSelectedRecordData());
 	Ui.hideBottomBar();
 	Ui.hideTrackPanel();
