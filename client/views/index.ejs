@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    
+
     <title><%= getPageTitle(dig, pageId) %></title>
+
+    <meta name="description" content="<%= getDescription(dig) %>">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@diggingIntoHH">
@@ -29,10 +31,10 @@
 
 <div class="main">
     <div class="scene">
-        <div id="cratedigger" 
+        <div id="cratedigger"
             data-cratedigger-page="<%= pageId %>"
             data-cratedigger-pages-count="<%= pagesCount %>"
-            <% if (dig) { %>data-cratedigger-record="<%= dig._id %>"<% } %> 
+            <% if (dig) { %>data-cratedigger-record="<%= dig._id %>"<% } %>
         >
             <div id="cratedigger-canvas"></div>
             <div id="cratedigger-loading">
@@ -125,7 +127,7 @@
                         <% if (dig) { %>
 
                             <%= dig.description %>
-                            
+
                         <% } %>
                     </div>
                     <div class="track-links">
@@ -141,7 +143,7 @@
                                     <a href="<%= dig.links[link] %>" class="button button-black button-small" target="_blank"><%= link %></a>
                                     <%
                                 }
-                            }   
+                            }
                         } %>
                     </div>
                     <div id="disqus_thread"></div>
@@ -156,13 +158,13 @@
             <div class="instructions"></div>
         </div>
         <div class="footer">
-            <div class="page-button-container">        
+            <div class="page-button-container">
                 <a href="#" class="page-button button-prev-page"><i class="icon-left"></i></a>
             </div>
             <div class="pages">
                 Crate <span class="page-number"><%= pageId %></span>/<%= pagesCount %>
             </div>
-            <div class="page-button-container">            
+            <div class="page-button-container">
                 <a href="#" class="page-button button-next-page"><i class="icon-right"></i></a>
             </div>
         </div>
