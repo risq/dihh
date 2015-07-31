@@ -2,6 +2,7 @@
 	"database": {
 		"url": "localhost/dihh"
 	},
+	"googleAnalyticsId": "",
 	"secret": "secret",
 	"twitter": {
 		"enabled": true,

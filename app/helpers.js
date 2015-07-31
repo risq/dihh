@@ -68,4 +68,8 @@ module.exports = function(app, config) {
 		return description;
 	}
 
+	app.locals.getAnalyticsId = function() {
+		return config.googleAnalyticsId;
+	}
+
 }
