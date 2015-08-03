@@ -52,8 +52,8 @@ function init() {
   $buttonNextPage = $('.button-next-page');
 
   $buttonListen = $('.info-listen-button');
-  $infoPanelTitle = $('.info-artist');
-  $infoPanelArtist = $('.info-title');
+  $infoPanelTitle = $('.info-title');
+  $infoPanelArtist = $('.info-artist');
   $infoPanelCover = $('.info-cover');
 
   $trackArtist = $('.track .track-artist');
