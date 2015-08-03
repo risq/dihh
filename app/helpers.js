@@ -14,7 +14,7 @@ module.exports = function(app, config) {
 		if (dig) {
 			title = dig.artists.join(', ') + ' - ' + dig.title + ' | Digging Into Hip Hop';
 		} else {
-			title = 'Digging Into Hip Hop';
+			title = 'Digging Into Hip Hop | Underground hip hop & 90\'s classics';
 		}
 
 		if (pageId && pageId > 1) {
@@ -59,10 +59,10 @@ module.exports = function(app, config) {
 			if (dig.description) {
 				description += dig.description + ' - ';
 			}
-			description += 'Listen & discover more hip hop records on dihh.io.';
+			description += 'Listen & discover more hip hop records on dihh.io - Underground hip hop & 90\'s classics';
 
 		} else {
-			description = 'Listen & discover hip hop records on dihh.io.';
+			description = 'Listen & discover hip hop records on dihh.io - Underground hip hop & 90\'s classics';
 		}
 
 		return description;
