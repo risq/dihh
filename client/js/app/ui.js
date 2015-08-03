@@ -227,10 +227,12 @@ function updateTitle(dig, page) {
 
   if (dig) {
     title = dig.artist + ' - ' + dig.title + ' | ' + title;
+  } else {
+    title += ' | Underground hip hop & 90\'s classics'
   }
 
   if (page && page > 1) {
-    title = title + ' -¨Page ' + page;
+    title = title + ' - Page ' + page;
   }
 
   document.title = title;
