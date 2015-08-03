@@ -14,6 +14,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var robots = require('robots.txt');
 var favicon = require('serve-favicon');
 
 var config = require('./config/config.json');
@@ -31,12 +32,13 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(__dirname + '/client/img/favicon.ico'));
+app.use(robots(__dirname + '/client/robots.txt'));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
 app.set('views', __dirname + '/client/views');
 
 // required for passport
-app.use(session({ 
+app.use(session({
 	secret: config.secret,
 	resave: false,
 	saveUninitialized: false
@@ -73,4 +75,3 @@ server.listen(port);
 console.log('The magic happens on port ' + port);
 
 module.exports = app;
-
