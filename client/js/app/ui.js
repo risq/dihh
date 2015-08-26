@@ -29,6 +29,7 @@ var $cratedigger,
   $infoPanelTitle,
   $infoPanelArtist,
   $infoPanelCover,
+  $social,
 
   curentTrackId,
   pagesCount,
@@ -69,6 +70,8 @@ function init() {
   $buttonAutoplay = $('.button-autoplay');
   $buttonTrackPanelToggle = $('.track-panel-toggle-button');
 
+  $social = $('.social');
+
   $cratedigger.on('click', onCratediggerClick);
 
   $buttonPrev.on('click', onButtonPrevClick);
@@ -104,6 +107,10 @@ function updateTrackView(dig) {
     $trackYear.text(dig.year);
     $trackLabel.text(dig.label || '');
     $trackDescription.text(dig.description || '');
+
+    $('.twitter-share-button').remove();
+    $social.append('<a href="https://twitter.com/share" class="twitter-share-button" data-via="diggingIntoHH">Tweet</a>');
+    window.twttr.widgets.load();
 
     $trackLinks.empty();
 
