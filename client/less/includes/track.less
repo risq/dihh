@@ -51,7 +51,7 @@
     user-select: none;
     box-shadow: 0px -5px 46px -11px rgba(0, 0, 0, 0.7);
 
-    ul.track-controls-buttons {
+    .track-controls-buttons {
         display: table;
         table-layout:fixed;
         width: 100%;
@@ -59,19 +59,25 @@
         padding: 0;
         height: @trackControlsHeight;
 
-        li.track-control-button {
-            display: table-cell;
-            text-transform: uppercase;
-            padding: 0;
-            text-align: center;
-            vertical-align: middle;
-            color: @gray;
-            cursor: pointer;
-            transition: all 0.1s ease-in-out;
-            overflow: hidden;
+        .track-control-button {
+          font-family: 'Montserrat', sans-serif;
+          text-transform: uppercase;
+          padding: 0;
+          color: @gray;
+          cursor: pointer;
+          transition: all 0.1s ease-in-out;
+          overflow: hidden;
+          height: 100%;
+          width: 33.3%;
+          background: none;
+          box-sizing: border-box;
+          border: none;
+          font-size: 16px;
+          line-height: 17px;
 
-            &:hover, &.active {
+            &:hover, &:focus, &.active {
                 color: @black;
+                outline: 0;
             }
 
             &:active {
