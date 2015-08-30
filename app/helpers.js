@@ -59,10 +59,10 @@ module.exports = function(app, config) {
 			if (dig.description) {
 				description += dig.description + ' - ';
 			}
-			description += 'Listen & discover more hip hop records on dihh.io - Underground hip hop & 90\'s classics';
+			description += 'Digging Into Hip Hop - Listen & discover more hip hop records on dihh.io - Underground hip hop & 90\'s classics';
 
 		} else {
-			description = 'Listen & discover hip hop records on dihh.io - Underground hip hop & 90\'s classics';
+			description = 'Digging Into Hip Hop - Listen & discover hip hop records on dihh.io - Underground hip hop & 90\'s classics';
 		}
 
 		return description;
