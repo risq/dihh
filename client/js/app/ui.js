@@ -5,7 +5,8 @@ var $ = require('jquery'),
 var Comments = require('./comments'),
   Crates = require('./crates');
 
-var $cratedigger,
+var $body,
+  $cratedigger,
   $rightColumn,
   $pageNumber,
   $about,
@@ -38,6 +39,7 @@ var $cratedigger,
   emitter = new EventEmitter();
 
 function init() {
+  $body = $('body');
   $cratedigger = $('#cratedigger');
   $rightColumn = $('.right-column');
   $pageNumber = $('.page-number');
@@ -246,11 +248,11 @@ function updateTitle(dig, page) {
 }
 
 function hideAbout() {
-  $about.addClass('hidden');
+  $body.removeClass('about-shown');
 }
 
 function showAbout() {
-  $about.removeClass('hidden');
+  $body.addClass('about-shown');
 }
 
 function getCurrentPageId() {
