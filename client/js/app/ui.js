@@ -109,7 +109,7 @@ function updateTrackView(dig) {
     $trackDescription.text(dig.description || '');
 
     $('.twitter-share-button').remove();
-    $social.append('<a href="https://twitter.com/share" class="twitter-share-button" data-via="diggingIntoHH">Tweet</a>');
+    $social.append('<a href="https://twitter.com/share" class="twitter-share-button" data-via="diggingIntoHH" data-url="'+ location.href +'">Tweet</a>');
     window.twttr.widgets.load();
 
     $trackLinks.empty();
